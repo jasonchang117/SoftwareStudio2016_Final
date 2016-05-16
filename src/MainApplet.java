@@ -1,3 +1,4 @@
+import java.applet.AudioClip;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import controlP5.ControlP5;
@@ -18,6 +19,8 @@ public class MainApplet extends PApplet
 	private int curRoom;
 	private ControlP5 cp5;
 	private int catMove = 0;
+	private  AudioClip cat;
+	
 	public void setup()				// override the processing that initial the applet
 	{	
 		Ani.init(this);
@@ -30,6 +33,7 @@ public class MainApplet extends PApplet
 		rightroom = loadImage("background/right.png");
 		start = loadImage("background/start.jpg");
 		start2 = loadImage("background/start2.jpg");
+		cat = getAudioClip(getCodeBase(), "sound/cat.mp3");
 		curRoom = 2;
 		
 		cp5 =  new ControlP5(this);
@@ -38,7 +42,7 @@ public class MainApplet extends PApplet
 		cp5.addButton("buttonA").setLabel("Voice On").setPosition(60, 450).setSize(200, 50);
 		cp5.addButton("buttonB").setLabel("Start").setPosition(380, 450).setSize(200, 50);
 		cp5.addButton("buttonC").setLabel("questionnaire").setPosition(700, 450).setSize(200,50);
-		
+		cat.play();
 		
 	}
 	
