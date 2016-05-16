@@ -15,6 +15,7 @@ public class MainApplet extends PApplet
 	private final static int width = 960, height = 540;
 	private PImage middleroom, rightroom, leftroom, start;
 	private int curRoom;
+	private ControlP5 cp5;
 	
 	public void setup()				// override the processing that initial the applet
 	{	
@@ -23,7 +24,16 @@ public class MainApplet extends PApplet
 		leftroom = loadImage("background/left.png");
 		middleroom = loadImage("background/middle.png");
 		rightroom = loadImage("background/right.png");
-		curRoom = 0;
+		start = loadImage("background/start.jpg");
+		curRoom = 2;
+		
+		
+		cp5 =  new ControlP5(this);
+		PFont p = createFont("Consolas", 20);
+		cp5.setFont(p);
+		cp5.addButton("buttonA").setLabel("Voice On").setPosition(60, 450).setSize(200, 50);
+		cp5.addButton("buttonB").setLabel("Start").setPosition(380, 450).setSize(200, 50);
+		cp5.addButton("buttonC").setLabel("questionnaire").setPosition(700, 450).setSize(200,50);
 		
 		size(width, height);
 	}
@@ -37,6 +47,8 @@ public class MainApplet extends PApplet
 			image(rightroom, 0, 0, 840, 540);
 		else if(this.curRoom == -1)
 			image(leftroom, 0, 0, 840, 540);
+		else if(this.curRoom == 2)
+			image(start, 0, 0, 960, 540);
 	}
 	
 	public void keyPressed(KeyEvent arg0)
