@@ -1,0 +1,10 @@
+JExcel API src: https://sourceforge.net/projects/jexcelapi/files/jexcelapi/2.6.12/
+
+import jxl.jar
+
+Problem: Label not being recognized even though jxl import and API are there.
+Solve: http://stackoverflow.com/questions/30126695/label-not-being-recognized-even-though-jxl-import-and-api-are-there
+
+coding ref: 
+http://robertvmp.pixnet.net/blog/post/23229110-java---excel-%E9%96%8B%E6%AA%94%E8%AE%80%E6%AA%94---jxl-%E7%AF%87
+http://qaz33326.pixnet.net/blog/post/5960984-jexcel-(jxl)---%E7%94%A8java%E4%BE%86%E5%8B%95%E6%85%8B%E7%94%A2%E7%94%9Fexcel%E6%AA%94
