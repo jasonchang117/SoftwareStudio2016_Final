@@ -10,6 +10,7 @@ import processing.core.PImage;
 import processing.data.JSONArray;
 import processing.data.JSONObject;
 
+@SuppressWarnings("serial")
 public class MainApplet extends PApplet
 {
 	private final static int width = 960, height = 540;
@@ -21,13 +22,15 @@ public class MainApplet extends PApplet
 	{	
 		Ani.init(this);
 		this.setLayout(null);
+		size(width, height);
+		smooth();
+		
 		leftroom = loadImage("background/left.png");
 		middleroom = loadImage("background/middle.png");
 		rightroom = loadImage("background/right.png");
 		start = loadImage("background/start.jpg");
 		start2 = loadImage("background/start2.jpg");
 		curRoom = 2;
-		
 		
 		cp5 =  new ControlP5(this);
 		PFont p = createFont("Consolas", 20);
@@ -36,19 +39,25 @@ public class MainApplet extends PApplet
 		cp5.addButton("buttonB").setLabel("Start").setPosition(380, 450).setSize(200, 50);
 		cp5.addButton("buttonC").setLabel("questionnaire").setPosition(700, 450).setSize(200,50);
 		
-		size(width, height);
+		
 	}
 	
 	public void draw()				// override the processing that paint the main components
 	{
 		background(0);
 		if(this.curRoom == 0)
+		{
 			image(middleroom, 0, 0, 840, 540);
+			cp5.remove("buttonA");
+			cp5.remove("buttonB");
+			cp5.remove("buttonC");
+		}
 		else if(this.curRoom == 1)
 			image(rightroom, 0, 0, 840, 540);
 		else if(this.curRoom == -1)
 			image(leftroom, 0, 0, 840, 540);
-		else if(this.curRoom == 2){
+		else if(this.curRoom == 2)
+		{
 			if(this.catMove < 10 )
 				image(start, 0, 0, 960, 540);
 			else
@@ -70,5 +79,10 @@ public class MainApplet extends PApplet
 		{
 			this.curRoom -= 1;
 		}
+	}
+	
+	public void buttonB()
+	{
+		this.curRoom = 0;
 	}
 }
