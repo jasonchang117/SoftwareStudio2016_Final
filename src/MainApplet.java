@@ -13,13 +13,15 @@ import processing.data.JSONObject;
 public class MainApplet extends PApplet
 {
 	private final static int width = 960, height = 540;
-	private PImage middleroom;
+	private PImage middleroom, rightroom, leftroom, start;
 	
 	public void setup()				// override the processing that initial the applet
 	{	
 		Ani.init(this);
 		this.setLayout(null);
-		middleroom = loadImage("background/right.png");
+		leftroom = loadImage("background/left.png");
+		middleroom = loadImage("background/middle.png");
+		rightroom = loadImage("background/right.png");
 		
 		size(width, height);
 	}
