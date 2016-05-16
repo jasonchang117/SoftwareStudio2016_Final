@@ -42,6 +42,8 @@ public class MainApplet extends PApplet
 		cp5.addButton("buttonA").setLabel("Voice On").setPosition(60, 450).setSize(200, 50);
 		cp5.addButton("buttonB").setLabel("Start").setPosition(380, 450).setSize(200, 50);
 		cp5.addButton("buttonC").setLabel("questionnaire").setPosition(700, 450).setSize(200,50);
+		
+		
 		cat.play();
 		
 	}
@@ -67,10 +69,17 @@ public class MainApplet extends PApplet
 			else
 				image(start2, 0, 0, 960, 540);
 		}
+		
 		if(this.catMove < 19)
 			this.catMove ++;
 		else
 			this.catMove = 0;
+		
+		if( (this.curRoom ==0 || this.curRoom ==1 || this.curRoom == -1) )     // waiting for modifying
+			cp5.addButton("buttonBack").setLabel("Back").setPosition(860, 480).setSize(50,50);
+		else
+			cp5.remove("buttonBack");
+		
 	}
 	
 	public void keyPressed(KeyEvent arg0)
@@ -99,4 +108,11 @@ public class MainApplet extends PApplet
 	{
 		
 	}
+	
+	public void buttonBack()
+	{
+		this.curRoom = 2;
+	}
+	
+	
 }

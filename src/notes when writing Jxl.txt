@@ -1,3 +1,4 @@
+***JExcel
 JExcel API src: https://sourceforge.net/projects/jexcelapi/files/jexcelapi/2.6.12/
 
 import jxl.jar
@@ -8,3 +9,16 @@ Solve: http://stackoverflow.com/questions/30126695/label-not-being-recognized-ev
 coding ref: 
 http://robertvmp.pixnet.net/blog/post/23229110-java---excel-%E9%96%8B%E6%AA%94%E8%AE%80%E6%AA%94---jxl-%E7%AF%87
 http://qaz33326.pixnet.net/blog/post/5960984-jexcel-(jxl)---%E7%94%A8java%E4%BE%86%E5%8B%95%E6%85%8B%E7%94%A2%E7%94%9Fexcel%E6%AA%94
+
+
+
+***JFreeChart
+JFreeChart API src::https://sourceforge.net/projects/jfreechart/files/
+
+import  jcommon.jar & jfreechart.jar 
+
+coding ref:
+http://puremonkey2010.blogspot.tw/2010/09/java-jfreechart.html
+
+Source for org.jfree.chart.ChartFactory:
+http://www.jfree.org/jfreechart/api/gjdoc/org/jfree/chart/ChartFactory-source.html#line.233
