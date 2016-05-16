@@ -75,14 +75,24 @@ public class MainApplet extends PApplet
 		{
 			this.curRoom += 1;
 		}
-		else if(arg0.getKeyCode() == KeyEvent.VK_LEFT && curRoom > -1)
+		else if(arg0.getKeyCode() == KeyEvent.VK_LEFT && curRoom > -1 && curRoom != 2)
 		{
 			this.curRoom -= 1;
 		}
 	}
 	
+	public void buttonA()
+	{
+		
+	}
+	
 	public void buttonB()
 	{
 		this.curRoom = 0;
+	}
+	
+	public void buttonC()
+	{
+		
 	}
 }
