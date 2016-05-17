@@ -24,6 +24,7 @@ public class MainApplet extends PApplet
 	private int catMove = 0, question = 0;
 	private  AudioClip cat;
 	private JTextField password = new JTextField();
+	private LeftRoom leftRoom = new LeftRoom(this);
 	
 	public void setup()				// override the processing that initial the applet
 	{	
@@ -58,8 +59,10 @@ public class MainApplet extends PApplet
 	public void draw()				// override the processing that paint the main components
 	{
 		background(0);
+		
 		if(this.curRoom == 0)
 		{
+			
 			if(question == 1)
 				image(passwordBackground, 0, 0, 960, 540);
 			else
@@ -67,11 +70,14 @@ public class MainApplet extends PApplet
 			cp5.remove("buttonA");
 			cp5.remove("buttonB");
 			cp5.remove("buttonC");
+			
 		}
 		else if(this.curRoom == 1)
 			image(rightroom, 0, 0, 840, 540);
-		else if(this.curRoom == -1)
+		else if(this.curRoom == -1){
 			image(leftroom, 0, 0, 840, 540);
+			leftRoom.drawknif();
+		}
 		else if(this.curRoom == 2)
 		{
 			if(this.catMove < 10 )
