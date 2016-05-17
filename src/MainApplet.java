@@ -1,6 +1,9 @@
 import java.applet.AudioClip;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
+
+import javax.swing.JTextField;
+
 import controlP5.ControlP5;
 import ddf.minim.AudioPlayer;
 import ddf.minim.Minim;
@@ -15,11 +18,12 @@ import processing.data.JSONObject;
 public class MainApplet extends PApplet
 {
 	private final static int width = 960, height = 540;
-	private PImage middleroom, rightroom, leftroom, start, start2;
+	private PImage middleroom, rightroom, leftroom, start, start2, passwordBackground;
 	private int curRoom;
 	private ControlP5 cp5;
-	private int catMove = 0;
+	private int catMove = 0, question = 0;
 	private  AudioClip cat;
+	private JTextField password = new JTextField();
 	
 	public void setup()				// override the processing that initial the applet
 	{	
@@ -33,6 +37,7 @@ public class MainApplet extends PApplet
 		rightroom = loadImage("background/right.png");
 		start = loadImage("background/start.jpg");
 		start2 = loadImage("background/start2.jpg");
+		passwordBackground = loadImage("background/password.png");
 		cat = getAudioClip(getCodeBase(), "sound/cat.mp3");
 		curRoom = 2;
 		
@@ -43,6 +48,8 @@ public class MainApplet extends PApplet
 		cp5.addButton("buttonB").setLabel("Start").setPosition(380, 450).setSize(200, 50);
 		cp5.addButton("buttonC").setLabel("questionnaire").setPosition(700, 450).setSize(200,50);
 		
+		// password
+		password.setBounds(0,430,300,30);
 		
 		cat.play();
 		
@@ -53,7 +60,10 @@ public class MainApplet extends PApplet
 		background(0);
 		if(this.curRoom == 0)
 		{
-			image(middleroom, 0, 0, 840, 540);
+			if(question == 1)
+				image(passwordBackground, 0, 0, 960, 540);
+			else
+				image(middleroom, 0, 0, 840, 540);
 			cp5.remove("buttonA");
 			cp5.remove("buttonB");
 			cp5.remove("buttonC");
@@ -106,7 +116,9 @@ public class MainApplet extends PApplet
 	
 	public void buttonC()
 	{
-		
+		this.curRoom = 0;
+		this.question = 1;
+	//	this.add(password);
 	}
 	
 	public void buttonBack()
