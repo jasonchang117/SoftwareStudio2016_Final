@@ -23,9 +23,9 @@ public class MainApplet extends PApplet
 	private ControlP5 cp5;
 	private int catMove = 0, backbutton = 0, startmenu = 1;
 	private AudioClip cat;
-	private JTextField password = new JTextField();
 	private LeftRoom leftRoom = new LeftRoom(this);
 	private Question q = new Question(this);
+	private String password = "520053";
 	
 	public void setup()				// override the processing that initial the applet
 	{	
@@ -50,8 +50,6 @@ public class MainApplet extends PApplet
 		cp5.addButton("startbutton").setLabel("Start").setPosition(380, 450).setSize(200, 50);
 		cp5.addButton("questionnaire").setLabel("questionnaire").setPosition(700, 450).setSize(200,50);
 		
-		// password
-		password.setBounds(0,430,300,30);
 		
 		cat.play();
 	}
@@ -106,6 +104,7 @@ public class MainApplet extends PApplet
 				cp5.remove("questionnaire");
 				this.startmenu = 0;
 			}
+			
 		}
 		
 		if(this.catMove < 19)
@@ -152,7 +151,6 @@ public class MainApplet extends PApplet
 	public void questionnaire()
 	{
 		this.curRoom = 3;
-	//	this.add(password);
 	}
 	
 	public void buttonBack()
@@ -163,5 +161,8 @@ public class MainApplet extends PApplet
 	public int getCurRoom()
 	{
 		return this.curRoom;
+	}
+	public String questionPassword(){
+		return this.password;
 	}
 }

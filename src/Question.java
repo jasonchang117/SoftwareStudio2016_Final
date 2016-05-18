@@ -1,6 +1,9 @@
 import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import processing.event.KeyEvent;
+
 import java.awt.Font;
 
 public class Question implements ActionListener
@@ -21,8 +24,10 @@ public class Question implements ActionListener
 	{
         input = textfield.getText();
         textfield.setText("");
+        if(input.equals(parent.questionPassword())){
+        }
     } 
-	
+	 
 	public void display()
 	{
 		if(parent.getCurRoom() == 3 && text == 0)
@@ -39,8 +44,10 @@ public class Question implements ActionListener
 		}
 	}
 	
+	
 	public String getInput()
 	{
 		return this.input;
 	}
+	
 }
