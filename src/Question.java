@@ -11,6 +11,7 @@ public class Question implements ActionListener
 	private MainApplet parent;
 	private String input;
 	private int text = 0;
+	private boolean questionSet = false;
 	Font f = new Font("Consolas", 0, 25);
 	TextField textfield = new TextField(15);
 	
@@ -25,6 +26,7 @@ public class Question implements ActionListener
         input = textfield.getText();
         textfield.setText("");
         if(input.equals(parent.questionPassword())){
+        	this.questionSet = true;
         }
     } 
 	 
@@ -49,5 +51,10 @@ public class Question implements ActionListener
 	{
 		return this.input;
 	}
-	
+	public boolean getQuestionSet(){
+		return this.questionSet;
+	}
+	public void removeText(){
+		parent.remove(textfield);
+	} 
 }

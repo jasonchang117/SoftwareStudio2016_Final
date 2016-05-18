@@ -18,7 +18,7 @@ import processing.data.JSONObject;
 public class MainApplet extends PApplet
 {
 	private final static int width = 960, height = 540;
-	private PImage middleroom, rightroom, leftroom, start, start2, passwordBackground;
+	private PImage middleroom, rightroom, leftroom, start, start2, passwordBackground, setQuestion;
 	private int curRoom;
 	private ControlP5 cp5;
 	private int catMove = 0, backbutton = 0, startmenu = 1;
@@ -33,13 +33,13 @@ public class MainApplet extends PApplet
 		this.setLayout(null);
 		size(width, height);
 		smooth();
-		
 		leftroom = loadImage("background/left.png");
 		middleroom = loadImage("background/middle.png");
 		rightroom = loadImage("background/right.png");
 		start = loadImage("background/start.jpg");
 		start2 = loadImage("background/start2.jpg");
 		passwordBackground = loadImage("background/password.png");
+		setQuestion = loadImage("background/setquestion.png");
 		cat = getAudioClip(getCodeBase(), "sound/cat.mp3");
 		curRoom = 2;
 		
@@ -107,6 +107,14 @@ public class MainApplet extends PApplet
 			
 		}
 		
+		if(q.getQuestionSet()){
+			q.removeText();
+			image(setQuestion, 0, 0, 960, 540);
+			//cp5.addButton("questionOne").setLabel("Question 1").setPosition(60, 450).setSize(200, 50);
+			
+		}
+			
+		
 		if(this.catMove < 19)
 			this.catMove ++;
 		else
@@ -122,7 +130,6 @@ public class MainApplet extends PApplet
 			cp5.remove("buttonBack");
 			this.backbutton = 0;
 		}
-		
 		q.display();
 	}
 	
