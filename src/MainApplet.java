@@ -22,6 +22,7 @@ public class MainApplet extends PApplet
 	private int curRoom;
 	private ControlP5 cp5;
 	private int catMove = 0, backbutton = 0, startmenu = 1;
+	private int questionButton = 0;
 	private AudioClip cat;
 	private LeftRoom leftRoom = new LeftRoom(this);
 	private Question q = new Question(this);
@@ -106,18 +107,19 @@ public class MainApplet extends PApplet
 			}
 			
 		}
-		
 		if(q.getQuestionSet()){
-			q.removeText();
 			image(setQuestion, 0, 0, 960, 540);	
+		}
+		if(q.getQuestionSet() && questionButton == 0){
+			q.removeText();	
 			cp5.addButton("questionOne").setLabel("Question 1").setPosition(70, 100).setSize(200, 70);
 			cp5.addButton("questionTwo").setLabel("Question 2").setPosition(680, 100).setSize(200, 70);
 			cp5.addButton("questionThree").setLabel("Question 3").setPosition(70, 200).setSize(200, 70);
 			cp5.addButton("questionFour").setLabel("Question 4").setPosition(680, 200).setSize(200, 70);
 			cp5.addButton("questionFive").setLabel("Question 5").setPosition(70, 300).setSize(200, 70);
 			cp5.addButton("questionSix").setLabel("Question 6").setPosition(680, 300).setSize(200, 70);
-			
-		}	
+			questionButton = 1;
+		}
 		
 		if(this.catMove < 19)
 			this.catMove ++;

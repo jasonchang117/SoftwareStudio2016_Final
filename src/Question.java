@@ -46,11 +46,6 @@ public class Question implements ActionListener
 		}
 	}
 	
-	
-	public String getInput()
-	{
-		return this.input;
-	}
 	public boolean getQuestionSet(){
 		return this.questionSet;
 	}
