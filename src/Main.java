@@ -1,7 +1,5 @@
 import javax.swing.JFrame;
 
-import test_charbar.TextQ;
-
 @SuppressWarnings("serial")
 public class Main extends JFrame implements JxlWriteExcel {
 	
@@ -22,9 +20,10 @@ public class Main extends JFrame implements JxlWriteExcel {
 		window.setVisible(true);
 		
 		/**Waiting for Turtle's class.**/
-		Text textq = new TextQ();
+		/*Text textq = new TextQ();
 		question = textq.getText();
 		JxlWriteExcel(question);
+	*/
 	}
 
 }

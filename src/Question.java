@@ -12,7 +12,7 @@ public class Question implements ActionListener
 	private String input;
 	private int text = 0;
 	private boolean questionSet = false;
-	Font f = new Font("Consolas", 0, 25);
+	private Font f = new Font("Consolas", 0, 25);
 	TextField textfield = new TextField(15);
 	
 	public Question(MainApplet parent)
