@@ -22,7 +22,7 @@ public class MainApplet extends PApplet
 	private int curRoom;
 	private ControlP5 cp5;
 	private int catMove = 0, backbutton = 0, startmenu = 1;
-	private  AudioClip cat;
+	private AudioClip cat;
 	private JTextField password = new JTextField();
 	private LeftRoom leftRoom = new LeftRoom(this);
 	private Question q = new Question(this);

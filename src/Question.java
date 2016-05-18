@@ -1,18 +1,20 @@
 import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import processing.core.PApplet;
+import java.awt.Font;
 
 public class Question implements ActionListener
 {
 	private MainApplet parent;
 	private String input;
 	private int text = 0;
+	Font f = new Font("Consolas", 0, 25);
 	TextField textfield = new TextField(15);
 	
 	public Question(MainApplet parent)
 	{
 		this.parent = parent;
+		textfield.setFont(f);
 	}
 	
 	public void actionPerformed(ActionEvent event) 
@@ -25,7 +27,8 @@ public class Question implements ActionListener
 	{
 		if(parent.getCurRoom() == 3 && text == 0)
 		{
-			textfield.setBounds(200,300,250,30);
+			textfield.addActionListener(this);
+			textfield.setBounds(340,180,250,30);
 			parent.add(textfield);
 			this.text = 1;
 		}
