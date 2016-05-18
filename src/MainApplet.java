@@ -109,11 +109,15 @@ public class MainApplet extends PApplet
 		
 		if(q.getQuestionSet()){
 			q.removeText();
-			image(setQuestion, 0, 0, 960, 540);
-			//cp5.addButton("questionOne").setLabel("Question 1").setPosition(60, 450).setSize(200, 50);
+			image(setQuestion, 0, 0, 960, 540);	
+			cp5.addButton("questionOne").setLabel("Question 1").setPosition(70, 100).setSize(200, 70);
+			cp5.addButton("questionTwo").setLabel("Question 2").setPosition(680, 100).setSize(200, 70);
+			cp5.addButton("questionThree").setLabel("Question 3").setPosition(70, 200).setSize(200, 70);
+			cp5.addButton("questionFour").setLabel("Question 4").setPosition(680, 200).setSize(200, 70);
+			cp5.addButton("questionFive").setLabel("Question 5").setPosition(70, 300).setSize(200, 70);
+			cp5.addButton("questionSix").setLabel("Question 6").setPosition(680, 300).setSize(200, 70);
 			
-		}
-			
+		}	
 		
 		if(this.catMove < 19)
 			this.catMove ++;
@@ -168,6 +172,19 @@ public class MainApplet extends PApplet
 	public int getCurRoom()
 	{
 		return this.curRoom;
+	}
+	//Question Set Button
+	public void questionOne(){
+	}
+	public void questionTwo(){
+	}
+	public void questionThree(){
+	}
+	public void questionFour(){
+	}
+	public void questionFive(){
+	}
+	public void questionSix(){
 	}
 	public String questionPassword(){
 		return this.password;
