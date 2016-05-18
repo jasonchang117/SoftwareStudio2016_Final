@@ -5,14 +5,14 @@ import processing.core.PApplet;
 
 public class Question implements ActionListener
 {
-	private PApplet parent;
+	private MainApplet parent;
 	private String input;
+	private int text = 0;
 	TextField textfield = new TextField(15);
 	
-	public Question(PApplet parent)
+	public Question(MainApplet parent)
 	{
 		this.parent = parent;
-		parent.add(textfield);
 	}
 	
 	public void actionPerformed(ActionEvent event) 
@@ -23,6 +23,21 @@ public class Question implements ActionListener
 	
 	public void display()
 	{
-		
+		if(parent.getCurRoom() == 3 && text == 0)
+		{
+			textfield.setBounds(200,300,250,30);
+			parent.add(textfield);
+			this.text = 1;
+		}
+		else if(parent.getCurRoom() != 3)
+		{
+			parent.remove(textfield);
+			this.text = 0;
+		}
+	}
+	
+	public String getInput()
+	{
+		return this.input;
 	}
 }

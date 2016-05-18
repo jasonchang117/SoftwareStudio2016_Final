@@ -21,10 +21,11 @@ public class MainApplet extends PApplet
 	private PImage middleroom, rightroom, leftroom, start, start2, passwordBackground;
 	private int curRoom;
 	private ControlP5 cp5;
-	private int catMove = 0, question = 0, backbutton = 0, startmenu = 1;
+	private int catMove = 0, backbutton = 0, startmenu = 1;
 	private  AudioClip cat;
 	private JTextField password = new JTextField();
 	private LeftRoom leftRoom = new LeftRoom(this);
+	private Question q = new Question(this);
 	
 	public void setup()				// override the processing that initial the applet
 	{	
@@ -53,7 +54,6 @@ public class MainApplet extends PApplet
 		password.setBounds(0,430,300,30);
 		
 		cat.play();
-		
 	}
 	
 	public void draw()				// override the processing that paint the main components
@@ -62,10 +62,7 @@ public class MainApplet extends PApplet
 		
 		if(this.curRoom == 0)
 		{
-			if(question == 1)
-				image(passwordBackground, 0, 0, 960, 540);
-			else
-				image(middleroom, 0, 0, 840, 540);
+			image(middleroom, 0, 0, 840, 540);
 			
 			if(this.startmenu == 1)
 			{
@@ -98,13 +95,25 @@ public class MainApplet extends PApplet
 			else
 				image(start2, 0, 0, 960, 540);
 		}
+		else if(this.curRoom == 3)
+		{
+			image(passwordBackground, 0, 0, 960, 540);
+			
+			if(this.startmenu == 1)
+			{
+				cp5.remove("voice");
+				cp5.remove("startbutton");
+				cp5.remove("questionnaire");
+				this.startmenu = 0;
+			}
+		}
 		
 		if(this.catMove < 19)
 			this.catMove ++;
 		else
 			this.catMove = 0;
 		
-		if( (this.curRoom == 0 || this.curRoom == 1 || this.curRoom == -1) && backbutton == 0)     // waiting for modifying
+		if( (this.curRoom == 0 || this.curRoom == 1 || this.curRoom == -1 || this.curRoom == 3) && backbutton == 0)     // waiting for modifying
 		{
 			cp5.addButton("buttonBack").setLabel("Back").setPosition(860, 480).setSize(50,50);
 			this.backbutton = 1;
@@ -114,6 +123,8 @@ public class MainApplet extends PApplet
 			cp5.remove("buttonBack");
 			this.backbutton = 0;
 		}
+		
+		q.display();
 	}
 	
 	public void keyPressed(KeyEvent arg0)
@@ -140,8 +151,7 @@ public class MainApplet extends PApplet
 	
 	public void questionnaire()
 	{
-		this.curRoom = 0;
-		this.question = 1;
+		this.curRoom = 3;
 	//	this.add(password);
 	}
 	
@@ -150,5 +160,8 @@ public class MainApplet extends PApplet
 		this.curRoom = 2;
 	}
 	
-	
+	public int getCurRoom()
+	{
+		return this.curRoom;
+	}
 }
