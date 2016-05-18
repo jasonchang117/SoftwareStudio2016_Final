@@ -3,33 +3,27 @@ import processing.core.PApplet;
 import processing.core.PImage;
 
 
-public class LeftRoom extends PApplet
+public class LeftRoom
 {
 	private PApplet parent;
-	private PImage hammer,knif;
-	private PImage pusheenBack,pusheenFront,pusheenLeft;
-	private PImage pusheenCut,pusheenWithoutHammer;
-	private PImage pusheenBeKnif;
-	public LeftRoom(PApplet parent) {
-		// TODO Auto-generated constructor stub
-		this.parent = parent;
-		
-	}
-		
-	public void Setup(){
-		hammer = loadImage("component/hammer.png");
-		pusheenBack = loadImage("component/pusheenBack.png");
-		pusheenFront = loadImage("component/pusheenFront.png");
-		pusheenLeft = loadImage("component/pusheenLeft.png");
-		knif = loadImage("component/knif.png");
-		pusheenCut = loadImage("component/pusheen_cut");
-		pusheenWithoutHammer = loadImage("component/pusheen_hammer");
-		pusheenBeKnif = loadImage("component/beknif_pusheen");
-	}
+	private int hammer;		// 0->not visible, 1->visible
+	private int pusheenBack,pusheenFront,pusheenLeft;
+	private int pusheenCut,pusheenWithoutHammer;
+	private int pusheenBeKnif;
 
-	public void drawknif()
+	public LeftRoom(MainApplet parent) 
 	{
-		image(knif, 50, 50);
+		this.parent = parent;
+		hammer = 0;
+		pusheenBack = 1;
+		pusheenFront = 1;
+		pusheenLeft = 1;
+		pusheenCut = 0;
+		pusheenWithoutHammer = 0;
+		pusheenBeKnif = 0;
+		
 	}
+	
+	
 	
 }
