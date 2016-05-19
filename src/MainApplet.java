@@ -30,6 +30,21 @@ public class MainApplet extends PApplet
 		"background/start.jpg",
 		"background/start2.jpg",
 		"background/password.png",
+		"component/beknif_pusheen.png",
+		"component/hammer.png",
+		"component/hose.png",
+		"component/knif.png",
+		"component/normal_bottle.png",
+		"component/normal_bottle_full.png",
+		"component/pusheen_bottle.png",
+		"component/pusheen_bottle_full.png",
+		"component/pusheen_cut.png",
+		"component/pusheen_hammer.png",
+		"component/pushingBack.png",
+		"component/pushingLeft.png",
+		"component/securitybox.png",
+		"component/tape.png",
+		"component/pushingFront.png",
 	};
 	
 	public void setup()				// override the processing that initial the applet
@@ -41,7 +56,7 @@ public class MainApplet extends PApplet
 		
 		String []temp = new String[10];
 		String []temp2 = new String[10];
-		for(int i=0;i<5;i++)
+		for(int i=0;i<file.length;i++)
 		{
 			
 			PImage image = loadImage(this.file[i]);
@@ -65,7 +80,7 @@ public class MainApplet extends PApplet
 	{
 		background(0);
 		
-		if(this.curRoom == 0)
+		if(this.curRoom == 0) //middle room
 		{
 			image(images.get("middle.png"), 0, 0, 840, 540);
 			
@@ -77,15 +92,15 @@ public class MainApplet extends PApplet
 				this.startmenu = 0;
 			}
 		}
-		else if(this.curRoom == 1)
+		else if(this.curRoom == 1) //right room
 		{
 			image(images.get("right.png"), 0, 0, 840, 540);
 		}
-		else if(this.curRoom == -1)
+		else if(this.curRoom == -1) //left room
 		{
 			image(images.get("left.png"),0,0,840,540);
 		}
-		else if(this.curRoom == 2)
+		else if(this.curRoom == 2) //start room
 		{
 			if(this.startmenu == 0)
 			{
@@ -99,7 +114,7 @@ public class MainApplet extends PApplet
 			else
 				image(images.get("start2.jpg"), 0, 0, 960, 540);
 		}
-		else if(this.curRoom == 3)
+		else if(this.curRoom == 3) //question room
 		{
 			image(images.get("passward.png"), 0, 0, 960, 540);
 			
