@@ -25,6 +25,7 @@ public class MainApplet extends PApplet
 	private AudioClip cat;
 	private LeftRoom leftRoom = new LeftRoom();
 	private Question q = new Question(this);
+	private questionSet qs = new questionSet(this);
 	private String password = "520053";
 	private String[] file = {
 		"background/middle.png",
@@ -221,32 +222,32 @@ public class MainApplet extends PApplet
 	
 	//Question Set Button
 	 public void questionOne(){
-	 	q.display();
+		qs.display();
 		inputQuestion = 1;
 	 	this.questionSet = 1;
 	 }
 	 public void questionTwo(){
-	 	q.display();
+		qs.display();
 	 	inputQuestion = 1;
 	 	this.questionSet = 2;
 	 }
 	 public void questionThree(){
-	 	q.display();
+		qs.display();
 	 	inputQuestion = 1;
 	 	this.questionSet = 3;
 	 }
 	 public void questionFour(){
-	 	q.display();
+	 	qs.display();
 	 	inputQuestion = 1;
 	 	this.questionSet = 4;
 	 }
 	 public void questionFive(){
-	 	q.display();
+	 	qs.display();
 	 	inputQuestion = 1;
 	 	this.questionSet = 5;
 	 }
 	 public void questionSix(){
-	 	q.display();
+	 	qs.display();
 	 	inputQuestion = 1;
 	 	this.questionSet = 6;
 	 }
