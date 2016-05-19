@@ -30,6 +30,8 @@ public class MainApplet extends PApplet
 		"background/start.jpg",
 		"background/start2.jpg",
 		"background/password.png",
+		"background/setquestion.png",
+		"background/questionInput.png",
 		"component/beknif_pusheen.png",
 		"component/hammer.png",
 		"component/hose.png",
@@ -115,8 +117,11 @@ public class MainApplet extends PApplet
 				image(images.get("start2.jpg"), 0, 0, 960, 540);
 		}
 		else if(this.curRoom == 3) //question room
-		{
-			image(images.get("password.png"), 0, 0, 960, 540);
+		{	
+			if(q.getQuestionSet() == false)
+				image(images.get("password.png"), 0, 0, 960, 540);
+			else if(q.getQuestionSet() == true)
+				image(images.get("setquestion.png"), 0, 0, 960, 540);
 			
 			if(this.startmenu == 1)
 			{
