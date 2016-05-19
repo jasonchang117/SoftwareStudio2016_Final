@@ -19,6 +19,9 @@ public class MainApplet extends PApplet
 	private int curRoom;
 	private ControlP5 cp5;
 	private int catMove = 0, backbutton = 0, startmenu = 1;
+	private int questionButton = 0;
+	private int questionSet = 0;
+	private int inputQuestion = 0;
 	private AudioClip cat;
 	private LeftRoom leftRoom = new LeftRoom(this);
 	private Question q = new Question(this);
@@ -118,10 +121,36 @@ public class MainApplet extends PApplet
 		}
 		else if(this.curRoom == 3) //question room
 		{	
-			if(q.getQuestionSet() == false)
+			if(q.getQuestionSet() == false){
 				image(images.get("password.png"), 0, 0, 960, 540);
-			else if(q.getQuestionSet() == true)
+			}
+			
+			if(q.getQuestionSet()== true ){
 				image(images.get("setquestion.png"), 0, 0, 960, 540);
+				
+				if(questionButton == 0){
+					 q.removeText();	
+					 cp5.addButton("questionOne").setLabel("Question 1").setPosition(70, 100).setSize(200, 70);
+					 cp5.addButton("questionTwo").setLabel("Question 2").setPosition(680, 100).setSize(200, 70);
+					 cp5.addButton("questionThree").setLabel("Question 3").setPosition(70, 200).setSize(200, 70);
+					 cp5.addButton("questionFour").setLabel("Question 4").setPosition(680, 200).setSize(200, 70);
+					 cp5.addButton("questionFive").setLabel("Question 5").setPosition(70, 300).setSize(200, 70);
+					 cp5.addButton("questionSix").setLabel("Question 6").setPosition(680, 300).setSize(200, 70);
+					 questionButton = 1;
+				}
+			}
+			
+			if(inputQuestion == 1){
+				 		
+				 cp5.remove("questionOne");
+				 cp5.remove("questionTwo");
+				 cp5.remove("questionThree");
+				 cp5.remove("questionFour");
+				 cp5.remove("questionFive");
+				 cp5.remove("questionSix");
+				 image(images.get("questionInput.png"), 0, 0, 960, 540);
+			}
+				
 			
 			if(this.startmenu == 1)
 			{
@@ -188,6 +217,39 @@ public class MainApplet extends PApplet
 	{
 		return this.curRoom;
 	}
+	
+	
+	//Question Set Button
+	 public void questionOne(){
+	 	q.display();
+		inputQuestion = 1;
+	 	this.questionSet = 1;
+	 }
+	 public void questionTwo(){
+	 	q.display();
+	 	inputQuestion = 1;
+	 	this.questionSet = 2;
+	 }
+	 public void questionThree(){
+	 	q.display();
+	 	inputQuestion = 1;
+	 	this.questionSet = 3;
+	 }
+	 public void questionFour(){
+	 	q.display();
+	 	inputQuestion = 1;
+	 	this.questionSet = 4;
+	 }
+	 public void questionFive(){
+	 	q.display();
+	 	inputQuestion = 1;
+	 	this.questionSet = 5;
+	 }
+	 public void questionSix(){
+	 	q.display();
+	 	inputQuestion = 1;
+	 	this.questionSet = 6;
+	 }
 	public String questionPassword(){
 		return this.password;
 	}
