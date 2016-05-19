@@ -196,7 +196,6 @@ public class MainApplet extends PApplet
 	
 	public void voice()
 	{
-		
 	}
 	
 	public void startbutton()
