@@ -23,7 +23,7 @@ public class MainApplet extends PApplet
 	private int questionSet = 0;
 	private int inputQuestion = 0;
 	private AudioClip cat;
-	private LeftRoom leftRoom = new LeftRoom(this);
+	private LeftRoom leftRoom = new LeftRoom();
 	private Question q = new Question(this);
 	private String password = "520053";
 	private String[] file = {
