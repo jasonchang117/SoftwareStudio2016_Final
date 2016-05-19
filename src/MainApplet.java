@@ -116,7 +116,7 @@ public class MainApplet extends PApplet
 		}
 		else if(this.curRoom == 3) //question room
 		{
-			image(images.get("passward.png"), 0, 0, 960, 540);
+			image(images.get("password.png"), 0, 0, 960, 540);
 			
 			if(this.startmenu == 1)
 			{
