@@ -49,6 +49,9 @@ public class Question implements ActionListener
 	public boolean getQuestionSet(){
 		return this.questionSet;
 	}
+	public void setQuestionSet(boolean ke){
+		this.questionSet = ke;
+	}
 	public void removeText(){
 		parent.remove(textfield);
 	} 

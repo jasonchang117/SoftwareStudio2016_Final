@@ -20,7 +20,6 @@ public class MainApplet extends PApplet
 	private ControlP5 cp5;
 	private int catMove = 0, backbutton = 0, startmenu = 1;
 	private int questionButton = 0;
-	private int questionSet = 0;
 	private int inputQuestion = 0;
 	private AudioClip cat;
 	private LeftRoom leftRoom = new LeftRoom();
@@ -61,7 +60,6 @@ public class MainApplet extends PApplet
 		smooth();
 		
 		String []temp = new String[10];
-		String []temp2 = new String[10];
 		for(int i=0;i<file.length;i++)
 		{
 			
@@ -210,7 +208,24 @@ public class MainApplet extends PApplet
 	
 	public void buttonBack()
 	{
-		this.curRoom = 2;
+		if(this.curRoom == 3 && this.inputQuestion == 1){
+			this.curRoom = 3;
+			this.inputQuestion = 0;	
+			this.questionButton = 0;
+			qs.removeText();
+		}
+		
+		else{
+				 cp5.remove("questionOne");
+				 cp5.remove("questionTwo");
+				 cp5.remove("questionThree");
+				 cp5.remove("questionFour");
+				 cp5.remove("questionFive");
+				 cp5.remove("questionSix");
+				 questionButton = 0;
+				 q.setQuestionSet(false);
+				 this.curRoom = 2;
+		}
 	}
 	
 	public int getCurRoom()
@@ -223,32 +238,26 @@ public class MainApplet extends PApplet
 	 public void questionOne(){
 		qs.display();
 		inputQuestion = 1;
-	 	this.questionSet = 1;
 	 }
 	 public void questionTwo(){
 		qs.display();
 	 	inputQuestion = 1;
-	 	this.questionSet = 2;
 	 }
 	 public void questionThree(){
 		qs.display();
 	 	inputQuestion = 1;
-	 	this.questionSet = 3;
 	 }
 	 public void questionFour(){
 	 	qs.display();
 	 	inputQuestion = 1;
-	 	this.questionSet = 4;
 	 }
 	 public void questionFive(){
 	 	qs.display();
 	 	inputQuestion = 1;
-	 	this.questionSet = 5;
 	 }
 	 public void questionSix(){
 	 	qs.display();
 	 	inputQuestion = 1;
-	 	this.questionSet = 6;
 	 }
 	public String questionPassword(){
 		return this.password;
