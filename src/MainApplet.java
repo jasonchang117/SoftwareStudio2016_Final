@@ -21,6 +21,7 @@ public class MainApplet extends PApplet
 	private int catMove = 0, backbutton = 0, startmenu = 1;
 	private int questionButton = 0;
 	private int inputQuestion = 0;
+	private int pusheenNum = 0;
 	private AudioClip cat;
 	private LeftRoom leftRoom = new LeftRoom();
 	private Question q = new Question(this);
@@ -45,11 +46,11 @@ public class MainApplet extends PApplet
 		"component/pusheen_bottle_full.png",
 		"component/pusheen_cut.png",
 		"component/pusheen_hammer.png",
-		"component/pushingBack.png",
-		"component/pushingLeft.png",
+		"component/pusheenBack.png",
+		"component/pusheenLeft.png",
 		"component/securitybox.png",
 		"component/tape.png",
-		"component/pushingFront.png",
+		"component/pusheenFront.png",
 	};
 	
 	public void setup()				// override the processing that initial the applet
@@ -103,6 +104,22 @@ public class MainApplet extends PApplet
 		else if(this.curRoom == -1) //left room
 		{
 			image(images.get("left.png"),0,0,840,540);
+			if(leftRoom.hammer()==1){
+				image(images.get("hammer.png"), 200, 200,50,50);
+			}
+			if(leftRoom.pusheenFront()==1){
+				if(pusheenNum%90<30){
+					image(images.get("pusheenFront.png"), 350, 250, 150,150);
+				}
+				else if(pusheenNum%90<60){
+					image(images.get("pusheenLeft.png"), 350, 250, 150, 150);
+				}
+				else {
+					image(images.get("pusheenBack.png"), 350, 250, 150, 150);
+				}
+				pusheenNum++;
+			}
+			
 		}
 		else if(this.curRoom == 2) //start room
 		{
