@@ -104,9 +104,7 @@ public class MainApplet extends PApplet
 		else if(this.curRoom == -1) //left room
 		{
 			image(images.get("left.png"),0,0,840,540);
-			if(leftRoom.hammer()==1){
-				image(images.get("hammer.png"), 200, 200,50,50);
-			}
+			
 			if(leftRoom.pusheenFront()==1){
 				if(pusheenNum%90<30){
 					image(images.get("pusheenFront.png"), 350, 250, 150,150);
@@ -119,7 +117,27 @@ public class MainApplet extends PApplet
 				}
 				pusheenNum++;
 			}
-			
+			if(leftRoom.normalBottle()==1){
+				image(images.get("normal_bottle.png"), 50, 350,75,75);
+			}
+			if(leftRoom.hose()==1){
+				image(images.get("hose.png"), 0,0);
+			}
+			if(leftRoom.securitybox()==1){
+				image(images.get("securitybox.png"), 0, 0,840,540);
+			}
+			if(leftRoom.pusheenCut()==1){
+				image(images.get("pusheen_cut.png"), 0, 0, 840, 540);
+			}
+			if(leftRoom.pusheenWithoutHammer()==1){
+				image(images.get("pusheen_hammer.png"), 0, 0, 840, 540);
+			}
+			if(leftRoom.hammer()==1){
+				image(images.get("hammer.png"), 397, 230,90,90);
+			}
+			if(leftRoom.pusheenBeKnif()==1){
+				image(images.get("beknif_pusheen.png"), 0, 0, 840, 540);
+			}
 		}
 		else if(this.curRoom == 2) //start room
 		{

@@ -10,7 +10,7 @@ public class LeftRoom
 	public LeftRoom() 
 	{
 		
-		hammer = 1;//0
+		hammer = 0;
 		pusheenBack = 1;
 		pusheenFront = 1;
 		pusheenLeft = 1;
