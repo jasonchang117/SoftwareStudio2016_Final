@@ -24,9 +24,12 @@ public class MainApplet extends PApplet
 	private int pusheenNum = 0;
 	private AudioClip cat;
 	private LeftRoom leftRoom = new LeftRoom();
+	private RightRoom rightroom = new RightRoom();
+	private MiddleRoom middleroom = new MiddleRoom();
 	private Question q = new Question(this);
 	private questionSet qs = new questionSet(this);
 	private String password = "520053";
+	private int lighter = 0;
 	private String[] file = {
 		"background/middle.png",
 		"background/right.png",
@@ -51,6 +54,10 @@ public class MainApplet extends PApplet
 		"component/securitybox.png",
 		"component/tape.png",
 		"component/pusheenFront.png",
+		"component/lighter.png",
+		"component/lighterfire.png",
+		"component/pusheeenBottle+hope.png",
+		"component/pusheen.png",
 	};
 	
 	public void setup()				// override the processing that initial the applet
@@ -85,10 +92,15 @@ public class MainApplet extends PApplet
 	{
 		background(0);
 		
+		if(lighter == 1){
+			image(images.get("lighter.png"), 860, 10, 50, 100);
+		}
+		
 		if(this.curRoom == 0) //middle room
 		{
 			image(images.get("middle.png"), 0, 0, 840, 540);
 			
+
 			if(this.startmenu == 1)
 			{
 				cp5.remove("voice");
@@ -100,6 +112,10 @@ public class MainApplet extends PApplet
 		else if(this.curRoom == 1) //right room
 		{
 			image(images.get("right.png"), 0, 0, 840, 540);
+			
+			if(rightroom.tape() == 1){
+				image(images.get("tape.png"), 400, 470, 60, 60);
+			}
 		}
 		else if(this.curRoom == -1) //left room
 		{
