@@ -29,7 +29,10 @@ public class MainApplet extends PApplet
 	private Question q = new Question(this);
 	private questionSet qs = new questionSet(this);
 	private String password = "520053";
-	private int lighter = 0;
+	private int lighter = 1;
+	private int lighterx = 860, lightery = 10, lighterwidth = 50, lighterheight = 100;
+	private int xOffset, yOffset;
+	private boolean locked = false, overobject;
 	private String[] file = {
 		"background/middle.png",
 		"background/right.png",
@@ -92,9 +95,19 @@ public class MainApplet extends PApplet
 	{
 		background(0);
 		
-		if(lighter == 1){
-			image(images.get("lighter.png"), 860, 10, 50, 100);
+		
+		//for objectdrag but it can only drag lighter now	
+		if (mouseX > lighterx && mouseX < lighterx+lighterwidth && 
+			    mouseY > lightery && mouseY < lightery+lighterheight) {
+			overobject = true;  
+		} 
+		else {
+			  overobject = false;
 		}
+		image(images.get("lighter.png"), lighterx, lightery, 50, 100);
+	
+		
+
 		
 		if(this.curRoom == 0) //middle room
 		{
@@ -334,4 +347,28 @@ public class MainApplet extends PApplet
 	{
 		return mouseY;
 	}
+	
+//for objectdrag but it can only drag lighter now
+	public void mousePressed() {
+	  if(overobject) { 
+	    locked = true; 
+	  } else {
+	    locked = false;
+	  }
+	  xOffset = mouseX-lighterx; 
+	  yOffset = mouseY-lightery; 
+	
+	}
+	//for objectdrag but it can only drag lighter now
+	public void mouseDragged()
+	{
+		if(locked) {
+		    lighterx = mouseX-xOffset; 
+		    lightery = mouseY-yOffset; 
+		  }
+	}
+	//for objectdrag but it can only drag lighter now
+	public void mouseReleased() {
+		  locked = false;
+		}
 }
