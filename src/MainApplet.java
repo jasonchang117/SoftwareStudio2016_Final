@@ -100,7 +100,18 @@ public class MainApplet extends PApplet
 		{
 			image(images.get("middle.png"), 0, 0, 840, 540);
 			
-
+			if(middleroom.pusheenBottle() == 1){
+				image(images.get("pusheen_bottle.png"), 405, 295, 80, 60);
+			}
+			
+			if(middleroom.securitybox() == 1){
+				image(images.get("securitybox.png"), 346, 160, 100, 100);
+			}
+			
+			if(middleroom.knif() == 1){
+				image(images.get("knif.png"), 385, 180, 40, 60);
+			}
+			
 			if(this.startmenu == 1)
 			{
 				cp5.remove("voice");
