@@ -4,6 +4,7 @@ public class LeftRoom
 	private int pusheenBack, pusheenBackX, pusheenBackY;
 	private int pusheenFront, pusheenFrontX, pusheenFrontY;
 	private int pusheenLeft, pusheenLeftX, pusheenLeftY;
+	private int pusheenRight, pusheenRightX, pusheenRightY;
 	private int pusheenCut, pusheenCutX, pusheenCutY;
 	private int pusheenWithoutHammer, pusheenWithoutHammerX, pusheenWithoutHammerY;
 	private int pusheenBeKnif, pusheenBeKnifX, pusheenBeKnifY;
@@ -25,6 +26,9 @@ public class LeftRoom
 		pusheenLeft = 1;
 		pusheenLeftX = 350;
 		pusheenLeftY = 250;
+		pusheenRight = 1;
+		pusheenRightX = 350;
+		pusheenRightY = 250;
 		pusheenCut = 0;
 		pusheenCutX = 0;
 		pusheenCutY = 0;
@@ -49,6 +53,7 @@ public class LeftRoom
 	public int pusheenBack() { return this.pusheenBack; }
 	public int pusheenFront() { return this.pusheenFront; }
 	public int pusheenLeft() { return this.pusheenLeft; }
+	public int pusheenRight() { return this.pusheenRight; }
 	public int pusheenCut() { return this.pusheenCut; }
 	public int pusheenWithoutHammer() { return this.pusheenWithoutHammer; }
 	public int pusheenBeKnif() { return this.pusheenBeKnif; }
@@ -60,6 +65,7 @@ public class LeftRoom
 	public void pusheenBack_vanish() {this.pusheenBack = 0; }
 	public void pusheenFront_vanish() { this.pusheenFront = 0; }
 	public void pusheenLeft_vanish() { this.pusheenLeft = 0; }
+	public void pusheenRight_vanish() { this.pusheenRight = 0; }
 	public void pusheenCut_vanish() { this.pusheenCut = 0; }
 	public void pusheenWithoutHammer_vanish() { this.pusheenWithoutHammer = 0; }
 	public void pusheenBeKnif_vanish() { this.pusheenBeKnif = 0; }
@@ -71,6 +77,7 @@ public class LeftRoom
 	public void pusheenBack_appear() {this.pusheenBack = 1; }
 	public void pusheenFront_appear() { this.pusheenFront = 1; }
 	public void pusheenLeft_appear() { this.pusheenLeft = 1; }
+	public void pusheenRight_appear() { this.pusheenRight = 1; }
 	public void pusheenCut_appear() { this.pusheenCut = 1; }
 	public void pusheenWithoutHammer_appear() { this.pusheenWithoutHammer = 1; }
 	public void pusheenBeKnif_appear() { this.pusheenBeKnif = 1; }
@@ -88,6 +95,8 @@ public class LeftRoom
 			return this.pusheenFrontX;
 		else if(str == "pusheenLeft")
 			return this.pusheenLeftX;
+		else if(str == "pusheenRight")
+			return this.pusheenRightX;
 		else if(str == "pusheenCut")
 			return this.pusheenCutX;
 		else if(str == "pusheenWithoutHammer")
@@ -114,6 +123,8 @@ public class LeftRoom
 			return this.pusheenFrontY;
 		else if(str == "pusheenLeft")
 			return this.pusheenLeftY;
+		else if(str == "pusheenRight")
+			return this.pusheenRightY;
 		else if(str == "pusheenCut")
 			return this.pusheenCutY;
 		else if(str == "pusheenWithoutHammer")
@@ -143,6 +154,9 @@ public class LeftRoom
 		}
 		else if(str == "pusheenLeft"){
 			this.pusheenLeftX = x; this.pusheenLeftY = y;
+		}
+		else if(str == "pusheenRight"){
+			this.pusheenRightX = x; this.pusheenRightY = y;
 		}
 		else if(str == "pusheenCut"){
 			this.pusheenCutX = x; this.pusheenCutY = y;

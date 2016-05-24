@@ -50,6 +50,7 @@ public class MainApplet extends PApplet
 		"component/pusheen_hammer.png",
 		"component/pusheenBack.png",
 		"component/pusheenLeft.png",
+		"component/pusheenRight.png",
 		"component/securitybox.png",
 		"component/tape.png",
 		"component/pusheenFront.png",
@@ -129,14 +130,17 @@ public class MainApplet extends PApplet
 			
 			if(leftRoom.pusheenFront()==1)
 			{
-				if(pusheenNum%90 < 30){
+				if(pusheenNum%120 < 30){
 					image(images.get("pusheenFront.png"), leftRoom.getComX("pusheenFront"), leftRoom.getComY("pusheenFront"), 150, 150);		// warning overflow
 				}
-				else if(pusheenNum%90 < 60){
+				else if(pusheenNum%120 < 60){
 					image(images.get("pusheenLeft.png"), leftRoom.getComX("pusheenLeft"), leftRoom.getComY("pusheenLeft"), 150, 150);
 				}
-				else {
+				else if(pusheenNum%120 < 90){
 					image(images.get("pusheenBack.png"), leftRoom.getComX("pusheenBack"), leftRoom.getComY("pusheenBack"), 150, 150);
+				}
+				else {
+					image(images.get("pusheenRight.png"), leftRoom.getComX("pusheenRight"), leftRoom.getComY("pusheenRight"), 150, 150);
 				}
 				pusheenNum++;
 			}
