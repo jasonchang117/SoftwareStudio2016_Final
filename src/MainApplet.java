@@ -14,7 +14,7 @@ import processing.core.PImage;
 @SuppressWarnings("serial")
 public class MainApplet extends PApplet
 {
-	private final static int width = 960, height = 540;
+	private final static int width = 1000, height = 540;
 	private HashMap<String, PImage> images = new HashMap<String, PImage>();
 	private int curRoom;
 	private ControlP5 cp5;
@@ -58,6 +58,7 @@ public class MainApplet extends PApplet
 		"component/lighterfire.png",
 		"component/pusheeenBottle+hose.png",
 		"component/pusheen.png",
+		"component/itemtable.png",
 	};
 	
 	public void setup()				// override the processing that initial the applet
@@ -94,6 +95,7 @@ public class MainApplet extends PApplet
 		if(this.curRoom == 0) //middle room
 		{
 			image(images.get("middle.png"), 0, 0, 840, 540);
+			image(images.get("itemtable.png"), 840, 0, 160, 400);
 			
 			if(middleRoom.pusheenBottle() == 1){
 				image(images.get("pusheen_bottle.png"), middleRoom.getComX("pusheenBottle"), middleRoom.getComY("pusheenBottle"), 80, 60);
@@ -176,18 +178,18 @@ public class MainApplet extends PApplet
 				this.startmenu = 1;
 			}
 			if(this.catMove < 10 )
-				image(images.get("start.jpg"), 0, 0, 960, 540);
+				image(images.get("start.jpg"), 0, 0, 1000, 540);
 			else
-				image(images.get("start2.jpg"), 0, 0, 960, 540);
+				image(images.get("start2.jpg"), 0, 0, 1000, 540);
 		}
 		else if(this.curRoom == 3) //question room
 		{	
 			if(q.getQuestionSet() == false){
-				image(images.get("password.png"), 0, 0, 960, 540);
+				image(images.get("password.png"), 0, 0, 1000, 540);
 			}
 			
 			if(q.getQuestionSet()== true ){
-				image(images.get("setquestion.png"), 0, 0, 960, 540);
+				image(images.get("setquestion.png"), 0, 0, 1000, 540);
 				
 				if(questionButton == 0){
 					 q.removeText();	
@@ -228,7 +230,7 @@ public class MainApplet extends PApplet
 		
 		if( (this.curRoom == 0 || this.curRoom == 1 || this.curRoom == -1 || this.curRoom == 3) && backbutton == 0)     // waiting for modifying
 		{
-			cp5.addButton("buttonBack").setLabel("Back").setPosition(860, 480).setSize(50,50);
+			cp5.addButton("buttonBack").setLabel("Back").setPosition(890, 450).setSize(50,50);
 			this.backbutton = 1;
 		}
 		else if(this.curRoom == 2 && backbutton == 1)
