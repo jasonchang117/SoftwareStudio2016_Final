@@ -132,6 +132,35 @@ public class LeftRoom
 	
 	public void setPostion(int x, int y, String str)
 	{
-		
+		if(str == "hammer"){
+			this.hammerX = x; this.hammerY = y;
+		}
+		else if(str == "pusheenBack"){
+			this.pusheenBackX = x; this.pusheenBackY = y;
+		}
+		else if(str == "pusheenFront"){
+			this.pusheenFrontX = x; this.pusheenFrontY = y;
+		}
+		else if(str == "pusheenLeft"){
+			this.pusheenLeftX = x; this.pusheenLeftY = y;
+		}
+		else if(str == "pusheenCut"){
+			this.pusheenCutX = x; this.pusheenCutY = y;
+		}
+		else if(str == "pusheenWithoutHammer"){
+			this.pusheenWithoutHammerX = x; this.pusheenWithoutHammerY = y;
+		}
+		else if(str == "pusheenBeKnif"){
+			this.pusheenBeKnifX = x; this.pusheenBeKnifY = y;
+		}
+		else if(str == "hose"){
+			this.hoseX = x; this.hoseY = y;
+		}
+		else if(str == "securitybox"){
+			this.securityboxX = x; this.securityboxY = y;
+		}
+		else if(str == "normalBottle"){
+			this.normalBottleX = x; this.normalBottleY = y;
+		}
 	}
 }

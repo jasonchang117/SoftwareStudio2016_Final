@@ -21,7 +21,6 @@ public class MiddleRoom {
 		lighterX = 850;
 		lighterY = 50;
 	}
-	
 
 	public int knif() { return this.knif; }
 	public int pusheenBottle() { return this.pusheenBottle; }
@@ -68,7 +67,17 @@ public class MiddleRoom {
 	
 	public void setPostion(int x, int y, String str)
 	{
-		if(str == "pusheenBottle")
+		if(str == "pusheenBottle"){
 			this.pusheenBottleX = x; this.pusheenBottleY = y;
+		}
+		else if(str == "securitybox"){
+			this.securityboxX = x; this.securityboxY = y;
+		}
+		else if(str == "knif"){
+			this.knifX = x; this.knifY = y;
+		}
+		else if(str == "lighter"){
+			this.lighterX = x; this.lighterY = y;
+		}
 	}
 }

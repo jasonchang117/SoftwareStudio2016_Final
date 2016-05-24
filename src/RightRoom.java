@@ -33,6 +33,8 @@ public class RightRoom {
 	
 	public void setPostion(int x, int y, String str)
 	{
-		
+		if(str == "tape"){
+			this.tapeX = x; this.tapeY = y;
+		}
 	}
 }
