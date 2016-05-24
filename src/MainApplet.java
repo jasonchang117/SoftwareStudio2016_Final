@@ -59,7 +59,7 @@ public class MainApplet extends PApplet
 		"component/pusheenFront.png",
 		"component/lighter.png",
 		"component/lighterfire.png",
-		"component/pusheeenBottle+hope.png",
+		"component/pusheeenBottle+hose.png",
 		"component/pusheen.png",
 	};
 	
@@ -73,7 +73,6 @@ public class MainApplet extends PApplet
 		String []temp = new String[10];
 		for(int i=0;i<file.length;i++)
 		{
-			
 			PImage image = loadImage(this.file[i]);
 			temp = this.file[i].split("/");
 			images.put(temp[1], image);
@@ -95,20 +94,6 @@ public class MainApplet extends PApplet
 	{
 		background(0);
 		
-		
-		//for objectdrag but it can only drag lighter now	
-		if (mouseX > lighterx && mouseX < lighterx+lighterwidth && 
-			    mouseY > lightery && mouseY < lightery+lighterheight) {
-			overobject = true;  
-		} 
-		else {
-			  overobject = false;
-		}
-		image(images.get("lighter.png"), lighterx, lightery, 50, 100);
-	
-		
-
-		
 		if(this.curRoom == 0) //middle room
 		{
 			image(images.get("middle.png"), 0, 0, 840, 540);
@@ -116,15 +101,12 @@ public class MainApplet extends PApplet
 			if(middleroom.pusheenBottle() == 1){
 				image(images.get("pusheen_bottle.png"), 405, 295, 80, 60);
 			}
-			
 			if(middleroom.securitybox() == 1){
 				image(images.get("securitybox.png"), 346, 160, 100, 100);
 			}
-			
 			if(middleroom.knif() == 1){
 				image(images.get("knif.png"), 385, 180, 40, 60);
 			}
-			
 			if(this.startmenu == 1)
 			{
 				cp5.remove("voice");
@@ -145,11 +127,12 @@ public class MainApplet extends PApplet
 		{
 			image(images.get("left.png"),0,0,840,540);
 			
-			if(leftRoom.pusheenFront()==1){
-				if(pusheenNum%90<30){
+			if(leftRoom.pusheenFront()==1)
+			{
+				if(pusheenNum%90 < 30){
 					image(images.get("pusheenFront.png"), 350, 250, 150,150);
 				}
-				else if(pusheenNum%90<60){
+				else if(pusheenNum%90 < 60){
 					image(images.get("pusheenLeft.png"), 350, 250, 150, 150);
 				}
 				else {
@@ -214,8 +197,8 @@ public class MainApplet extends PApplet
 				}
 			}
 			
-			if(inputQuestion == 1){
-				 		
+			if(inputQuestion == 1)
+			{	 		
 				 cp5.remove("questionOne");
 				 cp5.remove("questionTwo");
 				 cp5.remove("questionThree");
@@ -252,6 +235,17 @@ public class MainApplet extends PApplet
 			this.backbutton = 0;
 		}
 		
+		//for object drag but it can only drag lighter now	
+		if (mouseX > lighterx && mouseX < lighterx+lighterwidth && mouseY > lightery && mouseY < lightery+lighterheight) 
+		{
+			overobject = true;  
+		} 
+		else 
+		{
+			overobject = false;
+		}
+		image(images.get("lighter.png"), lighterx, lightery, 120, 100);
+		
 		q.display();
 	}
 	
@@ -269,6 +263,7 @@ public class MainApplet extends PApplet
 	
 	public void voice()
 	{
+		
 	}
 	
 	public void startbutton()
@@ -283,13 +278,13 @@ public class MainApplet extends PApplet
 	
 	public void buttonBack()
 	{
-		if(this.curRoom == 3 && this.inputQuestion == 1){
+		if(this.curRoom == 3 && this.inputQuestion == 1)
+		{
 			this.curRoom = 3;
 			this.inputQuestion = 0;	
 			this.questionButton = 0;
 			qs.removeText();
 		}
-		
 		else{
 				 cp5.remove("questionOne");
 				 cp5.remove("questionTwo");
@@ -307,7 +302,6 @@ public class MainApplet extends PApplet
 	{
 		return this.curRoom;
 	}
-	
 	
 	//Question Set Button
 	 public void questionOne(){
@@ -334,7 +328,8 @@ public class MainApplet extends PApplet
 	 	qs.display();
 	 	inputQuestion = 1;
 	 }
-	public String questionPassword(){
+	public String questionPassword()
+	{
 		return this.password;
 	}
 	

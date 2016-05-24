@@ -8,8 +8,7 @@ public class LeftRoom
 	private int hose,securitybox,normalBottle;
 
 	public LeftRoom() 
-	{
-		
+	{	
 		hammer = 0;
 		pusheenBack = 1;
 		pusheenFront = 1;
