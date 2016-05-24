@@ -14,15 +14,35 @@ public class LeftRoom
 	public LeftRoom() 
 	{	
 		hammer = 0;
+		hammerX = 397;
+		hammerY = 230;
 		pusheenBack = 1;
+		pusheenBackX = 350;
+		pusheenBackY = 250;
 		pusheenFront = 1;
+		pusheenFrontX = 350;
+		pusheenFrontY = 250;
 		pusheenLeft = 1;
+		pusheenLeftX = 350;
+		pusheenLeftY = 250;
 		pusheenCut = 0;
+		pusheenCutX = 0;
+		pusheenCutY = 0;
 		pusheenWithoutHammer = 0;
+		pusheenWithoutHammerX = 0;
+		pusheenWithoutHammerY = 0;
 		pusheenBeKnif = 0;
+		pusheenBeKnifX = 0;
+		pusheenBeKnifY = 0;
 		hose = 0;
+		hoseX = 0;
+		hoseY = 0;
 		securitybox = 0;
+		securityboxX = 0;
+		securityboxY = 0;
 		normalBottle = 1;
+		normalBottleX = 50;
+		normalBottleY = 350;
 	}
 	
 	public int hammer() { return this.hammer; }
@@ -44,7 +64,7 @@ public class LeftRoom
 	public void pusheenWithoutHammer_vanish() { this.pusheenWithoutHammer = 0; }
 	public void pusheenBeKnif_vanish() { this.pusheenBeKnif = 0; }
 	public void hose_vanish(){	this.hose = 0;}
-	public void securitybox_vanish(){	this.securitybox = 0;}
+	public void securitybox_vanish(){ this.securitybox = 0;}
 	public void normalBottle_vanish(){	this.normalBottle = 0;}
 	
 	public void hammer_appear() { this.hammer = 1; }
@@ -108,5 +128,10 @@ public class LeftRoom
 			return this.normalBottleY;
 		else
 			return 0;
+	}
+	
+	public void setPostion(int x, int y, String str)
+	{
+		
 	}
 }

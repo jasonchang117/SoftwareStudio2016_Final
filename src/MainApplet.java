@@ -29,10 +29,6 @@ public class MainApplet extends PApplet
 	private Question q = new Question(this);
 	private questionSet qs = new questionSet(this);
 	private String password = "520053";
-	private int lighter = 1;
-	private int lighterx = 860, lightery = 10, lighterwidth = 50, lighterheight = 100;
-	private int xOffset, yOffset;
-	private boolean locked = false, overobject;
 	private String[] file = {
 		"background/middle.png",
 		"background/right.png",
@@ -80,7 +76,7 @@ public class MainApplet extends PApplet
 		
 		cat = getAudioClip(getCodeBase(), "sound/cat.mp3");
 		curRoom = 2;
-		cp5 =  new ControlP5(this);
+		cp5 = new ControlP5(this);
 		PFont p = createFont("Consolas", 20);
 		cp5.setFont(p);
 		cp5.addButton("voice").setLabel("Voice On").setPosition(60, 450).setSize(200, 50);
@@ -99,13 +95,17 @@ public class MainApplet extends PApplet
 			image(images.get("middle.png"), 0, 0, 840, 540);
 			
 			if(middleRoom.pusheenBottle() == 1){
-				image(images.get("pusheen_bottle.png"), 405, 295, 80, 60);
+				image(images.get("pusheen_bottle.png"), middleRoom.getComX("pusheenBottle"), middleRoom.getComY("pusheenBottle"), 80, 60);
 			}
 			if(middleRoom.securitybox() == 1){
-				image(images.get("securitybox.png"), 346, 160, 100, 100);
+				image(images.get("securitybox.png"), middleRoom.getComX("securitybox"), middleRoom.getComY("securitybox"), 100, 100);
 			}
 			if(middleRoom.knif() == 1){
-				image(images.get("knif.png"), 385, 180, 40, 60);
+				image(images.get("knif.png"), middleRoom.getComX("knif"), middleRoom.getComY("knif"), 40, 60);
+			}
+			if(middleRoom.lighter() == 1){
+				image(images.get("lighter.png"), middleRoom.getComX("lighter"), middleRoom.getComY("lighter"), 120, 100);
+				
 			}
 			if(this.startmenu == 1)
 			{
@@ -120,7 +120,7 @@ public class MainApplet extends PApplet
 			image(images.get("right.png"), 0, 0, 840, 540);
 			
 			if(rightRoom.tape() == 1){
-				image(images.get("tape.png"), 400, 470, 60, 60);
+				image(images.get("tape.png"), rightRoom.getComX("tape"), rightRoom.getComY("tape"), 60, 60);
 			}
 		}
 		else if(this.curRoom == -1) //left room
@@ -130,36 +130,36 @@ public class MainApplet extends PApplet
 			if(leftRoom.pusheenFront()==1)
 			{
 				if(pusheenNum%90 < 30){
-					image(images.get("pusheenFront.png"), 350, 250, 150,150);
+					image(images.get("pusheenFront.png"), leftRoom.getComX("pusheenFront"), leftRoom.getComY("pusheenFront"), 150, 150);		// warning overflow
 				}
 				else if(pusheenNum%90 < 60){
-					image(images.get("pusheenLeft.png"), 350, 250, 150, 150);
+					image(images.get("pusheenLeft.png"), leftRoom.getComX("pusheenLeft"), leftRoom.getComY("pusheenLeft"), 150, 150);
 				}
 				else {
-					image(images.get("pusheenBack.png"), 350, 250, 150, 150);
+					image(images.get("pusheenBack.png"), leftRoom.getComX("pusheenBack"), leftRoom.getComY("pusheenBack"), 150, 150);
 				}
 				pusheenNum++;
 			}
 			if(leftRoom.normalBottle()==1){
-				image(images.get("normal_bottle.png"), 50, 350,75,75);
+				image(images.get("normal_bottle.png"), leftRoom.getComX("normalBottle"), leftRoom.getComY("normalBottle"),75,75);
 			}
 			if(leftRoom.hose()==1){
 				image(images.get("hose.png"), 0,0);
 			}
 			if(leftRoom.securitybox()==1){
-				image(images.get("securitybox.png"), 0, 0,840,540);
+				image(images.get("securitybox.png"), leftRoom.getComX("securitybox"), leftRoom.getComY("securitybox"),840,540);
 			}
 			if(leftRoom.pusheenCut()==1){
-				image(images.get("pusheen_cut.png"), 0, 0, 840, 540);
+				image(images.get("pusheen_cut.png"), leftRoom.getComX("pusheenCut"), leftRoom.getComY("pusheenCut"), 840, 540);
 			}
 			if(leftRoom.pusheenWithoutHammer()==1){
-				image(images.get("pusheen_hammer.png"), 0, 0, 840, 540);
+				image(images.get("pusheen_hammer.png"), leftRoom.getComX("pusheenWithoutHammer"), leftRoom.getComY("pusheenWithoutHammer"), 840, 540);
 			}
 			if(leftRoom.hammer()==1){
-				image(images.get("hammer.png"), 397, 230,90,90);
+				image(images.get("hammer.png"), leftRoom.getComX("hammer"), leftRoom.getComY("hammer"), 90, 90);
 			}
 			if(leftRoom.pusheenBeKnif()==1){
-				image(images.get("beknif_pusheen.png"), 0, 0, 840, 540);
+				image(images.get("beknif_pusheen.png"), leftRoom.getComX("pusheenBeKnif"), leftRoom.getComY("pusheenBeKnif"), 840, 540);
 			}
 		}
 		else if(this.curRoom == 2) //start room
@@ -234,7 +234,6 @@ public class MainApplet extends PApplet
 		}
 		
 		//for object drag but it can only drag lighter now	
-		image(images.get("lighter.png"), middleRoom.getComX("lighter"), middleRoom.getComY("lighter"), 120, 100);
 		
 		q.display();
 	}
@@ -275,16 +274,17 @@ public class MainApplet extends PApplet
 			this.questionButton = 0;
 			qs.removeText();
 		}
-		else{
-				 cp5.remove("questionOne");
-				 cp5.remove("questionTwo");
-				 cp5.remove("questionThree");
-				 cp5.remove("questionFour");
-				 cp5.remove("questionFive");
-				 cp5.remove("questionSix");
-				 questionButton = 0;
-				 q.setQuestionSet(false);
-				 this.curRoom = 2;
+		else
+		{
+			cp5.remove("questionOne");
+			cp5.remove("questionTwo");
+			cp5.remove("questionThree");
+			cp5.remove("questionFour");
+			cp5.remove("questionFive");
+			cp5.remove("questionSix");
+			questionButton = 0;
+			q.setQuestionSet(false);
+			this.curRoom = 2;
 		}
 	}
 	
@@ -333,32 +333,21 @@ public class MainApplet extends PApplet
 		return mouseY;
 	}
 	
-//for objectdrag but it can only drag lighter now
-	public void mousePressed() 
+	public void mousePressed()
 	{
-		if(overobject) 
+		if(this.curRoom == 0)			// middle room
 		{
-			locked = true;
-		} 
-		else 
-		{
-			locked = false;
+			if(mouseX >= middleRoom.getComX("pusheenBottle")+10 && mouseX <= middleRoom.getComX("pusheenBottle")+30 && mouseY >= middleRoom.getComY("pusheenBottle") && mouseY <= middleRoom.getComY("pusheenBottle")+100 )
+				middleRoom.setPostion(850, 250, "pusheenBottle");
 		}
-		xOffset = mouseX-lighterx; 
-		yOffset = mouseY-lightery; 
-	}
-	//for objectdrag but it can only drag lighter now
-	public void mouseDragged()
-	{
-		if(locked) 
+		else if(this.curRoom == 1)		// right room
 		{
-		    lighterx = mouseX-xOffset; 
-		    lightery = mouseY-yOffset; 
+			
+		}
+		else if(this.curRoom == -1)		// left room
+		{
+			
 		}
 	}
-	//for objectdrag but it can only drag lighter now
-	public void mouseReleased() 
-	{
-		locked = false;
-	}
+	
 }

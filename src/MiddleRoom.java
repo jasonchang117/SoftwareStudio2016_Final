@@ -9,9 +9,17 @@ public class MiddleRoom {
 	public MiddleRoom() 
 	{
 		pusheenBottle = 1;
+		pusheenBottleX = 405;
+		pusheenBottleY = 295;
 		securitybox = 0;
+		securityboxX = 346;
+		securityboxY = 160;
 		knif = 1;
-		lighter = 1;
+		knifX = 385;
+		knifY = 180;
+		lighter = 0;
+		lighterX = 850;
+		lighterY = 50;
 	}
 	
 
@@ -46,7 +54,6 @@ public class MiddleRoom {
 	
 	public int getComY(String str)
 	{
-
 		if(str == "pusheenBottle")
 			return this.pusheenBottleY;
 		else if(str == "securitybox")
@@ -57,5 +64,11 @@ public class MiddleRoom {
 			return this.lighterY;
 		else 
 			return 0;
+	}
+	
+	public void setPostion(int x, int y, String str)
+	{
+		if(str == "pusheenBottle")
+			this.pusheenBottleX = x; this.pusheenBottleY = y;
 	}
 }
