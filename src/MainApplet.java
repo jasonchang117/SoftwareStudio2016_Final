@@ -92,10 +92,14 @@ public class MainApplet extends PApplet
 	{
 		background(0);
 		
+		if(this.curRoom == 0 || this.curRoom == 1 || this.curRoom == -1){
+			image(images.get("itemtable.png"), 840, 0, 160, 400);
+		}
+		
 		if(this.curRoom == 0) //middle room
 		{
 			image(images.get("middle.png"), 0, 0, 840, 540);
-			image(images.get("itemtable.png"), 840, 0, 160, 400);
+			
 			
 			if(middleRoom.pusheenBottle() == 1){
 				image(images.get("pusheen_bottle.png"), middleRoom.getComX("pusheenBottle"), middleRoom.getComY("pusheenBottle"), 80, 60);
