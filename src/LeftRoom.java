@@ -11,6 +11,7 @@ public class LeftRoom
 	private int hose, hoseX, hoseY;
 	private int securitybox, securityboxX, securityboxY;
 	private int normalBottle, normalBottleX, normalBottleY;
+	public int isanimate;
 
 	public LeftRoom() 
 	{	
@@ -47,6 +48,7 @@ public class LeftRoom
 		normalBottle = 1;
 		normalBottleX = 50;
 		normalBottleY = 350;
+		isanimate = 0;
 	}
 	
 	public int hammer() { return this.hammer; }

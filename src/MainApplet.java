@@ -22,10 +22,12 @@ public class MainApplet extends PApplet
 	private int questionButton = 0;
 	private int inputQuestion = 0;
 	private int pusheenNum = 0;
+	private int beknifnum = 0, becutnum = 0;
 	private AudioClip cat;
 	private LeftRoom leftRoom = new LeftRoom();
 	private RightRoom rightRoom = new RightRoom();
 	private MiddleRoom middleRoom = new MiddleRoom();
+	private Itemtable itemtable = new Itemtable();
 	private Question q = new Question(this);
 	private questionSet qs = new questionSet(this);
 	private String password = "520053";
@@ -94,6 +96,27 @@ public class MainApplet extends PApplet
 		
 		if(this.curRoom == 0 || this.curRoom == 1 || this.curRoom == -1){
 			image(images.get("itemtable.png"), 840, 0, 160, 400);
+			if(itemtable.hammer()==1){
+				image(images.get("hammer.png"), 845, 5, 60, 60);
+			}
+			if(itemtable.pusheenBottle()==1){
+				image(images.get("pusheen_bottle.png"),840 , 70, 80, 60);
+			}
+			if(itemtable.hose()==1){
+				image(images.get("hose.png"), 920, 60, 80, 80);
+			}
+			if(itemtable.knif()==1){
+				image(images.get("knif.png"), 835, 195, 80, 80);
+			}
+			if(itemtable.normalBottle()==1){
+				image(images.get("normal_bottle.png"), 840, 140, 80, 60);
+			}
+			if(itemtable.tape()==1){
+				image(images.get("tape.png"), 920, 0, 90, 90);
+			}
+			if(itemtable.lighter()==1){
+				image(images.get("lighter.png"),835, 260, 90, 70);
+			}
 		}
 		
 		if(this.curRoom == 0) //middle room
@@ -133,7 +156,6 @@ public class MainApplet extends PApplet
 		else if(this.curRoom == -1) //left room
 		{
 			image(images.get("left.png"),0,0,840,540);
-			
 			if(leftRoom.pusheenFront()==1)
 			{
 				if(pusheenNum%120 < 30){
@@ -149,6 +171,7 @@ public class MainApplet extends PApplet
 					image(images.get("pusheenRight.png"), leftRoom.getComX("pusheenRight"), leftRoom.getComY("pusheenRight"), 150, 150);
 				}
 				pusheenNum++;
+				if(pusheenNum==120) pusheenNum=0;
 			}
 			if(leftRoom.normalBottle()==1){
 				image(images.get("normal_bottle.png"), leftRoom.getComX("normalBottle"), leftRoom.getComY("normalBottle"),75,75);
@@ -160,7 +183,14 @@ public class MainApplet extends PApplet
 				image(images.get("securitybox.png"), leftRoom.getComX("securitybox"), leftRoom.getComY("securitybox"),840,540);
 			}
 			if(leftRoom.pusheenCut()==1){
+				
 				image(images.get("pusheen_cut.png"), leftRoom.getComX("pusheenCut"), leftRoom.getComY("pusheenCut"), 840, 540);
+				becutnum++;
+				if(becutnum==30){
+					leftRoom.pusheenCut_vanish();
+					leftRoom.pusheenWithoutHammer_appear();
+					leftRoom.hammer_appear();
+				}
 			}
 			if(leftRoom.pusheenWithoutHammer()==1){
 				image(images.get("pusheen_hammer.png"), leftRoom.getComX("pusheenWithoutHammer"), leftRoom.getComY("pusheenWithoutHammer"), 840, 540);
@@ -170,6 +200,11 @@ public class MainApplet extends PApplet
 			}
 			if(leftRoom.pusheenBeKnif()==1){
 				image(images.get("beknif_pusheen.png"), leftRoom.getComX("pusheenBeKnif"), leftRoom.getComY("pusheenBeKnif"), 840, 540);
+				beknifnum++;
+				if(beknifnum==30){
+					leftRoom.pusheenBeKnif_vanish();
+					leftRoom.pusheenCut_appear();
+				}
 			}
 		}
 		else if(this.curRoom == 2) //start room
@@ -347,8 +382,11 @@ public class MainApplet extends PApplet
 	{
 		if(this.curRoom == 0)			// middle room
 		{
-			if(mouseX >= middleRoom.getComX("pusheenBottle")+10 && mouseX <= middleRoom.getComX("pusheenBottle")+30 && mouseY >= middleRoom.getComY("pusheenBottle") && mouseY <= middleRoom.getComY("pusheenBottle")+100 )
-				middleRoom.setPostion(850, 250, "pusheenBottle");
+			if(mouseX >= middleRoom.getComX("pusheenBottle")+25 && mouseX <= middleRoom.getComX("pusheenBottle")+50 && mouseY >= middleRoom.getComY("pusheenBottle")+5 && mouseY <= middleRoom.getComY("pusheenBottle")+60 ){
+				middleRoom.pusheenBottle_vanish();
+				itemtable.pusheenBottle_appear();
+			}
+				
 		}
 		else if(this.curRoom == 1)		// right room
 		{
@@ -356,6 +394,21 @@ public class MainApplet extends PApplet
 		}
 		else if(this.curRoom == -1)		// left room
 		{
+			if(leftRoom.isanimate==0 && leftRoom.normalBottle()==1 && mouseX >= leftRoom.getComX("normalBottle")+25 && mouseX <= leftRoom.getComX("normalBottle")+50 && mouseY >= leftRoom.getComY("normalBottle")+5 && mouseY <= leftRoom.getComY("normalBottle")+60 ){
+				leftRoom.normalBottle_vanish();
+				itemtable.normalBottle_appear();
+			}
+			if(leftRoom.isanimate==0 && leftRoom.pusheenFront()==1 && mouseX >= leftRoom.getComX("pusheenBack")+30 && mouseX <= leftRoom.getComX("pusheenBack")+125 && mouseY >= leftRoom.getComY("pusheenBack")+35 && mouseY <= leftRoom.getComY("pusheenBack")+120 ){
+				leftRoom.pusheenFront_vanish();
+				leftRoom.pusheenBeKnif_appear();
+				leftRoom.isanimate = 1;
+			}
+			if(leftRoom.isanimate==1 && leftRoom.hammer()==1 && mouseX >= leftRoom.getComX("hammer")+20 && mouseX <= leftRoom.getComX("hammer")+80 && mouseY >= leftRoom.getComY("hammer")+0 && mouseY <= leftRoom.getComY("hammer")+90 ){
+				leftRoom.hammer_vanish();
+				leftRoom.pusheenWithoutHammer_vanish();
+				itemtable.hammer_appear();
+				leftRoom.isanimate = 0;
+			}
 			
 		}
 	}
