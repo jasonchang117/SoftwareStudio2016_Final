@@ -24,8 +24,8 @@ public class MainApplet extends PApplet
 	private int pusheenNum = 0;
 	private AudioClip cat;
 	private LeftRoom leftRoom = new LeftRoom();
-	private RightRoom rightroom = new RightRoom();
-	private MiddleRoom middleroom = new MiddleRoom();
+	private RightRoom rightRoom = new RightRoom();
+	private MiddleRoom middleRoom = new MiddleRoom();
 	private Question q = new Question(this);
 	private questionSet qs = new questionSet(this);
 	private String password = "520053";
@@ -98,13 +98,13 @@ public class MainApplet extends PApplet
 		{
 			image(images.get("middle.png"), 0, 0, 840, 540);
 			
-			if(middleroom.pusheenBottle() == 1){
+			if(middleRoom.pusheenBottle() == 1){
 				image(images.get("pusheen_bottle.png"), 405, 295, 80, 60);
 			}
-			if(middleroom.securitybox() == 1){
+			if(middleRoom.securitybox() == 1){
 				image(images.get("securitybox.png"), 346, 160, 100, 100);
 			}
-			if(middleroom.knif() == 1){
+			if(middleRoom.knif() == 1){
 				image(images.get("knif.png"), 385, 180, 40, 60);
 			}
 			if(this.startmenu == 1)
@@ -119,7 +119,7 @@ public class MainApplet extends PApplet
 		{
 			image(images.get("right.png"), 0, 0, 840, 540);
 			
-			if(rightroom.tape() == 1){
+			if(rightRoom.tape() == 1){
 				image(images.get("tape.png"), 400, 470, 60, 60);
 			}
 		}
@@ -207,7 +207,6 @@ public class MainApplet extends PApplet
 				 cp5.remove("questionSix");
 				 image(images.get("questionInput.png"), 0, 0, 960, 540);
 			}
-				
 			
 			if(this.startmenu == 1)
 			{
@@ -216,7 +215,6 @@ public class MainApplet extends PApplet
 				cp5.remove("questionnaire");
 				this.startmenu = 0;
 			}
-			
 		}
 		
 		if(this.catMove < 19)
@@ -236,15 +234,7 @@ public class MainApplet extends PApplet
 		}
 		
 		//for object drag but it can only drag lighter now	
-		if (mouseX > lighterx && mouseX < lighterx+lighterwidth && mouseY > lightery && mouseY < lightery+lighterheight) 
-		{
-			overobject = true;  
-		} 
-		else 
-		{
-			overobject = false;
-		}
-		image(images.get("lighter.png"), lighterx, lightery, 120, 100);
+		image(images.get("lighter.png"), middleRoom.getComX("lighter"), middleRoom.getComY("lighter"), 120, 100);
 		
 		q.display();
 	}
@@ -344,26 +334,31 @@ public class MainApplet extends PApplet
 	}
 	
 //for objectdrag but it can only drag lighter now
-	public void mousePressed() {
-	  if(overobject) { 
-	    locked = true; 
-	  } else {
-	    locked = false;
-	  }
-	  xOffset = mouseX-lighterx; 
-	  yOffset = mouseY-lightery; 
-	
+	public void mousePressed() 
+	{
+		if(overobject) 
+		{
+			locked = true;
+		} 
+		else 
+		{
+			locked = false;
+		}
+		xOffset = mouseX-lighterx; 
+		yOffset = mouseY-lightery; 
 	}
 	//for objectdrag but it can only drag lighter now
 	public void mouseDragged()
 	{
-		if(locked) {
+		if(locked) 
+		{
 		    lighterx = mouseX-xOffset; 
 		    lightery = mouseY-yOffset; 
-		  }
+		}
 	}
 	//for objectdrag but it can only drag lighter now
-	public void mouseReleased() {
-		  locked = false;
-		}
+	public void mouseReleased() 
+	{
+		locked = false;
+	}
 }
