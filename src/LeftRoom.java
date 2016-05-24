@@ -1,11 +1,15 @@
 public class LeftRoom
 {
-
-	private int hammer;		// 0->not visible, 1->visible
-	private int pusheenBack,pusheenFront,pusheenLeft;
-	private int pusheenCut,pusheenWithoutHammer;
-	private int pusheenBeKnif;
-	private int hose,securitybox,normalBottle;
+	private int hammer, hammerX, hammerY;							// 0->not visible, 1->visible
+	private int pusheenBack, pusheenBackX, pusheenBackY;
+	private int pusheenFront, pusheenFrontX, pusheenFrontY;
+	private int pusheenLeft, pusheenLeftX, pusheenLeftY;
+	private int pusheenCut, pusheenCutX, pusheenCutY;
+	private int pusheenWithoutHammer, pusheenWithoutHammerX, pusheenWithoutHammerY;
+	private int pusheenBeKnif, pusheenBeKnifX, pusheenBeKnifY;
+	private int hose, hoseX, hoseY;
+	private int securitybox, securityboxX, securityboxY;
+	private int normalBottle, normalBottleX, normalBottleY;
 
 	public LeftRoom() 
 	{	
@@ -21,7 +25,6 @@ public class LeftRoom
 		normalBottle = 1;
 	}
 	
-
 	public int hammer() { return this.hammer; }
 	public int pusheenBack() { return this.pusheenBack; }
 	public int pusheenFront() { return this.pusheenFront; }
@@ -55,4 +58,55 @@ public class LeftRoom
 	public void securitybox_appear(){this.securitybox = 1;}
 	public void normalBottle_appear(){this.normalBottle = 1;}
 	
+	public int getComX(String str)
+	{
+		if(str == "hammer")
+			return this.hammerX;
+		else if(str == "pusheenBack")
+			return this.pusheenBackX;
+		else if(str == "pusheenFront")
+			return this.pusheenFrontX;
+		else if(str == "pusheenLeft")
+			return this.pusheenLeftX;
+		else if(str == "pusheenCut")
+			return this.pusheenCutX;
+		else if(str == "pusheenWithoutHammer")
+			return this.pusheenWithoutHammerX;
+		else if(str == "pusheenBeKnif")
+			return this.pusheenBeKnifX;
+		else if(str == "hose")
+			return this.hoseX;
+		else if(str == "securitybox")
+			return this.securityboxX;
+		else if(str == "normalBottle")
+			return this.normalBottleX;
+		else
+			return 0;
+	}
+	
+	public int getComY(String str)
+	{
+		if(str == "hammer")
+			return this.hammerY;
+		else if(str == "pusheenBack")
+			return this.pusheenBackY;
+		else if(str == "pusheenFront")
+			return this.pusheenFrontY;
+		else if(str == "pusheenLeft")
+			return this.pusheenLeftY;
+		else if(str == "pusheenCut")
+			return this.pusheenCutY;
+		else if(str == "pusheenWithoutHammer")
+			return this.pusheenWithoutHammerY;
+		else if(str == "pusheenBeKnif")
+			return this.pusheenBeKnifY;
+		else if(str == "hose")
+			return this.hoseY;
+		else if(str == "securitybox")
+			return this.securityboxY;
+		else if(str == "normalBottle")
+			return this.normalBottleY;
+		else
+			return 0;
+	}
 }
