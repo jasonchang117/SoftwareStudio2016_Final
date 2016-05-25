@@ -10,13 +10,13 @@ public class Itemtable {
 	
 	public Itemtable() {
 		// TODO Auto-generated constructor stub
-		tape = 0;
-		knif = 0;
-		pusheenBottle = 0;
-		lighter = 0;
-		hammer = 0;
-		hose = 0;
-		normalBottle = 0;
+		tape = 1;
+		knif = 1;
+		pusheenBottle = 1;
+		lighter = 1;
+		hammer = 1;
+		hose = 1;
+		normalBottle = 1;
 	}
 
 	

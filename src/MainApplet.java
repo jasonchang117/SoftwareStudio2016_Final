@@ -31,6 +31,7 @@ public class MainApplet extends PApplet
 	private Question q = new Question(this);
 	private questionSet qs = new questionSet(this);
 	private String password = "520053";
+	private int mouseState;
 	private String[] file = {
 		"background/middle.png",
 		"background/right.png",
@@ -58,7 +59,6 @@ public class MainApplet extends PApplet
 		"component/pusheenFront.png",
 		"component/lighter.png",
 		"component/lighterfire.png",
-		"component/pusheeenBottle+hose.png",
 		"component/pusheen.png",
 		"component/itemtable.png",
 	};
@@ -69,7 +69,7 @@ public class MainApplet extends PApplet
 		this.setLayout(null);
 		size(width, height);
 		smooth();
-		
+		mouseState = 0;
 		String []temp = new String[10];
 		for(int i=0;i<file.length;i++)
 		{
@@ -96,26 +96,44 @@ public class MainApplet extends PApplet
 		
 		if(this.curRoom == 0 || this.curRoom == 1 || this.curRoom == -1){
 			image(images.get("itemtable.png"), 840, 0, 160, 400);
+			/*
+			if (mousePressed == true) {
+			    //cursor(HAND);
+			} else {
+				cursor(images.get("tape.png"),32,32);
+			}
+			*/
+			
+			if(mouseState==0) cursor(ARROW);
+			else if(mouseState == 1) cursor(images.get("knif.png"),32,32);
+			else if(mouseState == 2) cursor(images.get("normal_bottle.png"),32,32);
+			else if(mouseState == 3) cursor(images.get("pusheen_bottle.png"),32,32);
+			else if(mouseState == 4) cursor(images.get("hammer.png"),32,32);
+			else if(mouseState == 5) cursor(images.get("lighter.png"),32,32);
+			else if(mouseState == 6) cursor(images.get("tape.png"),32,32);
+			else if(mouseState == 7) cursor(images.get("hose.png"),32,32);
+			else cursor(ARROW);
+			
 			if(itemtable.hammer()==1){
 				image(images.get("hammer.png"), 845, 5, 60, 60);
 			}
 			if(itemtable.pusheenBottle()==1){
-				image(images.get("pusheen_bottle.png"),840 , 70, 80, 60);
+				image(images.get("pusheen_bottle.png"),845 , 70, 60, 60);
 			}
 			if(itemtable.hose()==1){
-				image(images.get("hose.png"), 920, 60, 80, 80);
+				image(images.get("hose.png"), 925, 65, 60, 60);
 			}
 			if(itemtable.knif()==1){
-				image(images.get("knif.png"), 835, 195, 80, 80);
+				image(images.get("knif.png"), 845, 200, 65, 65);
 			}
 			if(itemtable.normalBottle()==1){
-				image(images.get("normal_bottle.png"), 840, 140, 80, 60);
+				image(images.get("normal_bottle.png"), 845, 140, 60, 60);
 			}
 			if(itemtable.tape()==1){
-				image(images.get("tape.png"), 920, 0, 90, 90);
+				image(images.get("tape.png"), 930, 5, 60, 60);
 			}
 			if(itemtable.lighter()==1){
-				image(images.get("lighter.png"),835, 260, 90, 70);
+				image(images.get("lighter.png"),845, 270, 60, 60);
 			}
 		}
 		
@@ -380,9 +398,124 @@ public class MainApplet extends PApplet
 	
 	public void mousePressed()
 	{
+		if((this.curRoom == 0 || this.curRoom==1 || this.curRoom==-1) && mouseX>=840 ){
+			if(mouseX>840 && mouseX<920 && mouseY<265 && mouseY>200) {
+				if(itemtable.knif()==1){
+					if(mouseState == 1) itemtable.knif_appear();
+					else if(mouseState==2) itemtable.normalBottle_appear();
+					else if(mouseState==3) itemtable.pusheenBottle_appear();
+					else if(mouseState==4) itemtable.hammer_appear();
+					else if(mouseState==5) itemtable.lighter_appear();
+					else if(mouseState==6) itemtable.tape_appear();
+					else if(mouseState==7) itemtable.hose_appear();
+					mouseState=1;
+					itemtable.knif_vanish();
+				}else if(mouseState==1 && itemtable.knif()==0){
+					mouseState=0;
+					itemtable.knif_appear();
+				}
+			}
+			else if(mouseX>840 && mouseX<920 && mouseY<198 && mouseY>140) {
+				if(itemtable.normalBottle()==1){
+					if(mouseState == 1) itemtable.knif_appear();
+					else if(mouseState==2) itemtable.normalBottle_appear();
+					else if(mouseState==3) itemtable.pusheenBottle_appear();
+					else if(mouseState==4) itemtable.hammer_appear();
+					else if(mouseState==5) itemtable.lighter_appear();
+					else if(mouseState==6) itemtable.tape_appear();
+					else if(mouseState==7) itemtable.hose_appear();
+					mouseState=2;
+					itemtable.normalBottle_vanish();;
+				}else if(mouseState==2 && itemtable.normalBottle()==0){
+					mouseState=0;
+					itemtable.normalBottle_appear();
+				}
+			}
+			else if(mouseX>840 && mouseX<920 && mouseY<135 && mouseY>65) {
+				if(itemtable.pusheenBottle()==1){
+					if(mouseState == 1) itemtable.knif_appear();
+					else if(mouseState==2) itemtable.normalBottle_appear();
+					else if(mouseState==3) itemtable.pusheenBottle_appear();
+					else if(mouseState==4) itemtable.hammer_appear();
+					else if(mouseState==5) itemtable.lighter_appear();
+					else if(mouseState==6) itemtable.tape_appear();
+					else if(mouseState==7) itemtable.hose_appear();
+					mouseState=3;
+					itemtable.pusheenBottle_vanish();
+				}else if(mouseState==3 && itemtable.pusheenBottle()==0){
+					mouseState=0;
+					itemtable.pusheenBottle_appear();
+				}
+			}
+			else if(mouseX>840 && mouseX<920 && mouseY<63 && mouseY>2) {
+				if(itemtable.hammer()==1){
+					if(mouseState == 1) itemtable.knif_appear();
+					else if(mouseState==2) itemtable.normalBottle_appear();
+					else if(mouseState==3) itemtable.pusheenBottle_appear();
+					else if(mouseState==4) itemtable.hammer_appear();
+					else if(mouseState==5) itemtable.lighter_appear();
+					else if(mouseState==6) itemtable.tape_appear();
+					else if(mouseState==7) itemtable.hose_appear();
+					mouseState=4;
+					itemtable.hammer_vanish();
+				}else if(mouseState==4 && itemtable.hammer()==0){
+					mouseState=0;
+					itemtable.hammer_appear();
+				}
+			}
+			else if(mouseX>840 && mouseX<920 && mouseY<330 && mouseY>265) {
+				if(itemtable.lighter()==1){
+					if(mouseState == 1) itemtable.knif_appear();
+					else if(mouseState==2) itemtable.normalBottle_appear();
+					else if(mouseState==3) itemtable.pusheenBottle_appear();
+					else if(mouseState==4) itemtable.hammer_appear();
+					else if(mouseState==5) itemtable.lighter_appear();
+					else if(mouseState==6) itemtable.tape_appear();
+					else if(mouseState==7) itemtable.hose_appear();
+					mouseState=5;
+					itemtable.lighter_vanish();;
+				}else if(mouseState==5 && itemtable.lighter()==0){
+					mouseState=0;
+					itemtable.lighter_appear();
+				}
+			}
+			else if(mouseX>920 && mouseX<1000 && mouseY<63 && mouseY>2) {
+				if(itemtable.tape()==1){
+					if(mouseState == 1) itemtable.knif_appear();
+					else if(mouseState==2) itemtable.normalBottle_appear();
+					else if(mouseState==3) itemtable.pusheenBottle_appear();
+					else if(mouseState==4) itemtable.hammer_appear();
+					else if(mouseState==5) itemtable.lighter_appear();
+					else if(mouseState==6) itemtable.tape_appear();
+					else if(mouseState==7) itemtable.hose_appear();
+					mouseState=6;
+					itemtable.tape_vanish();
+				}else if(mouseState==6 && itemtable.tape()==0){
+					mouseState=0;
+					itemtable.tape_appear();
+				}
+			}
+			else if(mouseX>920 && mouseX<1000 && mouseY<135 && mouseY>65) {
+				if(itemtable.hose()==1){
+					if(mouseState == 1) itemtable.knif_appear();
+					else if(mouseState==2) itemtable.normalBottle_appear();
+					else if(mouseState==3) itemtable.pusheenBottle_appear();
+					else if(mouseState==4) itemtable.hammer_appear();
+					else if(mouseState==5) itemtable.lighter_appear();
+					else if(mouseState==6) itemtable.tape_appear();
+					else if(mouseState==7) itemtable.hose_appear();
+					mouseState=7;
+					itemtable.hose_vanish();
+				}else if(mouseState==7 && itemtable.hose()==0){
+					mouseState=0;
+					itemtable.hose_appear();
+				}
+			}
+		}
+		
 		if(this.curRoom == 0)			// middle room
 		{
-			if(mouseX >= middleRoom.getComX("pusheenBottle")+25 && mouseX <= middleRoom.getComX("pusheenBottle")+50 && mouseY >= middleRoom.getComY("pusheenBottle")+5 && mouseY <= middleRoom.getComY("pusheenBottle")+60 ){
+			if(mouseX >= middleRoom.getComX("pusheenBottle")+25 && mouseX <= middleRoom.getComX("pusheenBottle")+58 && mouseY >= middleRoom.getComY("pusheenBottle")+5 && mouseY <= middleRoom.getComY("pusheenBottle")+60 ){
 				middleRoom.pusheenBottle_vanish();
 				itemtable.pusheenBottle_appear();
 			}
@@ -394,14 +527,15 @@ public class MainApplet extends PApplet
 		}
 		else if(this.curRoom == -1)		// left room
 		{
-			if(leftRoom.isanimate==0 && leftRoom.normalBottle()==1 && mouseX >= leftRoom.getComX("normalBottle")+25 && mouseX <= leftRoom.getComX("normalBottle")+50 && mouseY >= leftRoom.getComY("normalBottle")+5 && mouseY <= leftRoom.getComY("normalBottle")+60 ){
+			if(leftRoom.isanimate==0 && leftRoom.normalBottle()==1 && mouseX >= leftRoom.getComX("normalBottle")+23 && mouseX <= leftRoom.getComX("normalBottle")+53 && mouseY >= leftRoom.getComY("normalBottle") && mouseY <= leftRoom.getComY("normalBottle")+73 ){
 				leftRoom.normalBottle_vanish();
 				itemtable.normalBottle_appear();
 			}
-			if(leftRoom.isanimate==0 && leftRoom.pusheenFront()==1 && mouseX >= leftRoom.getComX("pusheenBack")+30 && mouseX <= leftRoom.getComX("pusheenBack")+125 && mouseY >= leftRoom.getComY("pusheenBack")+35 && mouseY <= leftRoom.getComY("pusheenBack")+120 ){
+			if(mouseState==1 && leftRoom.isanimate==0 && leftRoom.pusheenFront()==1 && mouseX >= leftRoom.getComX("pusheenBack")+30 && mouseX <= leftRoom.getComX("pusheenBack")+125 && mouseY >= leftRoom.getComY("pusheenBack")+35 && mouseY <= leftRoom.getComY("pusheenBack")+120 ){
 				leftRoom.pusheenFront_vanish();
 				leftRoom.pusheenBeKnif_appear();
 				leftRoom.isanimate = 1;
+				mouseState = 0;
 			}
 			if(leftRoom.isanimate==1 && leftRoom.hammer()==1 && mouseX >= leftRoom.getComX("hammer")+20 && mouseX <= leftRoom.getComX("hammer")+80 && mouseY >= leftRoom.getComY("hammer")+0 && mouseY <= leftRoom.getComY("hammer")+90 ){
 				leftRoom.hammer_vanish();
