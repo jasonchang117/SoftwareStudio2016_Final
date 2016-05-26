@@ -13,16 +13,16 @@ public class Itemtable {
 	
 	public Itemtable() {
 		// TODO Auto-generated constructor stub
-		tape = 1;
+		tape = 0;
 		knif = 1;
-		pusheenBottle = 1;
-		normalBottleFull = 1;
+		pusheenBottle = 0;
+		normalBottleFull = 0;
 		lighter = 1;
-		hammer = 1;
+		hammer = 0;
 		hose = 1;
-		normalBottle = 1;
-		pusheenBottleFull = 1;
-		normalBottleWithHose = 1;
+		normalBottle = 0;
+		pusheenBottleFull = 0;
+		normalBottleWithHose = 0;
 	}
 
 	

@@ -11,6 +11,7 @@ public class LeftRoom
 	private int hose, hoseX, hoseY;
 	private int securitybox, securityboxX, securityboxY;
 	private int normalBottle, normalBottleX, normalBottleY;
+	private int pusheenBottle, pusheenBottleX, pusheenBottleY;
 	public int isanimate;
 
 	public LeftRoom() 
@@ -48,6 +49,9 @@ public class LeftRoom
 		normalBottle = 1;
 		normalBottleX = 50;
 		normalBottleY = 350;
+		pusheenBottle = 0;
+		pusheenBottleX = 732;
+		pusheenBottleY = 327;
 		isanimate = 0;
 	}
 	
@@ -62,6 +66,7 @@ public class LeftRoom
 	public int hose(){return this.hose; }
 	public int securitybox(){return this.securitybox; }
 	public int normalBottle(){return this.normalBottle; }
+	public int pusheenBottle(){return this.pusheenBottle;}
 	
 	public void hammer_vanish() { this.hammer = 0; }
 	public void pusheenBack_vanish() {this.pusheenBack = 0; }
@@ -74,6 +79,7 @@ public class LeftRoom
 	public void hose_vanish(){	this.hose = 0;}
 	public void securitybox_vanish(){ this.securitybox = 0;}
 	public void normalBottle_vanish(){	this.normalBottle = 0;}
+	public void pusheenBottle_vanish(){ this.pusheenBottle = 0;}
 	
 	public void hammer_appear() { this.hammer = 1; }
 	public void pusheenBack_appear() {this.pusheenBack = 1; }
@@ -86,6 +92,7 @@ public class LeftRoom
 	public void hose_appear(){this.hose = 1;}
 	public void securitybox_appear(){this.securitybox = 1;}
 	public void normalBottle_appear(){this.normalBottle = 1;}
+	public void pusheenBottle_appear(){this.pusheenBottle = 1;}
 	
 	public int getComX(String str)
 	{
@@ -111,6 +118,8 @@ public class LeftRoom
 			return this.securityboxX;
 		else if(str == "normalBottle")
 			return this.normalBottleX;
+		else if(str == "pusheenBottle")
+			return this.pusheenBottleX;
 		else
 			return 0;
 	}
@@ -139,6 +148,8 @@ public class LeftRoom
 			return this.securityboxY;
 		else if(str == "normalBottle")
 			return this.normalBottleY;
+		else if(str == "pusheenBottle")
+			return this.pusheenBottleY;
 		else
 			return 0;
 	}
@@ -177,6 +188,9 @@ public class LeftRoom
 		}
 		else if(str == "normalBottle"){
 			this.normalBottleX = x; this.normalBottleY = y;
+		}
+		else if(str == "pusheenBottle"){
+			this.pusheenBottleX = x; this.pusheenBottleY = y;
 		}
 	}
 }

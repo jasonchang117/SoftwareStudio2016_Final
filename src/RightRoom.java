@@ -4,9 +4,9 @@ public class RightRoom {
 	
 	public RightRoom() 
 	{
-		tape = 1;
-		tapeX = 400;
-		tapeY = 470;
+		tape = 0;
+		tapeX = 518;
+		tapeY = 502;
 	}
 
 	public int tape() { return this.tape; }
