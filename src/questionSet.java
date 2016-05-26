@@ -33,4 +33,9 @@ public class questionSet implements ActionListener{
 	public void removeText(){
 		parent.remove(textfield);
 	}
+	
+	public String getText()
+	{
+	   	return this.input;
+	}
 }
