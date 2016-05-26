@@ -1,5 +1,6 @@
 import java.applet.AudioClip;
 import java.awt.event.KeyEvent;
+import java.awt.image.ImagingOpException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import javax.swing.JTextField;
@@ -61,6 +62,7 @@ public class MainApplet extends PApplet
 		"component/lighterfire.png",
 		"component/pusheen.png",
 		"component/itemtable.png",
+		"component/normalBottle+hose.png"
 	};
 	
 	public void setup()				// override the processing that initial the applet
@@ -112,6 +114,9 @@ public class MainApplet extends PApplet
 			else if(mouseState == 5) cursor(images.get("lighter.png"),32,32);
 			else if(mouseState == 6) cursor(images.get("tape.png"),32,32);
 			else if(mouseState == 7) cursor(images.get("hose.png"),32,32);
+			else if(mouseState == 8) cursor(images.get("normal_bottle_full.png"),32,32);
+			else if(mouseState == 9) cursor(images.get("normalBottle+hose.png"),32,32);
+			else if(mouseState == 10) cursor(images.get("pusheen_bottle_full.png"),32,32);
 			else cursor(ARROW);
 			
 			if(itemtable.hammer()==1){
@@ -135,6 +140,18 @@ public class MainApplet extends PApplet
 			if(itemtable.lighter()==1){
 				image(images.get("lighter.png"),845, 270, 60, 60);
 			}
+			if(itemtable.normalBottleFull()==1){
+				image(images.get("normal_bottle_full.png"), 925, 140, 60, 60);
+			}
+			if(itemtable.normalBottleWithHose()==1){
+				image(images.get("normalBottle+hose.png"), 925, 200, 60,60);
+			}
+			if(itemtable.pusheenBottleFull()==1){
+				image(images.get("pusheen_bottle_full.png"), 925, 270, 60, 60);
+			}
+		}
+		else {
+			cursor(ARROW);
 		}
 		
 		if(this.curRoom == 0) //middle room
@@ -408,6 +425,9 @@ public class MainApplet extends PApplet
 					else if(mouseState==5) itemtable.lighter_appear();
 					else if(mouseState==6) itemtable.tape_appear();
 					else if(mouseState==7) itemtable.hose_appear();
+					else if(mouseState==8) itemtable.normalBottleFull_appear();
+					else if(mouseState==9) itemtable.normalBottleFullWithHose_appear();
+					else if(mouseState==10) itemtable.pusheenBottleFull_appear();
 					mouseState=1;
 					itemtable.knif_vanish();
 				}else if(mouseState==1 && itemtable.knif()==0){
@@ -424,6 +444,9 @@ public class MainApplet extends PApplet
 					else if(mouseState==5) itemtable.lighter_appear();
 					else if(mouseState==6) itemtable.tape_appear();
 					else if(mouseState==7) itemtable.hose_appear();
+					else if(mouseState==8) itemtable.normalBottleFull_appear();
+					else if(mouseState==9) itemtable.normalBottleFullWithHose_appear();
+					else if(mouseState==10) itemtable.pusheenBottleFull_appear();
 					mouseState=2;
 					itemtable.normalBottle_vanish();;
 				}else if(mouseState==2 && itemtable.normalBottle()==0){
@@ -440,6 +463,9 @@ public class MainApplet extends PApplet
 					else if(mouseState==5) itemtable.lighter_appear();
 					else if(mouseState==6) itemtable.tape_appear();
 					else if(mouseState==7) itemtable.hose_appear();
+					else if(mouseState==8) itemtable.normalBottleFull_appear();
+					else if(mouseState==9) itemtable.normalBottleFullWithHose_appear();
+					else if(mouseState==10) itemtable.pusheenBottleFull_appear();
 					mouseState=3;
 					itemtable.pusheenBottle_vanish();
 				}else if(mouseState==3 && itemtable.pusheenBottle()==0){
@@ -456,6 +482,9 @@ public class MainApplet extends PApplet
 					else if(mouseState==5) itemtable.lighter_appear();
 					else if(mouseState==6) itemtable.tape_appear();
 					else if(mouseState==7) itemtable.hose_appear();
+					else if(mouseState==8) itemtable.normalBottleFull_appear();
+					else if(mouseState==9) itemtable.normalBottleFullWithHose_appear();
+					else if(mouseState==10) itemtable.pusheenBottleFull_appear();
 					mouseState=4;
 					itemtable.hammer_vanish();
 				}else if(mouseState==4 && itemtable.hammer()==0){
@@ -472,6 +501,9 @@ public class MainApplet extends PApplet
 					else if(mouseState==5) itemtable.lighter_appear();
 					else if(mouseState==6) itemtable.tape_appear();
 					else if(mouseState==7) itemtable.hose_appear();
+					else if(mouseState==8) itemtable.normalBottleFull_appear();
+					else if(mouseState==9) itemtable.normalBottleFullWithHose_appear();
+					else if(mouseState==10) itemtable.pusheenBottleFull_appear();
 					mouseState=5;
 					itemtable.lighter_vanish();;
 				}else if(mouseState==5 && itemtable.lighter()==0){
@@ -488,6 +520,9 @@ public class MainApplet extends PApplet
 					else if(mouseState==5) itemtable.lighter_appear();
 					else if(mouseState==6) itemtable.tape_appear();
 					else if(mouseState==7) itemtable.hose_appear();
+					else if(mouseState==8) itemtable.normalBottleFull_appear();
+					else if(mouseState==9) itemtable.normalBottleFullWithHose_appear();
+					else if(mouseState==10) itemtable.pusheenBottleFull_appear();
 					mouseState=6;
 					itemtable.tape_vanish();
 				}else if(mouseState==6 && itemtable.tape()==0){
@@ -504,11 +539,71 @@ public class MainApplet extends PApplet
 					else if(mouseState==5) itemtable.lighter_appear();
 					else if(mouseState==6) itemtable.tape_appear();
 					else if(mouseState==7) itemtable.hose_appear();
+					else if(mouseState==8) itemtable.normalBottleFull_appear();
+					else if(mouseState==9) itemtable.normalBottleFullWithHose_appear();
+					else if(mouseState==10) itemtable.pusheenBottleFull_appear();
 					mouseState=7;
 					itemtable.hose_vanish();
 				}else if(mouseState==7 && itemtable.hose()==0){
 					mouseState=0;
 					itemtable.hose_appear();
+				}
+			}
+			else if(mouseX>920 && mouseX<1000 && mouseY<195 && mouseY>135) {
+				if(itemtable.normalBottleFull()==1){
+					if(mouseState == 1) itemtable.knif_appear();
+					else if(mouseState==2) itemtable.normalBottle_appear();
+					else if(mouseState==3) itemtable.pusheenBottle_appear();
+					else if(mouseState==4) itemtable.hammer_appear();
+					else if(mouseState==5) itemtable.lighter_appear();
+					else if(mouseState==6) itemtable.tape_appear();
+					else if(mouseState==7) itemtable.hose_appear();
+					else if(mouseState==8) itemtable.normalBottleFull_appear();
+					else if(mouseState==9) itemtable.normalBottleFullWithHose_appear();
+					else if(mouseState==10) itemtable.pusheenBottleFull_appear();
+					mouseState=8;
+					itemtable.normalBottleFull_vanish();
+				}else if(mouseState==8 && itemtable.normalBottleFull()==0){
+					mouseState=0;
+					itemtable.normalBottleFull_appear();
+				}
+			}
+			else if(mouseX>920 && mouseX<1000 && mouseY<265 && mouseY>200) {
+				if(itemtable.normalBottleWithHose()==1){
+					if(mouseState == 1) itemtable.knif_appear();
+					else if(mouseState==2) itemtable.normalBottle_appear();
+					else if(mouseState==3) itemtable.pusheenBottle_appear();
+					else if(mouseState==4) itemtable.hammer_appear();
+					else if(mouseState==5) itemtable.lighter_appear();
+					else if(mouseState==6) itemtable.tape_appear();
+					else if(mouseState==7) itemtable.hose_appear();
+					else if(mouseState==8) itemtable.normalBottleFull_appear();
+					else if(mouseState==9) itemtable.normalBottleFullWithHose_appear();
+					else if(mouseState==10) itemtable.pusheenBottleFull_appear();
+					mouseState=9;
+					itemtable.normalBottleFullWithHose_vanish();
+				}else if(mouseState==9 && itemtable.normalBottleWithHose()==0){
+					mouseState=0;
+					itemtable.normalBottleFullWithHose_appear();
+				}
+			}
+			else if(mouseX>920 && mouseX<1000 && mouseY<330 && mouseY>265) {
+				if(itemtable.pusheenBottleFull()==1){
+					if(mouseState == 1) itemtable.knif_appear();
+					else if(mouseState==2) itemtable.normalBottle_appear();
+					else if(mouseState==3) itemtable.pusheenBottle_appear();
+					else if(mouseState==4) itemtable.hammer_appear();
+					else if(mouseState==5) itemtable.lighter_appear();
+					else if(mouseState==6) itemtable.tape_appear();
+					else if(mouseState==7) itemtable.hose_appear();
+					else if(mouseState==8) itemtable.normalBottleFull_appear();
+					else if(mouseState==9) itemtable.normalBottleFullWithHose_appear();
+					else if(mouseState==10) itemtable.pusheenBottleFull_appear();
+					mouseState=10;
+					itemtable.pusheenBottleFull_vanish();
+				}else if(mouseState==10 && itemtable.pusheenBottleFull()==0){
+					mouseState=0;
+					itemtable.pusheenBottleFull_appear();
 				}
 			}
 		}
