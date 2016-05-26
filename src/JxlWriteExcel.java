@@ -7,18 +7,18 @@ import java.io.File;
 import java.util.Calendar;
 import java.util.Date;
 import jxl.write.*;
-import jxl.write.Label;
 import jxl.write.Number;
 import jxl.Workbook;
 import jxl.format.Alignment;
 import jxl.format.CellFormat;
 import jxl.format.Colour;
 
-public interface JxlWriteExcel {
+public class JxlWriteExcel {
 
-	public static void JxlWriteExcel(String text) {
+	public JxlWriteExcel(String text) {
 		try{
 			WritableWorkbook workbook = Workbook.createWorkbook(new File("output.xls"));
+					System.out.println("FQ~");
 			WritableSheet sheet = workbook.createSheet("First Sheet", 0);
 			 
 			
@@ -64,5 +64,4 @@ public interface JxlWriteExcel {
 			e.printStackTrace();
 		}
 	}
-
 }

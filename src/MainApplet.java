@@ -33,6 +33,7 @@ public class MainApplet extends PApplet
 	private questionSet qs = new questionSet(this);
 	private String password = "520053";
 	private int mouseState;
+	
 	private String[] file = {
 		"background/middle.png",
 		"background/right.png",
@@ -73,6 +74,7 @@ public class MainApplet extends PApplet
 		smooth();
 		mouseState = 0;
 		String []temp = new String[10];
+		String input = new String("12345678");   //for WriteExcel
 		for(int i=0;i<file.length;i++)
 		{
 			PImage image = loadImage(this.file[i]);
@@ -90,6 +92,11 @@ public class MainApplet extends PApplet
 		cp5.addButton("questionnaire").setLabel("questionnaire").setPosition(700, 450).setSize(200,50);
 		
 		cat.play();
+		
+		//Write Excel...transfer text to JxlWriteExcel
+		questionSet text = new questionSet(this);
+		input = text.getText();
+		JxlWriteExcel xl_input = new JxlWriteExcel(input);
 	}
 	
 	public void draw()				// override the processing that paint the main components

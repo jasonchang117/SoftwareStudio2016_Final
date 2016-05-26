@@ -19,7 +19,7 @@ public class questionSet implements ActionListener{
 	public void actionPerformed(ActionEvent arg0) {
 		// TODO Auto-generated method stub
 		input = textfield.getText();
-        textfield.setText("");
+        textfield.setText("");   //Clear after Enter.
 	}
 	
 	public void display()
