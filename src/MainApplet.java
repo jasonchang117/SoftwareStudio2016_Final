@@ -114,16 +114,16 @@ public class MainApplet extends PApplet
 			*/
 			
 			if(mouseState==0) cursor(ARROW);
-			else if(mouseState == 1) cursor(images.get("knif.png"),32,32);
-			else if(mouseState == 2) cursor(images.get("normal_bottle.png"),32,32);
-			else if(mouseState == 3) cursor(images.get("pusheen_bottle.png"),32,32);
-			else if(mouseState == 4) cursor(images.get("hammer.png"),32,32);
-			else if(mouseState == 5) cursor(images.get("lighter.png"),32,32);
-			else if(mouseState == 6) cursor(images.get("tape.png"),32,32);
-			else if(mouseState == 7) cursor(images.get("hose.png"),32,32);
-			else if(mouseState == 8) cursor(images.get("normal_bottle_full.png"),32,32);
-			else if(mouseState == 9) cursor(images.get("normalBottle+hose.png"),32,32);
-			else if(mouseState == 10) cursor(images.get("pusheen_bottle_full.png"),32,32);
+			else if(mouseState == 1) cursor(images.get("knif.png"),16,16);
+			else if(mouseState == 2) cursor(images.get("normal_bottle.png"),16,16);
+			else if(mouseState == 3) cursor(images.get("pusheen_bottle.png"),16,16);
+			else if(mouseState == 4) cursor(images.get("hammer.png"),16,16);
+			else if(mouseState == 5) cursor(images.get("lighter.png"),16,16);
+			else if(mouseState == 6) cursor(images.get("tape.png"),16,16);
+			else if(mouseState == 7) cursor(images.get("hose.png"),16,16);
+			else if(mouseState == 8) cursor(images.get("normal_bottle_full.png"),16,16);
+			else if(mouseState == 9) cursor(images.get("normalBottle+hose.png"),16,16);
+			else if(mouseState == 10) cursor(images.get("pusheen_bottle_full.png"),16,16);
 			else cursor(ARROW);
 			
 			if(itemtable.hammer()==1){
