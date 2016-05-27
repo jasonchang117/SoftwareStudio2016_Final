@@ -107,10 +107,11 @@ public class GameColorTrap extends PApplet {
 				cp7.addLabel("Score: "+this.score).setColor(color(0));
 				addOneTime = 0;
 			}
-			if(correct == 1){  // correct -> change colors
+			if(correct == 1){
 				generateColor();
 				setWrongBlock();
 				addColorLabel();
+				correct = 0;
 			}
 			
 			image(loadImage(colorImage[colorNum0]),colorblock_X0,180,120,120);
@@ -223,32 +224,38 @@ public class GameColorTrap extends PApplet {
 		if(this.game == 1){
 			if(wrongBlock == 0){
 				if(mouseX >= colorblock_X0 && mouseX <= colorblock_X0+120 && mouseY >= 180 && mouseY < 300){
-					correct = 1;
 					game = 1;
 					removeColorLabel();
 					cp7.remove("Score: "+this.score);
 					addScore();
-					this.addOneTime = 1;
+					cp7.addLabel("Score: "+this.score).setColor(color(0));
+					generateColor();
+					setWrongBlock();
+					addColorLabel();
 				}
 			}
 			else if(wrongBlock == 1){
 				if(mouseX >= colorblock_X1 && mouseX <= colorblock_X1+120 && mouseY >= 180 && mouseY < 300){
-					correct = 1;
 					game = 1;
 					removeColorLabel();
 					cp7.remove("Score: "+this.score);
 					addScore();
-					this.addOneTime = 1;
+					cp7.addLabel("Score: "+this.score).setColor(color(0));
+					generateColor();
+					setWrongBlock();
+					addColorLabel();
 				}
 			}
 			else{
 				if(mouseX >= colorblock_X2 && mouseX <= colorblock_X2+120 && mouseY >= 180 && mouseY < 300){
-					correct = 1;
 					game = 1;
 					removeColorLabel();
 					cp7.remove("Score: "+this.score);
 					addScore();
-					this.addOneTime = 1;
+					cp7.addLabel("Score: "+this.score).setColor(color(0));
+					generateColor();
+					setWrongBlock();
+					addColorLabel();
 				}
 			}
 		}

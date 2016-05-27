@@ -699,7 +699,7 @@ public class MainApplet extends PApplet
 				itemtable.pusheenBottleFull_appear();
 			}
 			if(mouseX >= 225 && mouseX <= 370 && mouseY >= 310 && mouseY <= 370 && mouseState == 0){
-				System.out.print("s");
+		
 				GameColorTrap colorTrap = new GameColorTrap();
 				colorTrap.init();
 				colorTrap.start();
