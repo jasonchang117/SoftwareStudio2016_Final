@@ -1,5 +1,6 @@
 import javax.swing.JFrame;
 
+@SuppressWarnings("serial")
 public class RapidSorting extends JFrame{
 	private final static int windowWidth = 400, windowHeight = 540;
 	
