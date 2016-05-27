@@ -14,7 +14,7 @@ public class MiddleRoom {
 		securitybox = 0;
 		securityboxX = 346;
 		securityboxY = 160;
-		knif = 1;
+		knif = 0;
 		knifX = 385;
 		knifY = 180;
 		lighter = 0;

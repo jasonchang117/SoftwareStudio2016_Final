@@ -3,6 +3,8 @@ import java.awt.event.KeyEvent;
 import java.awt.image.ImagingOpException;
 import java.util.ArrayList;
 import java.util.HashMap;
+
+import javax.swing.JFrame;
 import javax.swing.JTextField;
 import controlP5.ControlP5;
 import ddf.minim.AudioPlayer;
@@ -81,6 +83,7 @@ public class MainApplet extends PApplet
 		rightroomState = 1;
 		String []temp = new String[10];
 		String input = new String("12345678");   //for WriteExcel
+		
 		for(int i=0;i<file.length;i++)
 		{
 			PImage image = loadImage(this.file[i]);
@@ -300,7 +303,7 @@ public class MainApplet extends PApplet
 				 cp5.remove("questionFour");
 				 cp5.remove("questionFive");
 				 cp5.remove("questionSix");
-				 image(images.get("questionInput.png"), 0, 0, 960, 540);
+				 image(images.get("questionInput.png"), 0, 0, 1000, 540);
 			}
 			
 			if(this.startmenu == 1)
@@ -634,6 +637,10 @@ public class MainApplet extends PApplet
 			if(mouseX >= middleRoom.getComX("pusheenBottle")+25 && mouseX <= middleRoom.getComX("pusheenBottle")+58 && mouseY >= middleRoom.getComY("pusheenBottle")+5 && mouseY <= middleRoom.getComY("pusheenBottle")+60 ){
 				middleRoom.pusheenBottle_vanish();
 				itemtable.pusheenBottle_appear();
+			}
+			else if(mouseX >= 328 && mouseX <= 462 && mouseY >= 147 && mouseY <= 269 && mouseState == 0)
+			{
+				MovePusheen pusheen = new MovePusheen();
 			}
 				
 		}
