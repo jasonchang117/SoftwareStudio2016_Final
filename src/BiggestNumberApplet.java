@@ -20,6 +20,7 @@ public class BiggestNumberApplet extends PApplet{
 	private boolean empty = true;
 	private boolean curNumber1 = false;
 	private boolean curNumber2 = false;
+	private boolean lockscreen = false;
 	private boolean locked8 = false, locked5 = false, locked4 = false, locked1 = false;
 	private boolean locked2_1 = false, locked2_2 = false, locked0_1 = false, locked0_2 = false;
 	private float moveX, moveY;
@@ -67,12 +68,17 @@ public class BiggestNumberApplet extends PApplet{
 		textSize(40);
 		text("Answer", 120 ,440);
 		fill(0, 200, 160);
+		stroke(0, 200, 160);
 		rect(0, 440, 480, 60);
-		fill(0);
+		fill(0, 100, 160);
+		stroke(0, 100, 160);
 		rect(320, 500, 80, 40);
+		rect(0, 500, 80, 40);
 		fill(255);
 		textSize(20);
 		text("Submit", 328, 528);
+		textSize(20);
+		text("Again", 10, 528);
 		
 		image(images.get("eight.png"), eightX, eightY, 60, 60);
 		image(images.get("five.png"), fiveX, fiveY, 60, 60);
@@ -101,11 +107,17 @@ public class BiggestNumberApplet extends PApplet{
 			fill(0, 200, 0);
 			textSize(60);
 			this.text("You Win !", 60, 240);
+			lockscreen = true;
 		}
 		
 	}
 	
 	public void mousePressed() {
+		if(lockscreen){
+			mouseX = 0;
+			mouseY = 0;
+		}
+		
 		if(mouseX > 320 && mouseX < 400 && mouseY > 500 && mouseY < 540){
 			submit = true;
 		}
