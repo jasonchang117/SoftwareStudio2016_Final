@@ -699,17 +699,15 @@ public class MainApplet extends PApplet
 				itemtable.pusheenBottleFull_appear();
 			}
 			if(mouseX >= 225 && mouseX <= 370 && mouseY >= 310 && mouseY <= 370 && mouseState == 0){
-		
-				GameColorTrap colorTrap = new GameColorTrap();
-				colorTrap.init();
-				colorTrap.start();
-				colorTrap.setFocusable(true);
+				GameColorTrapMain colorTrap = new GameColorTrapMain();
 				
-				JFrame window = new JFrame("Color Trap");
-				window.setContentPane(colorTrap);
-				window.setSize(520, 645);
-				window.setVisible(true);
-				//GameColorTrapMain colortrap = new GameColorTrapMain();
+			}
+			if(mouseX >= 0)  //  567,491    642,462    789,478    722,521   (681,485)
+			{
+				if( ( ((mouseX-681.f)*(mouseX-681.f))/10000.f+((mouseY-485.f)*(mouseY-485.f))/900.f) <= 1.f )
+				{
+					RapidSorting sort = new RapidSorting();
+				}
 			}
 		}
 	}

@@ -22,7 +22,7 @@ public class GameColorTrap extends PApplet {
 	private int score = 0;
 	private int addOneTime = 1;
 	private int calculate = 0, time = 0;
-	private int limitedTime = 30;  // Game limited time
+	private int limitedTime = 100;  // Game limited time
 	private int pusheenWidth = 100, pusheenHeight = 60;
 	private int pusheenX = width-pusheenWidth, pusheenY = height - pusheenHeight;
 	private int pusheenMove = 1;
