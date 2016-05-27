@@ -13,7 +13,6 @@ public class MovePusheen extends JFrame{
 		
 		JFrame window = new JFrame("Move the Sheep");
 		window.setContentPane(sheep);
-		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		window.setSize(windowWidth, windowHeight);
 		window.setVisible(true);
 	}
