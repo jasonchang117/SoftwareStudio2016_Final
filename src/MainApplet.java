@@ -629,6 +629,7 @@ public class MainApplet extends PApplet
 					itemtable.pusheenBottleFull_appear();
 				}
 			}
+			
 		}
 		
 		if(this.curRoom == 0)			// middle room
@@ -696,6 +697,19 @@ public class MainApplet extends PApplet
 				mouseState = 0;
 				leftRoom.pusheenBottle_vanish();
 				itemtable.pusheenBottleFull_appear();
+			}
+			if(mouseX >= 225 && mouseX <= 370 && mouseY >= 310 && mouseY <= 370 && mouseState == 0){
+				System.out.print("s");
+				GameColorTrap colorTrap = new GameColorTrap();
+				colorTrap.init();
+				colorTrap.start();
+				colorTrap.setFocusable(true);
+				
+				JFrame window = new JFrame("Color Trap");
+				window.setContentPane(colorTrap);
+				window.setSize(520, 645);
+				window.setVisible(true);
+				//GameColorTrapMain colortrap = new GameColorTrapMain();
 			}
 		}
 	}
