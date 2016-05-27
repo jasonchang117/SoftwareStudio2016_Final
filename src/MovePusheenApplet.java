@@ -23,7 +23,6 @@ public class MovePusheenApplet extends PApplet{
 		size(width, height);
 		smooth();
 		
-		
 		String []temp = new String[10];
 		for(int i=0;i<file.length;i++)
 		{
@@ -60,13 +59,13 @@ public class MovePusheenApplet extends PApplet{
 		if(pass == 1)
 		{
 			fill(0, 200, 0);
-			this.text("You Win !", 130, 240);
+			this.text("You're Right !", 115, 240);
 		}
 	}
 	
 	public void mouseDragged()
 	{
-		if(mouseX >= 66 && mouseX <= 157 && mouseY >= 397 && mouseY <= 488)
+		if(mouseX >= moveX-40 && mouseX <= moveX+40 && mouseY >= moveY-40 && mouseY <= moveY+40)   // 110 440
 		{
 			this.moving = 1;
 		}
