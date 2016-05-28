@@ -1,15 +1,26 @@
 
 public class RightRoom {
-	private int tape, tapeX, tapeY;		// 0->not visible, 1->visible
-	
+	private int tape, tapeX, tapeY;	
+	//private int fillingbottle;
+	//private int fillingbottle1;
+	//private int fillingbottle2;
+	//private int fillingbottle3;
+	//private int fillingbottle4;
+	//private int fillingbottle5;
+	//private int fillingbottle6;
+	public int animate;// 0->not visible, 1->visible
+	public int animateNum;
 	public RightRoom() 
 	{
 		tape = 0;
 		tapeX = 518;
 		tapeY = 502;
+		animate = 0;
+		animateNum = 0;
 	}
 
 	public int tape() { return this.tape; }
+	
 	
 	public void tape_vanish() { this.tape = 0; }
 	
