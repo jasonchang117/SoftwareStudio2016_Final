@@ -1,15 +1,10 @@
 /****
  * Create an new Excel file.
  * ****/
-
-import java.awt.event.ActionListener;
-import java.io.FileWriter;
-import java.io.IOException;
 import javax.swing.JFrame;
 
 public class JxlWriteExcel extends JFrame {
 	private final static int windowWidth = 600, windowHeight = 600;
-	private String input;
 	
 	public JxlWriteExcel() {		
 		JxlWriteExcelApplet xl = new JxlWriteExcelApplet();

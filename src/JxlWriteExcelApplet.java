@@ -1,24 +1,22 @@
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.HashMap;
-
-import javax.swing.JFrame;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import de.looksgood.ani.Ani;
 import processing.core.PApplet;
-import processing.core.PImage;
 
 import java.awt.Font;
 import java.awt.TextField;
 import java.awt.event.ActionListener;
-import java.io.FileNotFoundException;
-
-import java.awt.Font;
-import java.awt.TextField;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
+import com.csvreader.CsvReader;
 import com.csvreader.CsvWriter;
+
+import java.util.*;
+import java.text.*;
 
 public class JxlWriteExcelApplet extends PApplet implements ActionListener{
 	private final static int width = 1000, height = 540;
@@ -38,30 +36,8 @@ public class JxlWriteExcelApplet extends PApplet implements ActionListener{
 		textfield.setBounds(40,55,800,450);
 		this.add(textfield);
 		
-
-		try
-		{
-			System.out.println("I'm Creating a file.");
-			//Blank workbook
-			CsvWriter csvOutput = new CsvWriter(new FileWriter("../output.csv", true), ',');
-			
-			//test info
-			csvOutput.write("DisplayName");
-			csvOutput.write("Age");
-			csvOutput.endRecord();
-
-			csvOutput.write("MKYONG");
-			csvOutput.write("26");
-			csvOutput.endRecord();
-				
-		    //generate whatever data you want
-				
-			csvOutput.close();
-		}
-		catch(IOException e)
-		{
-		     e.printStackTrace();
-		} 	
+		create();
+		
 	}
 	
 	public void draw()
@@ -83,6 +59,73 @@ public class JxlWriteExcelApplet extends PApplet implements ActionListener{
 	public String getText()
 	{
 	   	return this.input;
+	}
+	
+	public void create()
+	{
+		try
+		{
+		//Create a blank workbook
+			CsvWriter csvOutput = new CsvWriter(new FileWriter("../questionnaire.csv", true), ',');
+			
+		//Info Setup.
+			/*csvOutput.write("Name");
+			csvOutput.write("Date");
+			csvOutput.write("Question");
+			csvOutput.write("answerNum");
+			csvOutput.endRecord();*/
+			
+		//Create a new row in workbook
+			csvOutput.write("testerA");
+			String curTime = getDateTime();
+			csvOutput.write(curTime);
+			System.out.println(getText());
+			csvOutput.write("???????");
+			csvOutput.endRecord();
+			
+			csvOutput.close();			
+		}
+		catch(IOException e)
+		{
+		     e.printStackTrace();
+		} 	
+		
+	}
+	
+	public void read()
+	{
+		try {
+			
+			CsvReader XLfile = new CsvReader("questionnaire.csv");
+		
+			XLfile.readHeaders();
+
+			while (XLfile.readRecord())
+			{
+				String InputName = XLfile.get("Name");
+				String InputDate = XLfile.get("Date");
+				String InputQ = XLfile.get("Question");
+				String playerA = XLfile.get("answerNum");
+				
+				// perform program logic here
+				System.out.println(InputName + ":" + InputDate);
+			}
+	
+			XLfile.close();
+			
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public String getDateTime()
+	{
+		SimpleDateFormat sdFormat = new SimpleDateFormat("yyyy/MM/dd hh:mm:ss");
+		Date date = new Date();
+		String strDate = sdFormat.format(date);
+		return strDate;
 	}
 	
 }
