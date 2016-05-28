@@ -151,14 +151,14 @@ public class GameColorTrap extends PApplet {
 		ran = new Random();
 		for(int i = 0; i < 3; i++){
 			if(i == 0)
-				colorNum1 = ran.nextInt(color.length - 1);
+				colorNum1 = ran.nextInt(color.length);
 			else if(i == 1){
-				colorNum1 = ran.nextInt(color.length - 1);
+				colorNum1 = ran.nextInt(color.length);
 				if(colorNum1 == colorNum0)
 					i = i - 1;
 			}
 			else{
-				colorNum2 = ran.nextInt(color.length - 1);
+				colorNum2 = ran.nextInt(color.length);
 				if((colorNum2 == colorNum0) || (colorNum2 == colorNum1))
 					i = i - 1;
 			}
