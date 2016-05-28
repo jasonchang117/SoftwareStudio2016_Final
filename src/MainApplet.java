@@ -49,8 +49,8 @@ public class MainApplet extends PApplet
 		"background/password.png",
 		"background/setquestion.png",
 		"background/questionInput.png",
-		"background/middle+candle.png",
 		"background/light.png",
+		"background/light_left.png",
 		"background/middle+lamp.png",
 		"background/middle+lamp+candle.png",
 		"component/beknif_pusheen.png",
@@ -185,16 +185,12 @@ public class MainApplet extends PApplet
 				image(images.get("middle.png"), 0, 0, 840, 540);
 			}else if(middleRoom.middlebackground==1){
 				image(images.get("middle+lamp.png"), 0, 0, 840, 540);
-			}else if(middleRoom.middlebackground==2){
-				image(images.get("middle+candle.png"), 0, 0, 840, 540);
-			}else if(middleRoom.middlebackground==3){
-				image(images.get("middle+lamp+candle.png"), 0, 0, 840, 540);
 			}
 			if(middleRoom.lightleft()==1){
-				image(images.get("light.png"), 253, 182, 60, 60);
+				image(images.get("light_left.png"), 250, 178, 60, 60);
 			}
 			if(middleRoom.lightright()==1){
-				image(images.get("light.png"), 478, 182, 60, 60);
+				image(images.get("light.png"), 482, 180, 51, 51);
 			}
 			
 			if(middleRoom.pusheenBottle() == 1){
