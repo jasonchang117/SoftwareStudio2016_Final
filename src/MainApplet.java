@@ -32,7 +32,6 @@ public class MainApplet extends PApplet
 	private MiddleRoom middleRoom = new MiddleRoom();
 	private Itemtable itemtable = new Itemtable();
 	private Question q = new Question(this);
-	private JxlWriteExcelApplet qs = new JxlWriteExcelApplet();
 	private String password = "520053";
 	private int mouseState;
 	private int rightroomState;
@@ -101,11 +100,6 @@ public class MainApplet extends PApplet
 		cp5.addButton("questionnaire").setLabel("questionnaire").setPosition(700, 450).setSize(200,50);
 		
 		cat.play();
-		
-		//Write Excel...transfer text to JxlWriteExcel
-		//questionSet text = new questionSet(this);
-		//input = text.getText();
-		//JxlWriteExcel xl_input = new JxlWriteExcel(input);
 		
 	}
 	
@@ -297,13 +291,13 @@ public class MainApplet extends PApplet
 			}
 			
 			if(inputQuestion == 1)
-			{	 		
+			{	 	
 				 cp5.remove("questionOne");
 				 cp5.remove("questionTwo");
 				 cp5.remove("questionThree");
 				 cp5.remove("questionFour");
 				 cp5.remove("questionFive");
-				 cp5.remove("questionSix");
+				 cp5.remove("questionSix");    
 				 image(images.get("questionInput.png"), 0, 0, 1000, 540);
 			}
 			
@@ -394,27 +388,28 @@ public class MainApplet extends PApplet
 	
 	//Question Set Button
 	 public void questionOne(){
-		qs.display();
+		 JxlWriteExcel createExcel = new JxlWriteExcel();
+		 System.out.println("I'm in qustionOne.");
 		inputQuestion = 1;
 	 }
 	 public void questionTwo(){
-		qs.display();
+		 JxlWriteExcel createExcel = new JxlWriteExcel();
 	 	inputQuestion = 1;
 	 }
 	 public void questionThree(){
-		qs.display();
+		 JxlWriteExcel createExcel = new JxlWriteExcel();
 	 	inputQuestion = 1;
 	 }
 	 public void questionFour(){
-	 	qs.display();
+		 JxlWriteExcel createExcel = new JxlWriteExcel();
 	 	inputQuestion = 1;
 	 }
 	 public void questionFive(){
-	 	qs.display();
+		 JxlWriteExcel createExcel = new JxlWriteExcel();
 	 	inputQuestion = 1;
 	 }
 	 public void questionSix(){
-	 	qs.display();
+		 JxlWriteExcel createExcel = new JxlWriteExcel();
 	 	inputQuestion = 1;
 	 }
 	public String questionPassword()
