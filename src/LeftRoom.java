@@ -13,6 +13,8 @@ public class LeftRoom
 	private int normalBottle, normalBottleX, normalBottleY;
 	private int pusheenBottle, pusheenBottleX, pusheenBottleY;
 	public int isanimate;
+	public int bottleAnimate;
+	public int bottleAnimateNum;
 
 	public LeftRoom() 
 	{	
@@ -53,6 +55,8 @@ public class LeftRoom
 		pusheenBottleX = 732;
 		pusheenBottleY = 327;
 		isanimate = 0;
+		bottleAnimate = 0;
+		bottleAnimateNum = 0;
 	}
 	
 	public int hammer() { return this.hammer; }

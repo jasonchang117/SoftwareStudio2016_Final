@@ -1,6 +1,7 @@
 import java.applet.AudioClip;
 import java.awt.event.KeyEvent;
 import java.awt.image.ImagingOpException;
+import java.lang.annotation.AnnotationTypeMismatchException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import javax.swing.JFrame;
@@ -48,6 +49,10 @@ public class MainApplet extends PApplet
 		"background/password.png",
 		"background/setquestion.png",
 		"background/questionInput.png",
+		"background/middle+candle.png",
+		"background/light.png",
+		"background/middle+lamp.png",
+		"background/middle+lamp+candle.png",
 		"component/beknif_pusheen.png",
 		"component/hammer.png",
 		"component/hose.png",
@@ -68,7 +73,21 @@ public class MainApplet extends PApplet
 		"component/lighterfire.png",
 		"component/pusheen.png",
 		"component/itemtable.png",
-		"component/normalBottle+hose.png"
+		"component/normalBottle+hose.png",
+		"component/fillingbottle.png",
+		"component/fillingbottle2.png",
+		"component/fillingbottle3.png",
+		"component/fillingbottle4.png",
+		"component/fillingbottle5.png",
+		"component/fillingbottle6.png",
+		"component/normal_bottle_rotate35.png",
+		"component/normal_bottle_rotate75.png",
+		"component/normal_bottle_rotate120.png",
+		"component/pusheen_bottle2.png",
+		"component/pusheen_bottle3.png",
+		"component/pusheen_bottle4.png",
+		"component/pusheen_bottle5.png",
+		
 	};
 	
 	public void setup()				// override the processing that initial the applet
@@ -101,6 +120,7 @@ public class MainApplet extends PApplet
 		cat.play();
 		
 	}
+//////////////////////////////////////////////////////////////////////////////////////////////////
 	
 	public void draw()				// override the processing that paint the main components
 	{
@@ -121,6 +141,7 @@ public class MainApplet extends PApplet
 			else if(mouseState == 8) cursor(images.get("normal_bottle_full.png"),16,16);
 			else if(mouseState == 9) cursor(images.get("normalBottle+hose.png"),16,16);
 			else if(mouseState == 10) cursor(images.get("pusheen_bottle_full.png"),16,16);
+			else if(mouseState == 11) cursor(images.get("lighterfire.png"),16,16);
 			else cursor(ARROW);
 			
 			if(itemtable.hammer()==1){
@@ -160,8 +181,21 @@ public class MainApplet extends PApplet
 		
 		if(this.curRoom == 0) //middle room
 		{
-			image(images.get("middle.png"), 0, 0, 840, 540);
-			
+			if(middleRoom.middlebackground==0){
+				image(images.get("middle.png"), 0, 0, 840, 540);
+			}else if(middleRoom.middlebackground==1){
+				image(images.get("middle+lamp.png"), 0, 0, 840, 540);
+			}else if(middleRoom.middlebackground==2){
+				image(images.get("middle+candle.png"), 0, 0, 840, 540);
+			}else if(middleRoom.middlebackground==3){
+				image(images.get("middle+lamp+candle.png"), 0, 0, 840, 540);
+			}
+			if(middleRoom.lightleft()==1){
+				image(images.get("light.png"), 253, 182, 60, 60);
+			}
+			if(middleRoom.lightright()==1){
+				image(images.get("light.png"), 478, 182, 60, 60);
+			}
 			
 			if(middleRoom.pusheenBottle() == 1){
 				image(images.get("pusheen_bottle.png"), middleRoom.getComX("pusheenBottle"), middleRoom.getComY("pusheenBottle"), 80, 60);
@@ -190,6 +224,27 @@ public class MainApplet extends PApplet
 			else if(rightroomState == 2) image(images.get("right2.png"), 0, 0, 840, 540);
 			else if(rightroomState == 3) image(images.get("right3.png"), 0, 0, 840, 540);
 			else if(rightroomState == 4) image(images.get("right4.png"), 0, 0, 840, 540);
+			
+			if(rightRoom.animate==1){
+				rightRoom.animateNum++;
+				if(rightRoom.animateNum<=30){
+					image(images.get("fillingbottle.png"), 540, 360, 200, 200);
+				}else if(rightRoom.animateNum<=30*2){
+					image(images.get("fillingbottle2.png"), 540, 360, 200, 200);
+				}else if(rightRoom.animateNum<=30*3){
+					image(images.get("fillingbottle3.png"), 540, 360, 200, 200);
+				}else if(rightRoom.animateNum<=30*4){
+					image(images.get("fillingbottle4.png"), 540, 360, 200, 200);
+				}else if(rightRoom.animateNum<=30*5){
+					image(images.get("fillingbottle5.png"), 540, 360, 200, 200);
+				}else if(rightRoom.animateNum<=30*6){
+					image(images.get("fillingbottle6.png"), 540, 360, 200, 200);
+				}else{
+					itemtable.normalBottleFull_appear();
+					rightRoom.animate = 0;
+				}
+				
+			}
 			
 			if(rightRoom.tape() == 1){
 				image(images.get("tape.png"), rightRoom.getComX("tape"), rightRoom.getComY("tape"), 30, 20);
@@ -226,6 +281,25 @@ public class MainApplet extends PApplet
 			}
 			if(leftRoom.pusheenBottle()==1){
 				image(images.get("pusheen_bottle.png"), leftRoom.getComX("pusheenBottle"), leftRoom.getComY("pusheenBottle"),60,60);
+			}
+			
+			
+			if(leftRoom.bottleAnimate==1){
+				leftRoom.bottleAnimateNum++;
+				
+				if(leftRoom.bottleAnimateNum<30){
+					image(images.get("normal_bottle_rotate35.png"), 630, 70,60,60);
+					image(images.get("pusheen_bottle2.png"), leftRoom.getComX("pusheenBottle"), leftRoom.getComY("pusheenBottle"),60,60);
+				}else if(leftRoom.bottleAnimateNum<60){
+					image(images.get("normal_bottle_rotate75.png"), 625, 60,60,60);
+					image(images.get("pusheen_bottle3.png"), leftRoom.getComX("pusheenBottle"), leftRoom.getComY("pusheenBottle"),60,60);
+				}else if(leftRoom.bottleAnimateNum<90){
+					image(images.get("normal_bottle_rotate120.png"), 620, 50,60,60);
+					image(images.get("pusheen_bottle5.png"), leftRoom.getComX("pusheenBottle"), leftRoom.getComY("pusheenBottle"),60,60);
+				}else {
+					leftRoom.bottleAnimate = 0;
+					itemtable.pusheenBottleFull_appear();
+				}
 			}
 			
 			
@@ -425,21 +499,21 @@ public class MainApplet extends PApplet
 		return mouseY;
 	}
 	
+	public void mouseReleased(){
+		if(mouseState==11 && (this.curRoom==0 || this.curRoom==1 || this.curRoom==-1)){
+			mouseState = 5;
+		}
+	}
+	
+////////////////////////////////////////////////////////////////////////////////////////////////////	
+	
 	public void mousePressed()
 	{
+		/////// item panel
 		if((this.curRoom == 0 || this.curRoom==1 || this.curRoom==-1) && mouseX>=840 ){
 			if(mouseX>840 && mouseX<920 && mouseY<265 && mouseY>200) {
 				if(itemtable.knif()==1){
-					if(mouseState == 1) itemtable.knif_appear();
-					else if(mouseState==2) itemtable.normalBottle_appear();
-					else if(mouseState==3) itemtable.pusheenBottle_appear();
-					else if(mouseState==4) itemtable.hammer_appear();
-					else if(mouseState==5) itemtable.lighter_appear();
-					else if(mouseState==6) itemtable.tape_appear();
-					else if(mouseState==7) itemtable.hose_appear();
-					else if(mouseState==8) itemtable.normalBottleFull_appear();
-					else if(mouseState==9) itemtable.normalBottleFullWithHose_appear();
-					else if(mouseState==10) itemtable.pusheenBottleFull_appear();
+					putItemBack();
 					mouseState=1;
 					itemtable.knif_vanish();
 				}else if(mouseState==1 && itemtable.knif()==0){
@@ -471,16 +545,7 @@ public class MainApplet extends PApplet
 			}
 			else if(mouseX>840 && mouseX<920 && mouseY<135 && mouseY>65) {
 				if(itemtable.pusheenBottle()==1){
-					if(mouseState == 1) itemtable.knif_appear();
-					else if(mouseState==2) itemtable.normalBottle_appear();
-					else if(mouseState==3) itemtable.pusheenBottle_appear();
-					else if(mouseState==4) itemtable.hammer_appear();
-					else if(mouseState==5) itemtable.lighter_appear();
-					else if(mouseState==6) itemtable.tape_appear();
-					else if(mouseState==7) itemtable.hose_appear();
-					else if(mouseState==8) itemtable.normalBottleFull_appear();
-					else if(mouseState==9) itemtable.normalBottleFullWithHose_appear();
-					else if(mouseState==10) itemtable.pusheenBottleFull_appear();
+					putItemBack();
 					mouseState=3;
 					itemtable.pusheenBottle_vanish();
 				}else if(mouseState==3 && itemtable.pusheenBottle()==0){
@@ -490,16 +555,7 @@ public class MainApplet extends PApplet
 			}
 			else if(mouseX>840 && mouseX<920 && mouseY<63 && mouseY>2) {
 				if(itemtable.hammer()==1){
-					if(mouseState == 1) itemtable.knif_appear();
-					else if(mouseState==2) itemtable.normalBottle_appear();
-					else if(mouseState==3) itemtable.pusheenBottle_appear();
-					else if(mouseState==4) itemtable.hammer_appear();
-					else if(mouseState==5) itemtable.lighter_appear();
-					else if(mouseState==6) itemtable.tape_appear();
-					else if(mouseState==7) itemtable.hose_appear();
-					else if(mouseState==8) itemtable.normalBottleFull_appear();
-					else if(mouseState==9) itemtable.normalBottleFullWithHose_appear();
-					else if(mouseState==10) itemtable.pusheenBottleFull_appear();
+					putItemBack();
 					mouseState=4;
 					itemtable.hammer_vanish();
 				}else if(mouseState==4 && itemtable.hammer()==0){
@@ -509,16 +565,7 @@ public class MainApplet extends PApplet
 			}
 			else if(mouseX>840 && mouseX<920 && mouseY<330 && mouseY>265) {
 				if(itemtable.lighter()==1){
-					if(mouseState == 1) itemtable.knif_appear();
-					else if(mouseState==2) itemtable.normalBottle_appear();
-					else if(mouseState==3) itemtable.pusheenBottle_appear();
-					else if(mouseState==4) itemtable.hammer_appear();
-					else if(mouseState==5) itemtable.lighter_appear();
-					else if(mouseState==6) itemtable.tape_appear();
-					else if(mouseState==7) itemtable.hose_appear();
-					else if(mouseState==8) itemtable.normalBottleFull_appear();
-					else if(mouseState==9) itemtable.normalBottleFullWithHose_appear();
-					else if(mouseState==10) itemtable.pusheenBottleFull_appear();
+					putItemBack();
 					mouseState=5;
 					itemtable.lighter_vanish();;
 				}else if(mouseState==5 && itemtable.lighter()==0){
@@ -528,16 +575,7 @@ public class MainApplet extends PApplet
 			}
 			else if(mouseX>920 && mouseX<1000 && mouseY<63 && mouseY>2) {
 				if(itemtable.tape()==1){
-					if(mouseState == 1) itemtable.knif_appear();
-					else if(mouseState==2) itemtable.normalBottle_appear();
-					else if(mouseState==3) itemtable.pusheenBottle_appear();
-					else if(mouseState==4) itemtable.hammer_appear();
-					else if(mouseState==5) itemtable.lighter_appear();
-					else if(mouseState==6) itemtable.tape_appear();
-					else if(mouseState==7) itemtable.hose_appear();
-					else if(mouseState==8) itemtable.normalBottleFull_appear();
-					else if(mouseState==9) itemtable.normalBottleFullWithHose_appear();
-					else if(mouseState==10) itemtable.pusheenBottleFull_appear();
+					putItemBack();
 					mouseState=6;
 					itemtable.tape_vanish();
 				}else if(mouseState==6 && itemtable.tape()==0){
@@ -568,16 +606,7 @@ public class MainApplet extends PApplet
 			}
 			else if(mouseX>920 && mouseX<1000 && mouseY<195 && mouseY>135) {
 				if(itemtable.normalBottleFull()==1){
-					if(mouseState == 1) itemtable.knif_appear();
-					else if(mouseState==2) itemtable.normalBottle_appear();
-					else if(mouseState==3) itemtable.pusheenBottle_appear();
-					else if(mouseState==4) itemtable.hammer_appear();
-					else if(mouseState==5) itemtable.lighter_appear();
-					else if(mouseState==6) itemtable.tape_appear();
-					else if(mouseState==7) itemtable.hose_appear();
-					else if(mouseState==8) itemtable.normalBottleFull_appear();
-					else if(mouseState==9) itemtable.normalBottleFullWithHose_appear();
-					else if(mouseState==10) itemtable.pusheenBottleFull_appear();
+					putItemBack();
 					mouseState=8;
 					itemtable.normalBottleFull_vanish();
 				}else if(mouseState==8 && itemtable.normalBottleFull()==0){
@@ -587,16 +616,7 @@ public class MainApplet extends PApplet
 			}
 			else if(mouseX>920 && mouseX<1000 && mouseY<265 && mouseY>200) {
 				if(itemtable.normalBottleWithHose()==1){
-					if(mouseState == 1) itemtable.knif_appear();
-					else if(mouseState==2) itemtable.normalBottle_appear();
-					else if(mouseState==3) itemtable.pusheenBottle_appear();
-					else if(mouseState==4) itemtable.hammer_appear();
-					else if(mouseState==5) itemtable.lighter_appear();
-					else if(mouseState==6) itemtable.tape_appear();
-					else if(mouseState==7) itemtable.hose_appear();
-					else if(mouseState==8) itemtable.normalBottleFull_appear();
-					else if(mouseState==9) itemtable.normalBottleFullWithHose_appear();
-					else if(mouseState==10) itemtable.pusheenBottleFull_appear();
+					putItemBack();
 					mouseState=9;
 					itemtable.normalBottleFullWithHose_vanish();
 				}else if(mouseState==9 && itemtable.normalBottleWithHose()==0){
@@ -606,16 +626,7 @@ public class MainApplet extends PApplet
 			}
 			else if(mouseX>920 && mouseX<1000 && mouseY<330 && mouseY>265) {
 				if(itemtable.pusheenBottleFull()==1){
-					if(mouseState == 1) itemtable.knif_appear();
-					else if(mouseState==2) itemtable.normalBottle_appear();
-					else if(mouseState==3) itemtable.pusheenBottle_appear();
-					else if(mouseState==4) itemtable.hammer_appear();
-					else if(mouseState==5) itemtable.lighter_appear();
-					else if(mouseState==6) itemtable.tape_appear();
-					else if(mouseState==7) itemtable.hose_appear();
-					else if(mouseState==8) itemtable.normalBottleFull_appear();
-					else if(mouseState==9) itemtable.normalBottleFullWithHose_appear();
-					else if(mouseState==10) itemtable.pusheenBottleFull_appear();
+					putItemBack();
 					mouseState=10;
 					itemtable.pusheenBottleFull_vanish();
 				}else if(mouseState==10 && itemtable.pusheenBottleFull()==0){
@@ -626,9 +637,13 @@ public class MainApplet extends PApplet
 			
 		}
 		
-		if(this.curRoom == 0)			// middle room
+		if(mouseState==5 && (this.curRoom==0 || this.curRoom==1 || this.curRoom==-1)){
+			mouseState = 11;
+		}
+		//////////// middle room
+		if(this.curRoom == 0)			
 		{
-			//System.out.println(mouseX+" "+mouseY);
+			System.out.println(mouseX+" "+mouseY);
 			if(mouseX >= middleRoom.getComX("pusheenBottle")+25 && mouseX <= middleRoom.getComX("pusheenBottle")+58 && mouseY >= middleRoom.getComY("pusheenBottle")+5 && mouseY <= middleRoom.getComY("pusheenBottle")+60 ){
 				middleRoom.pusheenBottle_vanish();
 				itemtable.pusheenBottle_appear();
@@ -637,18 +652,37 @@ public class MainApplet extends PApplet
 			{
 				MovePusheen pusheen = new MovePusheen();
 			}
-				
+			else if(mouseX >= 585 && mouseX <= 650 && mouseY >= 215 && mouseY <= 250 && mouseState == 11){
+				if(middleRoom.middlebackground==0){
+					middleRoom.middlebackground = 1;//mid+lamp
+				}else if(middleRoom.middlebackground==2){
+					middleRoom.middlebackground = 3;//mid+lamp+candle
+				}
+			}
+			else if(mouseX >= 585 && mouseX <= 650 && mouseY >= 215 && mouseY <= 250 && mouseState == 11){
+				if(middleRoom.middlebackground==0){
+					middleRoom.middlebackground = 1;//mid+lamp
+				}else if(middleRoom.middlebackground==2){
+					middleRoom.middlebackground = 3;//mid+lamp+candle
+				}
+			}else if(mouseState==11  && mouseX >= 255 && mouseX <= 280 && mouseY >= 180 && mouseY <= 230){
+				middleRoom.lightleft_appear();
+			}else if(mouseState==11  && mouseX >= 485 && mouseX <= 520 && mouseY >= 180 && mouseY <= 230){
+				middleRoom.lightright_appear();
+			}
 		}
-		else if(this.curRoom == 1)		// right room
+		
+		////////////// right room
+		else if(this.curRoom == 1)		
 		{
-			//System.out.println(mouseX+" "+mouseY);
+			System.out.println(mouseX+" "+mouseY);
+			
 			if(mouseState==10 && mouseX >500 && mouseX <550 && mouseY>480 && mouseY <520 ){
 				rightroomState = 2;
 				itemtable.pusheenBottleFull_vanish();
 				rightRoom.tape_appear();
 				mouseState = 0;
-			}
-			else if(rightRoom.tape()==1 && mouseX >500 && mouseX <530 && mouseY>480 && mouseY <520){
+			}else if(rightRoom.tape()==1 && mouseX >500 && mouseX <530 && mouseY>480 && mouseY <520){
 				rightRoom.tape_vanish();
 				itemtable.tape_appear();
 			}else if(mouseState==6 && mouseX >425 && mouseX <505 && mouseY>200 && mouseY <300){
@@ -661,12 +695,12 @@ public class MainApplet extends PApplet
 				mouseState = 0;
 			}else if(mouseState==9 && mouseX >650 && mouseX <750 && mouseY>430 && mouseY <470){
 				mouseState=0;
-				itemtable.normalBottleFull_appear();
+				rightRoom.animate = 1;
 			}
 		}
 		else if(this.curRoom == -1)		// left room
 		{
-			//System.out.println(mouseX+" "+mouseY);
+			System.out.println(mouseX+" "+mouseY);
 			if(leftRoom.isanimate==0 && leftRoom.normalBottle()==1 && mouseX >= leftRoom.getComX("normalBottle")+23 && mouseX <= leftRoom.getComX("normalBottle")+53 && mouseY >= leftRoom.getComY("normalBottle") && mouseY <= leftRoom.getComY("normalBottle")+73 ){
 				leftRoom.normalBottle_vanish();
 				itemtable.normalBottle_appear();
@@ -689,8 +723,9 @@ public class MainApplet extends PApplet
 			}
 			if(leftRoom.isanimate==0 && leftRoom.pusheenBottle()==1 && mouseState==8 && mouseX >650 && mouseX <690 && mouseY>75 && mouseY <95){
 				mouseState = 0;
+				leftRoom.bottleAnimate = 1;
 				leftRoom.pusheenBottle_vanish();
-				itemtable.pusheenBottleFull_appear();
+				
 			}
 			if(mouseX >= 225 && mouseX <= 370 && mouseY >= 310 && mouseY <= 370 && mouseState == 0){
 				GameColorTrapMain colorTrap = new GameColorTrapMain();
@@ -704,6 +739,19 @@ public class MainApplet extends PApplet
 				}
 			}
 		}
+	}
+	
+	private void putItemBack(){
+		if(mouseState == 1) itemtable.knif_appear();
+		else if(mouseState==2) itemtable.normalBottle_appear();
+		else if(mouseState==3) itemtable.pusheenBottle_appear();
+		else if(mouseState==4) itemtable.hammer_appear();
+		else if(mouseState==5) itemtable.lighter_appear();
+		else if(mouseState==6) itemtable.tape_appear();
+		else if(mouseState==7) itemtable.hose_appear();
+		else if(mouseState==8) itemtable.normalBottleFull_appear();
+		else if(mouseState==9) itemtable.normalBottleFullWithHose_appear();
+		else if(mouseState==10) itemtable.pusheenBottleFull_appear();
 	}
 	
 }
