@@ -2,10 +2,10 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 
 import de.looksgood.ani.Ani;
 import processing.core.PApplet;
+import processing.core.PImage;
 
 import java.awt.Font;
 import java.awt.TextField;
@@ -18,11 +18,13 @@ import com.csvreader.CsvWriter;
 import java.util.*;
 import java.text.*;
 
+
 public class JxlWriteExcelApplet extends PApplet implements ActionListener{
 	private final static int width = 1000, height = 540;
 	private String input;
 	private Font f = new Font("Consolas", 0, 25);
 	TextField textfield = new TextField(15);	
+	private PImage back = loadImage("background/questionInput.png");
 
 	public void setup()
 	{
@@ -33,7 +35,7 @@ public class JxlWriteExcelApplet extends PApplet implements ActionListener{
 		
 		textfield.setFont(f);
 		textfield.addActionListener(this);
-		textfield.setBounds(40,55,800,450);
+		textfield.setBounds(250,55,600,450);
 		this.add(textfield);
 		
 		create();
@@ -44,6 +46,7 @@ public class JxlWriteExcelApplet extends PApplet implements ActionListener{
 	{
 		background(200);
 		fill(0);
+		image(back, 0, 0, 1000, 540);
 		textSize(25);
 		this.text("Please type in your questionnaire.", 35, 40);
 	}
