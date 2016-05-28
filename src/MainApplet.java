@@ -32,7 +32,7 @@ public class MainApplet extends PApplet
 	private MiddleRoom middleRoom = new MiddleRoom();
 	private Itemtable itemtable = new Itemtable();
 	private Question q = new Question(this);
-	private questionSet qs = new questionSet(this);
+	private JxlWriteExcelApplet qs = new JxlWriteExcelApplet();
 	private String password = "520053";
 	private int mouseState;
 	private int rightroomState;
@@ -103,9 +103,10 @@ public class MainApplet extends PApplet
 		cat.play();
 		
 		//Write Excel...transfer text to JxlWriteExcel
-		questionSet text = new questionSet(this);
-		input = text.getText();
-		JxlWriteExcel xl_input = new JxlWriteExcel(input);
+		//questionSet text = new questionSet(this);
+		//input = text.getText();
+		//JxlWriteExcel xl_input = new JxlWriteExcel(input);
+		
 	}
 	
 	public void draw()				// override the processing that paint the main components
@@ -370,7 +371,7 @@ public class MainApplet extends PApplet
 			this.curRoom = 3;
 			this.inputQuestion = 0;	
 			this.questionButton = 0;
-			qs.removeText();
+			//qs.removeText();
 		}
 		else
 		{
