@@ -15,6 +15,7 @@ public class RapidSortingApplet extends PApplet{
 	private float moveX = 0, moveY = 0;
 	private int shapeState = 0;
 	private float timeLimit = 300, time = 0;
+	private boolean isFirst = true;
 	Random rand = new Random();
 	private HashMap<String, PImage> images = new HashMap<String, PImage>();
 	private String[] file = 
@@ -31,7 +32,6 @@ public class RapidSortingApplet extends PApplet{
 		this.setLayout(null);
 		size(width, height);
 		smooth();
-		//genShape();
 		this.textSize(30);
 		this.score = 0;
 		this.ans = 1;
@@ -108,26 +108,30 @@ public class RapidSortingApplet extends PApplet{
 		{
 			this.dir = 1;
 			this.shapeState = 1;
+			this.isFirst = false;
 			if(this.ans == 1)
 			{
 				this.score += 1;
 			}
 			else
 			{
-				this.wrong = 1;
+				if(isFirst != true)
+					this.wrong = 1;
 			}
 		}
 		else if(arg0.getKeyCode() == KeyEvent.VK_LEFT && this.shapeState == 2)
 		{
 			this.dir = 0;
 			this.shapeState = 1;
+			this.isFirst = false;
 			if(this.ans == 0)
 			{
 				this.score += 1;
 			}
 			else
 			{
-				this.wrong = 1;
+				if(isFirst != true)
+					this.wrong = 1;
 			}
 		}
 	}
