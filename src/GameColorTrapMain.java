@@ -14,7 +14,6 @@ public class GameColorTrapMain extends JFrame {
 		
 		JFrame window = new JFrame("Color Trap");
 		window.setContentPane(colorTrap);
-		//window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		window.setSize(windowWidth, windowHeight);
 		window.setVisible(true);
 		
