@@ -3,7 +3,6 @@ import java.awt.event.KeyEvent;
 import java.awt.image.ImagingOpException;
 import java.util.ArrayList;
 import java.util.HashMap;
-
 import javax.swing.JFrame;
 import javax.swing.JTextField;
 import controlP5.ControlP5;
@@ -389,7 +388,6 @@ public class MainApplet extends PApplet
 	//Question Set Button
 	 public void questionOne(){
 		 JxlWriteExcel createExcel = new JxlWriteExcel();
-		 System.out.println("I'm in qustionOne.");
 		inputQuestion = 1;
 	 }
 	 public void questionTwo(){
