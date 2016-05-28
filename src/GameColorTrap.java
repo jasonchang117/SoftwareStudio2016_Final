@@ -180,24 +180,32 @@ public class GameColorTrap extends PApplet {
 				 else
 					 cp6.addLabel(color[colorNum2]).setPosition(colorblock_X2+60-color[colorNum2].length()*9,225);
 			}
-			else{
-				ran = new Random();
-				for(int j = 0; j < 1; j++){
-					wrongRandomNum = ran.nextInt(3);
-					if((wrongRandomNum == colorNum0) || (wrongRandomNum == colorNum1) || (wrongRandomNum == colorNum2))
+		}
+			ran = new Random();
+			for(int j = 0; j < 1; j++){
+				wrongRandomNum = ran.nextInt(color.length);
+				if(wrongBlock == 0){
+					if((wrongRandomNum == colorNum1) || (wrongRandomNum == colorNum2))
 						j = j - 1;
 				}
-				if(i == 0)
-					 cp6.addLabel(color[wrongRandomNum]).setPosition(colorblock_X0+60-color[colorNum0].length()*9,225);
-				 else if(i == 1)
-					 cp6.addLabel(color[wrongRandomNum]).setPosition(colorblock_X1+60-color[colorNum1].length()*9,225);
-				 else
-					 cp6.addLabel(color[wrongRandomNum]).setPosition(colorblock_X2+60-color[colorNum2].length()*9,225);
-			
+				else if(wrongBlock == 1){
+					if((wrongRandomNum == colorNum0) || (wrongRandomNum == colorNum2))
+						j = j - 1;
+				}
+				else{
+					if((wrongRandomNum == colorNum0) || (wrongRandomNum == colorNum1))
+						j = j - 1;
+				}
 			}
-				
-		}
+			if(wrongBlock == 0)
+				 cp6.addLabel(color[wrongRandomNum]).setPosition(colorblock_X0+60-color[colorNum0].length()*9,225);
+			else if(wrongBlock == 1)
+				 cp6.addLabel(color[wrongRandomNum]).setPosition(colorblock_X1+60-color[colorNum1].length()*9,225);
+			else
+				 cp6.addLabel(color[wrongRandomNum]).setPosition(colorblock_X2+60-color[colorNum2].length()*9,225);
+			
 		this.correct = 0;
+		
 	}
 	public void removeColorLabel(){
 		for(int i = 0; i < 3; i++){
