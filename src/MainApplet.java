@@ -692,6 +692,8 @@ public class MainApplet extends PApplet
 			}else if(mouseState==9 && mouseX >650 && mouseX <750 && mouseY>430 && mouseY <470){
 				mouseState=0;
 				rightRoom.animate = 1;
+			}else if(mouseX > 366 && mouseX < 496 && mouseY > 18 && mouseY < 77){
+				GamePusheenPairMain pusheenpair = new GamePusheenPairMain();
 			}
 		}
 		else if(this.curRoom == -1)		// left room
