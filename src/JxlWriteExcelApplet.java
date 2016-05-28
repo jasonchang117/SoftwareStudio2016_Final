@@ -18,6 +18,8 @@ import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import com.csvreader.CsvWriter;
+
 public class JxlWriteExcelApplet extends PApplet implements ActionListener{
 	private final static int width = 1000, height = 540;
 	private String input;
@@ -40,22 +42,21 @@ public class JxlWriteExcelApplet extends PApplet implements ActionListener{
 		try
 		{
 			System.out.println("I'm Creating a file.");
-			FileWriter writer = new FileWriter("output.csv");
-			/*
-		    writer.append("DisplayName");
-		    writer.append(',');
-		    writer.append("Age");
-		    writer.append('\n');
+			//Blank workbook
+			CsvWriter csvOutput = new CsvWriter(new FileWriter("../output.csv", true), ',');
+			
+			//test info
+			csvOutput.write("DisplayName");
+			csvOutput.write("Age");
+			csvOutput.endRecord();
 
-		    writer.append("MKYONG");
-		    writer.append(',');
-		    writer.append("26");
-	            writer.append('\n');
-				*/
+			csvOutput.write("MKYONG");
+			csvOutput.write("26");
+			csvOutput.endRecord();
+				
 		    //generate whatever data you want
 				
-		    writer.flush();
-		    writer.close();
+			csvOutput.close();
 		}
 		catch(IOException e)
 		{
@@ -76,8 +77,7 @@ public class JxlWriteExcelApplet extends PApplet implements ActionListener{
 	{
 		input = textfield.getText();
         textfield.setText("");   //Clear after Enter.
-        
-
+       
 	}
 	
 	public String getText()
