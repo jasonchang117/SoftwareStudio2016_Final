@@ -340,14 +340,14 @@ public class MainApplet extends PApplet
 		}
 		else if(this.curRoom == 3) //question room
 		{	
-			if(q.getQuestionSet() == false){
+			if(q.getQuestionSet() == false){    //Input password room.
 				image(images.get("password.png"), 0, 0, 1000, 540);
 			}
 			
 			if(q.getQuestionSet()== true ){
 				image(images.get("setquestion.png"), 0, 0, 1000, 540);
 				
-				if(questionButton == 0){
+				if(questionButton == 0){   //Choose question number room.
 					 q.removeText();	
 					 cp5.addButton("questionOne").setLabel("Question 1").setPosition(70, 100).setSize(200, 70);
 					 cp5.addButton("questionTwo").setLabel("Question 2").setPosition(680, 100).setSize(200, 70);
@@ -359,7 +359,7 @@ public class MainApplet extends PApplet
 				}
 			}
 			
-			if(inputQuestion == 1)
+			/*if(inputQuestion == 1) //Input question room.
 			{	 	
 				 cp5.remove("questionOne");
 				 cp5.remove("questionTwo");
@@ -368,7 +368,8 @@ public class MainApplet extends PApplet
 				 cp5.remove("questionFive");
 				 cp5.remove("questionSix");    
 				 image(images.get("questionInput.png"), 0, 0, 1000, 540);
-			}
+				 //At the same time pop up another window.
+			}*/
 			
 			if(this.startmenu == 1)
 			{
