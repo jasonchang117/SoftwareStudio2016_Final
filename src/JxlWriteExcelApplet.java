@@ -9,20 +9,19 @@ import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.awt.event.ActionEvent;
+import controlP5.ControlP5;
 
 import com.csvreader.CsvReader;
 import com.csvreader.CsvWriter;
 
-import java.awt.event.ActionEvent;
-
-import controlP5.ControlP5;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 
 public class JxlWriteExcelApplet extends PApplet implements ActionListener{
 	private final static int width = 1000, height = 540;
-	private String input_name, input_ques;
+	public String input_name, input_ques;
 	private Font f = new Font("Consolas", 0, 35);
 	TextField textfield_name = new TextField(15);	
 	TextField textfield_ques = new TextField(15);
@@ -30,6 +29,7 @@ public class JxlWriteExcelApplet extends PApplet implements ActionListener{
 	private ControlP5 cp5;
     controlP5.Button btn_submit;
 	private int state = 2; // to design "close window" for "more"(0), or "send info" for "submit"(1)
+	
 
 	public void setup()
 	{
@@ -54,6 +54,10 @@ public class JxlWriteExcelApplet extends PApplet implements ActionListener{
 		cp5.addButton("submit").setLabel("Submit").setPosition(500, 250).setSize(150, 50);
 		cp5.addButton("more").setLabel("Create another questionnaire>>").setPosition(550, 400).setSize(400, 50);
 		
+		//if(state == 0) //more
+				//create(input_ques);  //Cannot put create in draw(), where to put????
+		//else if(state == 1) //submit
+				//close();
 	}
 	
 	public void draw()
@@ -66,11 +70,6 @@ public class JxlWriteExcelApplet extends PApplet implements ActionListener{
 		textSize(25);
 		this.text("Your name:", 35, 120);
 		this.text("Your Question:", 35, 200);
-		
-		//if(state == 0) //more
-			create();
-		//else if(state == 1) //submit
-			//close();
 	
 	}
 	
@@ -79,26 +78,29 @@ public class JxlWriteExcelApplet extends PApplet implements ActionListener{
 	{
 		input_name = textfield_name.getText();
 		input_ques = textfield_ques.getText();
+		create(input_ques);
 		
 		textfield_ques.setText("");   //Clear after Enter.
-		textfield_name.setText("");   //Clear after Enter.		
+		textfield_name.setText("");   //Clear after Enter.	
+		
 	}	
 	
 	public void submit() //send info
 	{
-		this.state = 0;
+		this.state = 1;
 	}
 	public void more()  // close window
 	{
-		this.state = 1;
+		this.state = 0;
 	}
-	
 	/*public void actionClose(ActionEvent e)
 	{
 		getAppletContext().showDocument(appletCloseURL);
 	}*/
 	
-	public void create()
+
+///////////////////////////////About Excel///////////////////////////////////////////////	
+	public void create(String QContent)
 	{
 		try
 		{
@@ -112,7 +114,7 @@ public class JxlWriteExcelApplet extends PApplet implements ActionListener{
 			String curTime = getDateTime();
 			csvOutput.write(curTime);
 			//System.out.println(getText());
-			csvOutput.write("???????");   /*********BUG*******/
+			csvOutput.write(QContent);   /*********BUG*******/
 			csvOutput.endRecord();
 			
 			csvOutput.close();			
