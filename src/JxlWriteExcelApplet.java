@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 
 import de.looksgood.ani.Ani;
 import processing.core.PApplet;
+import processing.core.PFont;
 import processing.core.PImage;
 
 import java.awt.Font;
@@ -17,14 +18,19 @@ import com.csvreader.CsvWriter;
 
 import java.util.*;
 import java.text.*;
+import controlP5.ControlP5;
 
 
 public class JxlWriteExcelApplet extends PApplet implements ActionListener{
 	private final static int width = 1000, height = 540;
-	private String input;
-	private Font f = new Font("Consolas", 0, 25);
-	TextField textfield = new TextField(15);	
+	private String input_name, input_ques;
+	private Font f = new Font("Consolas", 0, 35);
+	TextField textfield_name = new TextField(15);	
+	TextField textfield_ques = new TextField(15);
 	private PImage back = loadImage("background/questionInput.png");
+	private ControlP5 cp5;
+    controlP5.Button btn_submit;
+	private int state;
 
 	public void setup()
 	{
@@ -32,11 +38,23 @@ public class JxlWriteExcelApplet extends PApplet implements ActionListener{
 		this.setLayout(null);
 		size(width, height);
 		smooth();
+	//textfield_name
+		textfield_name.setFont(f);
+		textfield_name.addActionListener(this);
+		textfield_name.setBounds(200,80,300,45);
+		this.add(textfield_name);
+	//textfield_ques
+		textfield_ques.setFont(f);
+		textfield_ques.addActionListener(this);
+		textfield_ques.setBounds(250,170,300,45);
+		this.add(textfield_ques);
 		
-		textfield.setFont(f);
-		textfield.addActionListener(this);
-		textfield.setBounds(250,55,600,450);
-		this.add(textfield);
+		cp5 = new ControlP5(this);
+		PFont p = createFont("Consolas", 20);
+		cp5.setFont(p);
+		cp5.addButton("submit").setLabel("Submit").setPosition(500, 250).setSize(150, 50);
+		cp5.addButton("more").setLabel("Create another questionnaire>>").setPosition(550, 400).setSize(400, 50);
+		
 		
 		create();
 		
@@ -47,22 +65,22 @@ public class JxlWriteExcelApplet extends PApplet implements ActionListener{
 		background(200);
 		fill(0);
 		image(back, 0, 0, 1000, 540);
-		textSize(25);
+		textSize(35);
 		this.text("Please type in your questionnaire.", 35, 40);
+		textSize(25);
+		this.text("Your name:", 35, 120);
+		this.text("Your Question:", 35, 200);
 	}
 	
 	@Override
 	public void actionPerformed(ActionEvent arg0) 
 	{
-		input = textfield.getText();
-        textfield.setText("");   //Clear after Enter.
-       
-	}
-	
-	public String getText()
-	{
-	   	return this.input;
-	}
+		input_name = textfield_name.getText();
+		input_ques = textfield_ques.getText();
+		
+		textfield_ques.setText("");   //Clear after Enter.
+		textfield_name.setText("");   //Clear after Enter.		
+	}	
 	
 	public void create()
 	{
@@ -82,7 +100,7 @@ public class JxlWriteExcelApplet extends PApplet implements ActionListener{
 			csvOutput.write("testerA");
 			String curTime = getDateTime();
 			csvOutput.write(curTime);
-			System.out.println(getText());
+			//System.out.println(getText());
 			csvOutput.write("???????");
 			csvOutput.endRecord();
 			
@@ -92,7 +110,6 @@ public class JxlWriteExcelApplet extends PApplet implements ActionListener{
 		{
 		     e.printStackTrace();
 		} 	
-		
 	}
 	
 	public void read()
@@ -113,7 +130,6 @@ public class JxlWriteExcelApplet extends PApplet implements ActionListener{
 				// perform program logic here
 				System.out.println(InputName + ":" + InputDate);
 			}
-	
 			XLfile.close();
 			
 		} catch (FileNotFoundException e) {
@@ -131,12 +147,15 @@ public class JxlWriteExcelApplet extends PApplet implements ActionListener{
 		return strDate;
 	}
 	
+	public void submit()
+	{
+		this.state = 0;
+		
+	}
+	public void more()
+	{
+		this.state = 1;
+	}
 }
-	
-	
-	
-	
-	
-
 	
 	
