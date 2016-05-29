@@ -110,7 +110,7 @@ public class RapidSortingApplet extends PApplet{
 				}
 			}
 			
-			if(this.wrong == 1)
+			if(this.wrong == 1 && this.isFirst == false)
 			{
 				this.fill(0, 150, 255);
 				textSize(30);

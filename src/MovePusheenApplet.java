@@ -65,6 +65,7 @@ public class MovePusheenApplet extends PApplet{
 	
 	public void mouseDragged()
 	{
+		this.wrong = 0;
 		if(mouseX >= moveX-40 && mouseX <= moveX+40 && mouseY >= moveY-40 && mouseY <= moveY+40)   // 110 440
 		{
 			this.moving = 1;
