@@ -457,29 +457,47 @@ public class MainApplet extends PApplet
 	}
 	
 	//Question Set Button
-	 public void questionOne(){
+	 public int questionOne(){
 		 JxlWriteExcel createExcel = new JxlWriteExcel();
 		inputQuestion = 1;
+		return 1;
 	 }
-	 public void questionTwo(){
+	 public int questionTwo(){
 		 JxlWriteExcel createExcel = new JxlWriteExcel();
 	 	inputQuestion = 1;
+	 	return 2;
 	 }
-	 public void questionThree(){
+	 public int questionThree(){
 		 JxlWriteExcel createExcel = new JxlWriteExcel();
 	 	inputQuestion = 1;
+	 	return 3;
 	 }
-	 public void questionFour(){
+	 public int questionFour(){
 		 JxlWriteExcel createExcel = new JxlWriteExcel();
 	 	inputQuestion = 1;
+	 	return 4;
 	 }
-	 public void questionFive(){
+	 public int questionFive(){
 		 JxlWriteExcel createExcel = new JxlWriteExcel();
 	 	inputQuestion = 1;
+	 	return 5;
 	 }
-	 public void questionSix(){
+	 public int questionSix(){
 		 JxlWriteExcel createExcel = new JxlWriteExcel();
 	 	inputQuestion = 1;
+	 	return 6;
+	 }
+	 public int getQNumber(int num){  // transfer Question number to class WritingXL.
+		 if(questionOne()==1|questionTwo()==2|questionThree()==3|questionFour()==4|questionFive()==5|questionSix()==6)
+			{
+				if(questionOne()==1)	return 1;
+				else if(questionTwo()==2)	return 2;
+				else if(questionThree()==3)	return 3;
+				else if(questionFour()==4)	return 4;
+				else if(questionFive()==5) 	return 5;
+				else return 6;  //else if(QNumber.questionSix()==6)	return 6;
+			}else
+				return -1;
 	 }
 	public String questionPassword()
 	{

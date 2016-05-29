@@ -10,6 +10,7 @@ import java.text.*;
 
 public class WritingXL {
 	JxlWriteExcelApplet xl = new JxlWriteExcelApplet();
+	MainApplet QNumber = new MainApplet(); // choose question number.
 	public WritingXL() {
 	}
 	
@@ -18,21 +19,16 @@ public class WritingXL {
 		try
 		{
 		//Create a blank workbook
-			CsvWriter csvOutput = new CsvWriter(new FileWriter("../questionnaire.csv", true), ',');
+			CsvWriter csvOutput = new CsvWriter(new FileWriter("../questionnaire1.csv", true), ',');
 			
-		//Info Setup.
-			/*csvOutput.write("Name");
-			csvOutput.write("Date");
-			csvOutput.write("Question");
-			csvOutput.write("answerNum");
-			csvOutput.endRecord();*/
+		//Info Setup: Name- Time - Question - answerNum
 			
 		//Create a new row in workbook
 			csvOutput.write("testerA");
 			String curTime = getDateTime();
 			csvOutput.write(curTime);
 			//System.out.println(getText());
-			csvOutput.write("???????");
+			csvOutput.write("???????");   /*********BUG*******/
 			csvOutput.endRecord();
 			
 			csvOutput.close();			
@@ -42,6 +38,8 @@ public class WritingXL {
 		     e.printStackTrace();
 		} 	
 	}
+		
+	
 	
 	public void read()
 	{
@@ -78,6 +76,10 @@ public class WritingXL {
 		return strDate;
 	}
 	
+	/*public int quesNumber() //According the choose number room to create different name's XL file.
+	{
+		
+	}*/
 }
 	
 	
