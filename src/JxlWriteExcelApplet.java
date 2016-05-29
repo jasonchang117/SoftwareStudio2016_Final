@@ -1,8 +1,3 @@
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.text.SimpleDateFormat;
-
 import de.looksgood.ani.Ani;
 import processing.core.PApplet;
 import processing.core.PFont;
@@ -11,13 +6,17 @@ import processing.core.PImage;
 import java.awt.Font;
 import java.awt.TextField;
 import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import com.csvreader.CsvReader;
 import com.csvreader.CsvWriter;
 
-import java.util.*;
-import java.text.*;
+import java.awt.event.ActionEvent;
+
 import controlP5.ControlP5;
 
 
@@ -31,7 +30,6 @@ public class JxlWriteExcelApplet extends PApplet implements ActionListener{
 	private ControlP5 cp5;
     controlP5.Button btn_submit;
 	private int state = 2; // to design "close window" for "more"(0), or "send info" for "submit"(1)
-	WritingXL xl = new WritingXL();
 
 	public void setup()
 	{
@@ -69,8 +67,8 @@ public class JxlWriteExcelApplet extends PApplet implements ActionListener{
 		this.text("Your name:", 35, 120);
 		this.text("Your Question:", 35, 200);
 		
-		if(state == 0) //more
-			xl.create();
+		//if(state == 0) //more
+			create();
 		//else if(state == 1) //submit
 			//close();
 	
@@ -99,6 +97,72 @@ public class JxlWriteExcelApplet extends PApplet implements ActionListener{
 	{
 		getAppletContext().showDocument(appletCloseURL);
 	}*/
+	
+	public void create()
+	{
+		try
+		{
+		//Create a blank workbook
+			CsvWriter csvOutput = new CsvWriter(new FileWriter("../questionnaire1.csv", true), ',');
+			
+		//Info Setup: Name- Time - Question - answerNum
+			
+		//Create a new row in workbook
+			csvOutput.write("testerA");
+			String curTime = getDateTime();
+			csvOutput.write(curTime);
+			//System.out.println(getText());
+			csvOutput.write("???????");   /*********BUG*******/
+			csvOutput.endRecord();
+			
+			csvOutput.close();			
+		}
+		catch(IOException e)
+		{
+		     e.printStackTrace();
+		} 	
+	}
+		
+	
+	
+	public void read()
+	{
+		try {
+			
+			CsvReader XLfile = new CsvReader("questionnaire.csv");
+		
+			XLfile.readHeaders();
+
+			while (XLfile.readRecord())
+			{
+				String InputName = XLfile.get("Name");
+				String InputDate = XLfile.get("Date");
+				String InputQ = XLfile.get("Question");
+				String playerA = XLfile.get("answerNum");
+				
+				// perform program logic here
+				System.out.println(InputName + ":" + InputDate);
+			}
+			XLfile.close();
+			
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public String getDateTime()
+	{
+		SimpleDateFormat sdFormat = new SimpleDateFormat("yyyy/MM/dd hh:mm:ss");
+		Date date = new Date();
+		String strDate = sdFormat.format(date);
+		return strDate;
+	}
+	
+	
+	
+	
 }
 	
 	

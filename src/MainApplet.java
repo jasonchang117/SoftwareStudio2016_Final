@@ -457,7 +457,7 @@ public class MainApplet extends PApplet
 	}
 	
 	//Question Set Button
-	 public int questionOne(){
+	public int questionOne(){
 		 JxlWriteExcel createExcel = new JxlWriteExcel();
 		inputQuestion = 1;
 		return 1;
