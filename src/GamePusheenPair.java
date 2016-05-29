@@ -1,11 +1,15 @@
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 import controlP5.ControlP5;
 import de.looksgood.ani.Ani;
 import processing.core.PApplet;
 import processing.core.PFont;
+import processing.core.PImage;
 
 public class GamePusheenPair extends PApplet{
+	
 	private ControlP5 cp5;
 	private int width = 1000, height = 600;
 	private int cardSize = 150;
@@ -18,10 +22,24 @@ public class GamePusheenPair extends PApplet{
 	private int openTime = 0;
 	private boolean win = false;
 	private int calculate = 0, time = 0;
-	private int limitedTime = 40;  // Game limited time
+	private int limitedTime = 50;  // Game limited time
+	private int setedOpenTime = 2;
 	private int pusheenMove = 1;
 	private int pusheenWidth = 100, pusheenHeight = 60;
 	private int pusheenX = width-pusheenWidth, pusheenY = height - pusheenHeight;
+	private boolean IFOPEN = false;
+	private PImage pusheentime_img;
+	private PImage A_img;
+	private PImage B_img;
+	private PImage C_img;
+	private PImage D_img;
+	private PImage E_img;
+	private PImage F_img;
+	private PImage back_img;
+	private List<PImage> img_list = new ArrayList<PImage>();
+
+
+	
 	
 	
 	private String[] file = {
@@ -40,6 +58,8 @@ public class GamePusheenPair extends PApplet{
 			"pusheenpair/F.png",
 			"pusheenpair/back.png",
 	};
+	
+	
 	private int [] cardPosition = new int [12];
 	
 	public void setup()		
@@ -54,6 +74,24 @@ public class GamePusheenPair extends PApplet{
 		cp5.addButton("startbutton").setLabel("START").setPosition(100, 500).setSize(200, 50);
 		cp5.addButton("howplay").setLabel("How to play ?").setPosition(700, 500).setSize(200, 50);
 	    
+		// load image
+		pusheentime_img = loadImage("pusheenpair/pusheentime.png");
+		A_img = loadImage("pusheenpair/A.png");
+		B_img = loadImage("pusheenpair/B.png");
+		C_img = loadImage("pusheenpair/C.png");
+		D_img = loadImage("pusheenpair/D.png");
+		E_img = loadImage("pusheenpair/E.png");
+		F_img = loadImage("pusheenpair/F.png");
+		back_img = loadImage("pusheenpair/back.png");
+		img_list.add(A_img);
+		img_list.add(B_img);
+		img_list.add(C_img);
+		img_list.add(D_img);
+		img_list.add(E_img);
+		img_list.add(F_img);
+		img_list.add(back_img);
+		
+		
 		for(int i = 0; i < 12; i++){
 			cardAlwaysOpen[i] = 0;
 			cardOpen[i] = 0;
@@ -113,8 +151,13 @@ public class GamePusheenPair extends PApplet{
 	{
 		background(255);
 		
-		if(this.initial == 1)
+		if(this.initial == 1){
+			int ts = 0;
+			if( ts == 0){
 			image(loadImage(file[0]), 0, 0, width, height);
+			ts =1;
+			}
+		}
 		if(this.howPlay == 1)
 			image(loadImage(file[2]), 0, 0, width, height);
 		if(this.game == 1){
@@ -126,40 +169,45 @@ public class GamePusheenPair extends PApplet{
 				cardOpened1Position = cardOpenedPosition;
 			}
 			if(openCard == 2){
+				IFOPEN = true;
 				
 				if(cardOpened == cardOpened1){
 					cardAlwaysOpen[cardOpenedPosition] = 1;
 					cardAlwaysOpen[cardOpened1Position] = 1;
 					openCard = 0;
+					IFOPEN =false;
 				}
 				else{
 					openTime += 1;
-					if(openTime == 2){
+					if(openTime == setedOpenTime){
 						cardOpen[cardOpenedPosition] = 0;
 						cardOpen[cardOpened1Position] = 0;
 						openTime = 0;
 						openCard = 0;
+						IFOPEN =false;
 					}
 				}
 			}
+			int tmp_i = 0;
 			for(int i = 0; i < 12; i ++){
 				if(cardAlwaysOpen[i] == 1){
-					
-					image(loadImage(cards[cardPosition[i]]),positionX[i],positionY[i],cardSize,cardSize); 
+					tmp_i = cardPosition[i];
+					image(img_list.get(tmp_i),positionX[i],positionY[i],cardSize,cardSize); 
 				}
 				else{
 					if(cardOpen[i] == 0){
-						image(loadImage(cards[6]),positionX[i],positionY[i],cardSize,cardSize);
+						image(img_list.get(6),positionX[i],positionY[i],cardSize,cardSize);
 					}
 					else{
-						image(loadImage(cards[cardPosition[i]]),positionX[i],positionY[i],cardSize,cardSize);
+						tmp_i = cardPosition[i];
+						image(img_list.get(tmp_i),positionX[i],positionY[i],cardSize,cardSize);
 					}
 				}
 			}
 			if(pusheenMove == 1)
-				image(loadImage("pusheenpair/pusheentime.png"),pusheenX-5,pusheenY+5,pusheenWidth,pusheenHeight);
+				image(pusheentime_img,pusheenX-5,pusheenY+5,pusheenWidth,pusheenHeight);
 			else 
-				image(loadImage("pusheenpair/pusheentime.png"),pusheenX+5,pusheenY-5,pusheenWidth,pusheenHeight);
+				image(pusheentime_img,pusheenX+5,pusheenY-5,pusheenWidth,pusheenHeight);
 			
 			ifEnd();
 			ifWin();
@@ -239,11 +287,13 @@ public class GamePusheenPair extends PApplet{
 	{
 		if(this.game == 1 && this.openCard != 2){
 			for(int i = 0; i < 12; i ++){
-				if(mouseX >= positionX[i] && mouseX <= positionX[i] + cardSize && mouseY >= positionY[i] && mouseY <= positionY[i] + cardSize && cardAlwaysOpen[i] != 1){
+				if(IFOPEN==false && mouseX >= positionX[i] && mouseX <= positionX[i] + cardSize && mouseY >= positionY[i] && mouseY <= positionY[i] + cardSize && cardAlwaysOpen[i] != 1){
+					
 					cardOpen[i] = 1;
 					openCard += 1;
 					cardOpened = cardPosition[i];
 					cardOpenedPosition = i;
+					
 				}
 			}
 		}
