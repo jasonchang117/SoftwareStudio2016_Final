@@ -1,4 +1,5 @@
 import de.looksgood.ani.Ani;
+//import jxl.read.biff.File;
 import processing.core.PApplet;
 import processing.core.PFont;
 import processing.core.PImage;
@@ -14,6 +15,7 @@ import controlP5.ControlP5;
 
 import com.csvreader.CsvReader;
 import com.csvreader.CsvWriter;
+import java.io.File;    //Collide with import jxl.read.biff.File;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -29,7 +31,7 @@ public class JxlWriteExcelApplet extends PApplet implements ActionListener{
 	private ControlP5 cp5;
     controlP5.Button btn_submit;
 	private int state = 2; // to design "close window" for "more"(0), or "send info" for "submit"(1)
-	
+
 
 	public void setup()
 	{
@@ -51,13 +53,8 @@ public class JxlWriteExcelApplet extends PApplet implements ActionListener{
 		cp5 = new ControlP5(this);
 		PFont p = createFont("Consolas", 20);
 		cp5.setFont(p);
-		cp5.addButton("submit").setLabel("Submit").setPosition(500, 250).setSize(150, 50);
-		cp5.addButton("more").setLabel("Create another questionnaire>>").setPosition(550, 400).setSize(400, 50);
-		
-		//if(state == 0) //more
-				//create(input_ques);  //Cannot put create in draw(), where to put????
-		//else if(state == 1) //submit
-				//close();
+		//cp5.addButton("submit").setLabel("Submit").setPosition(500, 250).setSize(150, 50);
+		//cp5.addButton("more").setLabel("Create another questionnaire>>").setPosition(550, 400).setSize(400, 50);
 	}
 	
 	public void draw()
@@ -70,7 +67,9 @@ public class JxlWriteExcelApplet extends PApplet implements ActionListener{
 		textSize(25);
 		this.text("Your name:", 35, 120);
 		this.text("Your Question:", 35, 200);
-	
+		textSize(20);
+		this.text("¡° Please use _Tab_ to get to next blank.", 35, 280);
+		this.text("¡°After filling all the blanks, press _Enter_ and we'll create an Excel file for you.", 35, 300);
 	}
 	
 	@Override
@@ -78,13 +77,14 @@ public class JxlWriteExcelApplet extends PApplet implements ActionListener{
 	{
 		input_name = textfield_name.getText();
 		input_ques = textfield_ques.getText();
-		create(input_ques);
+		
+		create(input_name ,input_ques);
 		
 		textfield_ques.setText("");   //Clear after Enter.
 		textfield_name.setText("");   //Clear after Enter.	
 		
 	}	
-	
+	/*
 	public void submit() //send info
 	{
 		this.state = 1;
@@ -92,7 +92,7 @@ public class JxlWriteExcelApplet extends PApplet implements ActionListener{
 	public void more()  // close window
 	{
 		this.state = 0;
-	}
+	}*/
 	/*public void actionClose(ActionEvent e)
 	{
 		getAppletContext().showDocument(appletCloseURL);
@@ -100,24 +100,33 @@ public class JxlWriteExcelApplet extends PApplet implements ActionListener{
 	
 
 ///////////////////////////////About Excel///////////////////////////////////////////////	
-	public void create(String QContent)
+	public void create(String fileName, String QContent)
 	{
+		fileName = "../"+fileName+".csv";
+		// before we open the file check to see if it already exists
+		boolean alreadyExists = new File(fileName).exists();
 		try
 		{
 		//Create a blank workbook
-			CsvWriter csvOutput = new CsvWriter(new FileWriter("../questionnaire1.csv", true), ',');
-			
-		//Info Setup: Name- Time - Question - answerNum
-			
-		//Create a new row in workbook
-			csvOutput.write("testerA");
-			String curTime = getDateTime();
-			csvOutput.write(curTime);
-			//System.out.println(getText());
-			csvOutput.write(QContent);   /*********BUG*******/
-			csvOutput.endRecord();
-			
-			csvOutput.close();			
+			CsvWriter csvOutput = new CsvWriter(new FileWriter(fileName, true), ',');
+		//Info Setup: Time - Question - answerNum
+		// if the file didn't already exist then we need to write out the header line
+			if (!alreadyExists)
+			{
+				csvOutput.write("Time");
+				csvOutput.write("Question");
+				csvOutput.write("Always");
+				csvOutput.write("Sometime");
+				csvOutput.write("Never");
+				csvOutput.endRecord();
+			}
+			//Create a new row in workbook
+				String curTime = getDateTime();
+				csvOutput.write(curTime);
+				csvOutput.write(QContent);   
+				csvOutput.endRecord();
+				
+				csvOutput.close();	
 		}
 		catch(IOException e)
 		{
