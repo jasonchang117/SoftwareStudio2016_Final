@@ -23,6 +23,8 @@ public class BiggestNumberApplet extends PApplet{
 	private boolean lockscreen = false;
 	private boolean locked8 = false, locked5 = false, locked4 = false, locked1 = false;
 	private boolean locked2_1 = false, locked2_2 = false, locked0_1 = false, locked0_2 = false;
+	private boolean on8 = false, on5 = false, on4 = false, on1 = false;
+	private boolean on2_1 = false, on2_2 = false, on0_1 = false, on0_2 = false;
 	private float moveX, moveY;
 	private float eightX = 80, eightY = 300;
 	private float fiveX = 230, fiveY = 60;
@@ -111,7 +113,7 @@ public class BiggestNumberApplet extends PApplet{
 		}
 		
 	}
-	
+
 	public void mousePressed() {
 		if(lockscreen){
 			mouseX = 0;
@@ -122,85 +124,94 @@ public class BiggestNumberApplet extends PApplet{
 			submit = true;
 		}
 		
-		if(mouseX > eightX && mouseX < eightX+60 && mouseY > eightY && mouseY < eightY+60){
+		if(mouseX > eightX && mouseX < eightX+60 && mouseY > eightY && mouseY < eightY+60 && !locked8){
 			this.eightX = mouseX-30;
 			this.eightY = mouseY-30;
 			locked8 = true;
+			on8 = true;
 		}
-		if(mouseX > fiveX && mouseX < fiveX+60 && mouseY > fiveY && mouseY < fiveY+60){
+		else if(mouseX > fiveX && mouseX < fiveX+60 && mouseY > fiveY && mouseY < fiveY+60 && !locked5){
 			this.fiveX = mouseX-30;
 			this.fiveY = mouseY-30;
 			locked5 = true;
+			on5 = true;
 		}
-		if(mouseX > fourX && mouseX < fourX+60 && mouseY > fourY && mouseY < fourY+60){
+		else if(mouseX > fourX && mouseX < fourX+60 && mouseY > fourY && mouseY < fourY+60 && !locked4){
 			this.fourX = mouseX-30;
 			this.fourY = mouseY-30;
 			locked4 = true;
+			on4 = true;
 		}
-		if(mouseX > oneX && mouseX < oneX+60 && mouseY > oneY && mouseY < oneY+60){
+		else if(mouseX > oneX && mouseX < oneX+60 && mouseY > oneY && mouseY < oneY+60 && !locked1){
 			this.oneX = mouseX-30;
 			this.oneY = mouseY-30;
 			locked1 = true;
+			on1 = true;
 		}
-		if(mouseX > two_oneX && mouseX < two_oneX+60 && mouseY > two_oneY && mouseY < two_oneY+60){
+		else if(mouseX > two_oneX && mouseX < two_oneX+60 && mouseY > two_oneY && mouseY < two_oneY+60 && !locked2_1){
 			this.two_oneX = mouseX-30;
 			this.two_oneY = mouseY-30;
 			locked2_1 = true;
+			on2_1 = true;
 		}
-		if(mouseX > two_twoX && mouseX < two_twoX+60 && mouseY > two_twoY && mouseY < two_twoY+60){
+		else if(mouseX > two_twoX && mouseX < two_twoX+60 && mouseY > two_twoY && mouseY < two_twoY+60 && !locked2_2){
 			this.two_twoX = mouseX-30;
 			this.two_twoY = mouseY-30;
 			locked2_2 = true;
+			on2_2 = true;
 		}
-		if(mouseX > zero_oneX && mouseX < zero_oneX+60 && mouseY > zero_oneY && mouseY < zero_oneY+60){
+		else if(mouseX > zero_oneX && mouseX < zero_oneX+60 && mouseY > zero_oneY && mouseY < zero_oneY+60 && !locked0_1){
 			this.zero_oneX = mouseX-30;
 			this.zero_oneY = mouseY-30;
 			locked0_1 = true;
+			on0_1 = true;
 		}
-		if(mouseX > zero_twoX && mouseX < zero_twoX+60 && mouseY > zero_twoY && mouseY < zero_twoY+60){
+		else if(mouseX > zero_twoX && mouseX < zero_twoX+60 && mouseY > zero_twoY && mouseY < zero_twoY+60 && !locked0_2){
 			this.zero_twoX = mouseX-30;
 			this.zero_twoY = mouseY-30;
 			locked0_2 = true;
+			on0_2 = true;
 		}
-
 	}
+	
+
 	public void mouseDragged(){
-		if(locked8) {
+		if(on8) {
 			this.eightX = mouseX-30;
 			this.eightY = mouseY-30;
 	 	}
-		if(locked5){
+		if(on5){
 			this.fiveX = mouseX-30;
 			this.fiveY = mouseY-30;
 		}
-		if(locked4){
+		if(on4){
 			this.fourX = mouseX-30;
 			this.fourY = mouseY-30;
 		}
-		if(locked1){
+		if(on1){
 			this.oneX = mouseX-30;
 			this.oneY = mouseY-30;
 		}
-		if(locked2_1){
+		if(on2_1){
 			this.two_oneX = mouseX-30;
 			this.two_oneY = mouseY-30;
 		}
-		if(locked2_2){
+		if(on2_2){
 			this.two_twoX = mouseX-30;
 			this.two_twoY = mouseY-30;
 		}
-		if(locked0_1){
+		if(on0_1){
 			this.zero_oneX = mouseX-30;
 			this.zero_oneY = mouseY-30;
 		}
-		if(locked0_2){
+		if(on0_2){
 			this.zero_twoX = mouseX-30;
 			this.zero_twoY = mouseY-30;
 		}
 	}
 
 	public void mouseReleased() {
-		if(locked8){
+		if(on8){
 			if(eightY > 415 && eightY < 470){
 				if(empty){
 					eightX = 10;
@@ -212,8 +223,9 @@ public class BiggestNumberApplet extends PApplet{
 					eightY = 440;
 				}
 			}
+			else locked8 = false;
 		}
-		if(locked5){
+		if(on5){
 			if(fiveY > 415 && fiveY < 470){
 				if(empty){
 					fiveX = 10;
@@ -224,10 +236,10 @@ public class BiggestNumberApplet extends PApplet{
 					fiveX = 70;
 					fiveY = 440;
 				}
-				
 			}
+			else locked5 = false;
 		}
-		if(locked4){
+		if(on4){
 			if(fourY > 415 && fourY < 470){
 				if(empty){
 					fourX = 10;
@@ -239,8 +251,9 @@ public class BiggestNumberApplet extends PApplet{
 					fourY = 440;
 				}
 			}
+			else locked4 = false;
 		}
-		if(locked1){
+		if(on1){
 			if(oneY > 415 && oneY < 470){
 				if(empty){
 					oneX = 10;
@@ -252,7 +265,9 @@ public class BiggestNumberApplet extends PApplet{
 					oneY = 440;
 				}
 			}
-		}if(locked2_1){
+			else locked1 = false;
+		}
+		if(on2_1){
 			if(two_oneY > 415 && two_oneY < 470){
 				if(empty){
 					two_oneX = 10;
@@ -264,7 +279,9 @@ public class BiggestNumberApplet extends PApplet{
 					two_oneY = 440;
 				}
 			}
-		}if(locked2_2){
+			else locked2_1 = false;
+		}
+		if(on2_2){
 			if(two_twoY > 415 && two_twoY < 470){
 				if(empty){
 					two_twoX = 10;
@@ -276,8 +293,9 @@ public class BiggestNumberApplet extends PApplet{
 					two_twoY = 440;
 				}
 			}
+			else locked2_2 = false;
 		}
-		if(locked0_1){
+		if(on0_1){
 			if(zero_oneY > 415 && zero_oneY < 470){
 				if(empty){
 					zero_oneX = 10;
@@ -295,8 +313,9 @@ public class BiggestNumberApplet extends PApplet{
 					zero_oneY = 440;
 				}
 			}
+			else locked0_1 = false;
 		}
-		if(locked0_2){
+		if(on0_2){
 			if(zero_twoY > 415 && zero_twoY < 470){
 				if(empty){
 					zero_twoX = 10;
@@ -314,15 +333,15 @@ public class BiggestNumberApplet extends PApplet{
 					zero_twoY = 440;
 				}
 			}
+			else locked0_2 = false;
 		}
-		locked8 = false;
-		locked5 = false;
-		locked4 = false;
-		locked1 = false;
-		locked2_1 = false;
-		locked2_2 = false;
-		locked0_1 = false;
-		locked0_2 = false;
-	}
-	
+		on8 = false;
+		on5 = false;
+		on4 = false;
+		on1 = false;
+		on2_1 = false;
+		on2_2 = false;
+		on0_1 = false;
+		on0_2 = false;
+	}	
 }
