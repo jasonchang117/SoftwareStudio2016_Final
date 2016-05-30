@@ -9,7 +9,7 @@ public class JxlReadExcel {
 		xl.start();
 		xl.setFocusable(true);
 		
-		JFrame window = new JFrame("Create your excel file.");
+		JFrame window = new JFrame("Choose which file do you want to see.");
 		window.setContentPane(xl);
 		window.setSize(windowWidth, windowHeight);
 		window.setVisible(true);

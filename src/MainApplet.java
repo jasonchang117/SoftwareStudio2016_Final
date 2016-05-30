@@ -476,10 +476,9 @@ public class MainApplet extends PApplet
 		 JxlWriteExcel createExcel = new JxlWriteExcel();
 	 	inputQuestion = 1;
 	 }
-	 public int questionFive(){
+	 public void questionFive(){
 		 JxlWriteExcel createExcel = new JxlWriteExcel();
 	 	inputQuestion = 1;
-	 	return 5;
 	 }
 	 public void Read() throws IOException{
 		 JxlReadExcel readExcel = new JxlReadExcel();
