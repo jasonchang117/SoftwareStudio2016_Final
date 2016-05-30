@@ -1,19 +1,15 @@
 import de.looksgood.ani.Ani;
 //import jxl.read.biff.File;
 import processing.core.PApplet;
-import processing.core.PFont;
 import processing.core.PImage;
 
 import java.awt.Font;
 import java.awt.TextField;
 import java.awt.event.ActionListener;
-import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.awt.event.ActionEvent;
-import controlP5.ControlP5;
 
-import com.csvreader.CsvReader;
 import com.csvreader.CsvWriter;
 import java.io.File;    //Collide with import jxl.read.biff.File;
 
@@ -27,11 +23,8 @@ public class JxlWriteExcelApplet extends PApplet implements ActionListener{
 	private Font f = new Font("Consolas", 0, 35);
 	TextField textfield_name = new TextField(15);	
 	TextField textfield_ques = new TextField(15);
-	private PImage back = loadImage("background/questionInput.png");
-	private ControlP5 cp5;
-    controlP5.Button btn_submit;
-	private int state = 2; // to design "close window" for "more"(0), or "send info" for "submit"(1)
-
+	private PImage bkg = loadImage("background/questionInput.png");
+	String encoding = "UTF8";
 
 	public void setup()
 	{
@@ -49,19 +42,13 @@ public class JxlWriteExcelApplet extends PApplet implements ActionListener{
 		textfield_ques.addActionListener(this);
 		textfield_ques.setBounds(250,170,300,45);
 		this.add(textfield_ques);
-		
-		cp5 = new ControlP5(this);
-		PFont p = createFont("Consolas", 20);
-		cp5.setFont(p);
-		//cp5.addButton("submit").setLabel("Submit").setPosition(500, 250).setSize(150, 50);
-		//cp5.addButton("more").setLabel("Create another questionnaire>>").setPosition(550, 400).setSize(400, 50);
 	}
 	
 	public void draw()
 	{
 		background(200);
 		fill(0);
-		image(back, 0, 0, 1000, 540);
+		image(bkg, 0, 0, 1000, 540);
 		textSize(35);
 		this.text("Please type in your questionnaire.", 35, 40);
 		textSize(25);
@@ -69,7 +56,8 @@ public class JxlWriteExcelApplet extends PApplet implements ActionListener{
 		this.text("Your Question:", 35, 200);
 		textSize(20);
 		this.text("¡° Please use _Tab_ to get to next blank.", 35, 280);
-		this.text("¡°After filling all the blanks, press _Enter_ and we'll create an Excel file for you.", 35, 300);
+		this.text("¡° After filling all the blanks, press _Enter_ and we'll create an Excel file for you.", 35, 300);
+		this.text("¡° Our options would be _Always_,_Sometime_, and _Never_.", 35, 330);
 	}
 	
 	@Override
@@ -84,20 +72,7 @@ public class JxlWriteExcelApplet extends PApplet implements ActionListener{
 		textfield_name.setText("");   //Clear after Enter.	
 		
 	}	
-	/*
-	public void submit() //send info
-	{
-		this.state = 1;
-	}
-	public void more()  // close window
-	{
-		this.state = 0;
-	}*/
-	/*public void actionClose(ActionEvent e)
-	{
-		getAppletContext().showDocument(appletCloseURL);
-	}*/
-	
+
 
 ///////////////////////////////About Excel///////////////////////////////////////////////	
 	public void create(String fileName, String QContent)
@@ -133,35 +108,6 @@ public class JxlWriteExcelApplet extends PApplet implements ActionListener{
 		     e.printStackTrace();
 		} 	
 	}
-		
-	
-	
-	public void read()
-	{
-		try {
-			
-			CsvReader XLfile = new CsvReader("questionnaire.csv");
-		
-			XLfile.readHeaders();
-
-			while (XLfile.readRecord())
-			{
-				String InputName = XLfile.get("Name");
-				String InputDate = XLfile.get("Date");
-				String InputQ = XLfile.get("Question");
-				String playerA = XLfile.get("answerNum");
-				
-				// perform program logic here
-				System.out.println(InputName + ":" + InputDate);
-			}
-			XLfile.close();
-			
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
 	
 	public String getDateTime()
 	{
@@ -170,8 +116,6 @@ public class JxlWriteExcelApplet extends PApplet implements ActionListener{
 		String strDate = sdFormat.format(date);
 		return strDate;
 	}
-	
-	
 	
 	
 }

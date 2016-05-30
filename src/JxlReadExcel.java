@@ -1,24 +1,18 @@
-import java.io.IOException;
-import java.io.File;
-import jxl.Sheet;
-import jxl.Workbook;
-import jxl.read.biff.BiffException;
+import javax.swing.JFrame;
 
 public class JxlReadExcel {
-
+	private final static int windowWidth = 600, windowHeight = 600;
 	public JxlReadExcel() {
-		try{
-			Workbook workbook = Workbook.getWorkbook(new File("output.xls"));
-			Sheet sheet = workbook.getSheet("Sheet1");
-			System.out.println(sheet.getCell(1,0).getContents());
-			System.out.println(sheet.getColumns());
-			System.out.println(sheet.getRows());
-			workbook.close();
-		} catch (BiffException e){
-			e.printStackTrace();
-		} catch (IOException e ){
-			e.printStackTrace();
-		}
+		
+		JxlReadExcelApplet xl = new JxlReadExcelApplet();
+		xl.init();
+		xl.start();
+		xl.setFocusable(true);
+		
+		JFrame window = new JFrame("Create your excel file.");
+		window.setContentPane(xl);
+		window.setSize(windowWidth, windowHeight);
+		window.setVisible(true);
 	}
 
 }
