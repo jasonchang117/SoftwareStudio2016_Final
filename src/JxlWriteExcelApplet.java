@@ -22,7 +22,7 @@ public class JxlWriteExcelApplet extends PApplet implements ActionListener{
 	TextField textfield_comm = new TextField(15);
 	private PImage bkg = loadImage("background/questionInput.png");
 	String encoding = "UTF8";
-
+	
 	public void setup()
 	{
 		Ani.init(this);
@@ -89,18 +89,28 @@ public class JxlWriteExcelApplet extends PApplet implements ActionListener{
 		{
 		//Create a blank workbook
 			CsvWriter csvOutput = new CsvWriter(new FileWriter(fileName, true), ',');
-		//Info Setup: Time - Question - answerNum
+		//Info Setup: Question - answerNum
 		// if the file didn't already exist then we need to write out the header line
 			if (!alreadyExists)
 			{
 				csvOutput.write("Question");
 				csvOutput.write("Always");
+				csvOutput.write("");
 				csvOutput.write("Sometime");
+				csvOutput.write("");
 				csvOutput.write("Never");
+				csvOutput.write("");
 				csvOutput.endRecord();
 			}//Create a new row in workbook
 			csvOutput.write(QContent);	
+			csvOutput.write("Always");
+			csvOutput.write("");
+			csvOutput.write("Sometime");
+			csvOutput.write("");
+			csvOutput.write("Never");
+			csvOutput.write("");
 			csvOutput.endRecord();
+			
 			csvOutput.close();	
 		}
 		catch(IOException e)
