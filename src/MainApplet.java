@@ -55,8 +55,7 @@ public class MainApplet extends PApplet
 		"background/questionInput.png",
 		"background/light.png",
 		"background/light_left.png",
-		"background/middle+lamp.png",
-		"background/middle+lamp+candle.png",
+		"background/lamp.png",
 		"component/beknif_pusheen.png",
 		"component/hammer.png",
 		"component/hose.png",
@@ -195,7 +194,7 @@ public class MainApplet extends PApplet
 			if(middleRoom.middlebackground==0){
 				image(images.get("middle.png"), 0, 0, 840, 540);
 			}else if(middleRoom.middlebackground==1){
-				image(images.get("middle+lamp.png"), 0, 0, 840, 540);
+				image(images.get("lamp.png"), 589, 220, 61, 33);
 			}
 			if(middleRoom.lightleft()==1){
 				image(images.get("light_left.png"), 250, 178, 60, 60);
@@ -756,7 +755,7 @@ public class MainApplet extends PApplet
 				
 			}
 			if(mouseX >= 225 && mouseX <= 370 && mouseY >= 310 && mouseY <= 370 && mouseState == 0){
-				GameColorTrapMain colorTrap = new GameColorTrapMain();
+				GameColorTrapMain colorTrap = new GameColorTrapMain(this);
 				
 			}
 			if(mouseX >= 0)  //  567,491    642,462    789,478    722,521   (681,485)

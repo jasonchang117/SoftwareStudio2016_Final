@@ -29,6 +29,7 @@ public class GameColorTrap extends PApplet {
 	private int pusheenWidth = 100, pusheenHeight = 60;
 	private int pusheenX = width-pusheenWidth, pusheenY = height - pusheenHeight;
 	private int pusheenMove = 1;
+	private GameColorTrapMain gameColorTrapMain;
 	private HashMap<String, PImage> images = new HashMap<String, PImage>();
 	private String[] file = {
 			"background/colorbackground.png",
@@ -60,6 +61,11 @@ public class GameColorTrap extends PApplet {
 			"colorblock/red.png",
 			"colorblock/yellow.png"
 	};
+	
+	public GameColorTrap(GameColorTrapMain main)
+	{
+		this.gameColorTrapMain = main;
+	}
 	
 	public void setup()		
 	{	
@@ -157,10 +163,16 @@ public class GameColorTrap extends PApplet {
 			cp7.remove("Score: "+this.score);
 			removeColorLabel();
 			if(this.score >= gameWinScore)
+			{
 				gameWin = true;
-			else 
+				this.gameColorTrapMain.getClue();
+			}
+			else
+			{
 				gameLose = true;
-			draw();
+				this.gameColorTrapMain.getClue();
+			}
+			//draw();
 		}
 	}
 	public void generateColor(){
@@ -305,5 +317,10 @@ public class GameColorTrap extends PApplet {
 		cp5.addButton("startbutton").setLabel("START").setPosition(150, 350).setSize(200, 50);
 		cp5.addButton("howplay").setLabel("How to play ?").setPosition(150, 450).setSize(200, 50);
 		cp5.remove("buttonBack");
+	}
+	
+	public int getScore()
+	{
+		return this.score;
 	}
 }
