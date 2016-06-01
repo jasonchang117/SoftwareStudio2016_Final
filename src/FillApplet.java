@@ -32,6 +32,7 @@ public class FillApplet extends PApplet implements ActionListener{
 	public String fileName, qContent;
 	public int i_always=0, i_sometime=0, i_never=0;
 	public String str_always, str_sometime ,str_never;
+	public String chooseQues;
 	
 	public void setup(){
 		Ani.init(this);
@@ -56,13 +57,13 @@ public class FillApplet extends PApplet implements ActionListener{
 		this.text("Question????????", 60, 100);	/////////Wait for improve.
 		textSize(20);
 		this.text("comment??????", 100, 150);/////////Wait for improve.
-		
 	}
 	
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		fileName = "../"+fileName+".csv";
-		create(fileName,qContent);
+		//chooseQues = chooseQues(fileName);
+		update(fileName,qContent);
 	}
 	
 	
@@ -96,10 +97,10 @@ public class FillApplet extends PApplet implements ActionListener{
 	}
 	
 ///////////////////////////////About Excel///////////////////////////////////////////////	
-	public void create(String fileName, String QContent)
+	public void update(String fileName, String QContent)
 	{
 		fileName = "../"+fileName+".csv";
-		// before we open the file check to see if it already exists
+		System.out.println("Always-"+str_always+" Sometime-"+str_sometime+" Never-"+str_never);
 		try
 		{
 			//Create a blank workbook
@@ -122,39 +123,27 @@ public class FillApplet extends PApplet implements ActionListener{
 		} 	
 	}
 	
-	public void read(String fileName) 
+	public String chooseQues(String fileName) 
 	{
-		result = ""; //initial
+		String question = ""; //initial
 		try {
 			fileName = "../"+fileName+".csv";
-		// before we open the file check to see if it already exists
-			alreadyExists = new File(fileName).exists(); 
+			CsvReader XLfile = new CsvReader(fileName);		
+			XLfile.readHeaders();				
 			
-			if (!alreadyExists){
-				result="Do not find your file.\nPlease type in again.";
+			while (XLfile.readRecord())
+			{
+				question = XLfile.get("Question");
 			}
-			else{
-				CsvReader XLfile = new CsvReader(fileName);		
-				XLfile.readHeaders();				
-				
-				while (XLfile.readRecord())
-				{
-					//String InputTime = XLfile.get("Time");
-					String InputQuestion = XLfile.get("Question");
-					String Option1 = XLfile.get("Always");
-					String Option2 = XLfile.get("Sometime");
-					String Option3 = XLfile.get("Never");
-					
-				//////jump to show the result.
-					result = result +"\n" + InputQuestion +" Always- " + Option1+"  Sometime- " +Option2+"  Never- "+Option3;
-				}
-				XLfile.close();
-			}
+			XLfile.close();
 		
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		System.out.println(question);
+		return question;
 
+	}
 }
