@@ -1,9 +1,11 @@
 import java.applet.AudioClip;
 import java.awt.event.KeyEvent;
 import java.awt.image.ImagingOpException;
+import java.io.IOException;
 import java.lang.annotation.AnnotationTypeMismatchException;
 import java.util.ArrayList;
 import java.util.HashMap;
+
 import javax.swing.JFrame;
 import javax.swing.JTextField;
 import controlP5.ControlP5;
@@ -35,6 +37,7 @@ public class MainApplet extends PApplet
 	private String password = "520053";
 	private int mouseState;
 	private int rightroomState;
+	public String fileName;
 	
 	private String[] file = {
 		"background/middle.png",
@@ -354,7 +357,7 @@ public class MainApplet extends PApplet
 					 cp5.addButton("questionThree").setLabel("Question 3").setPosition(70, 200).setSize(200, 70);
 					 cp5.addButton("questionFour").setLabel("Question 4").setPosition(680, 200).setSize(200, 70);
 					 cp5.addButton("questionFive").setLabel("Question 5").setPosition(70, 300).setSize(200, 70);
-					 cp5.addButton("questionSix").setLabel("Question 6").setPosition(680, 300).setSize(200, 70);
+					 cp5.addButton("Read").setLabel("Read Result").setPosition(680, 300).setSize(200, 70);
 					 questionButton = 1;
 				}
 			}
@@ -457,48 +460,30 @@ public class MainApplet extends PApplet
 	}
 	
 	//Question Set Button
-	public int questionOne(){
-		 JxlWriteExcel createExcel = new JxlWriteExcel();
+	public void questionOne(){
+		JxlWriteExcel createExcel = new JxlWriteExcel();
 		inputQuestion = 1;
-		return 1;
 	 }
-	 public int questionTwo(){
+	 public void questionTwo(){
 		 JxlWriteExcel createExcel = new JxlWriteExcel();
 	 	inputQuestion = 1;
-	 	return 2;
 	 }
-	 public int questionThree(){
+	 public void questionThree(){
 		 JxlWriteExcel createExcel = new JxlWriteExcel();
 	 	inputQuestion = 1;
-	 	return 3;
 	 }
-	 public int questionFour(){
+	 public void questionFour(){
 		 JxlWriteExcel createExcel = new JxlWriteExcel();
 	 	inputQuestion = 1;
-	 	return 4;
 	 }
-	 public int questionFive(){
-		 JxlWriteExcel createExcel = new JxlWriteExcel();
+	 public void questionFive(){
+		 Fill createExcel = new Fill();
 	 	inputQuestion = 1;
-	 	return 5;
 	 }
-	 public int questionSix(){
-		 JxlWriteExcel createExcel = new JxlWriteExcel();
-	 	inputQuestion = 1;
-	 	return 6;
+	 public void Read() throws IOException{
+		 JxlReadExcel readExcel = new JxlReadExcel();
 	 }
-	 public int getQNumber(int num){  // transfer Question number to class WritingXL.
-		 if(questionOne()==1|questionTwo()==2|questionThree()==3|questionFour()==4|questionFive()==5|questionSix()==6)
-			{
-				if(questionOne()==1)	return 1;
-				else if(questionTwo()==2)	return 2;
-				else if(questionThree()==3)	return 3;
-				else if(questionFour()==4)	return 4;
-				else if(questionFive()==5) 	return 5;
-				else return 6;  //else if(QNumber.questionSix()==6)	return 6;
-			}else
-				return -1;
-	 }
+
 	public String questionPassword()
 	{
 		return this.password;
