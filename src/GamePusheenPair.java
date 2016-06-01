@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-
+import java.util.*;
 import controlP5.ControlP5;
 import de.looksgood.ani.Ani;
 import processing.core.PApplet;
@@ -22,7 +22,7 @@ public class GamePusheenPair extends PApplet{
 	private int openTime = 0;
 	private boolean win = false;
 	private int calculate = 0, time = 0;
-	private int limitedTime = 300;  // Game limited time
+	private int limitedTime = 100;  // Game limited time
 	private int setedOpenTime = 8;
 	private int pusheenMove = 1;
 	private int pusheenWidth = 100, pusheenHeight = 60;
@@ -37,8 +37,8 @@ public class GamePusheenPair extends PApplet{
 	private PImage F_img;
 	private PImage back_img;
 	private List<PImage> img_list = new ArrayList<PImage>();
-
-
+	private Date startTime;
+	private Date now;
 	
 	
 	
@@ -67,7 +67,9 @@ public class GamePusheenPair extends PApplet{
 		Ani.init(this);
 		this.setLayout(null);
 		size(width, height);
-		
+		Calendar cal = Calendar.getInstance();
+		startTime = cal.getTime();
+		System.out.println(startTime);
 		cp5 = new ControlP5(this);
 		PFont p = createFont("Consolas", 20);
 		cp5.setFont(p);
@@ -150,7 +152,9 @@ public class GamePusheenPair extends PApplet{
 	public void draw()
 	{
 		background(255);
-		
+		Calendar cal = Calendar.getInstance();
+		now = cal.getTime();
+		//System.out.println(now.getTime());
 		if(this.initial == 1){
 			int ts = 0;
 			if( ts == 0){
@@ -220,7 +224,9 @@ public class GamePusheenPair extends PApplet{
 		}
 	}
 	public void calculateTime(){
-		if(calculate < 2){
+		//System.out.println(now.getTime()-startTime.getTime());
+		if(now.getTime()-startTime.getTime() > 50){
+			startTime = now;
 			calculate ++;
 		}
 		if(calculate == 2){
