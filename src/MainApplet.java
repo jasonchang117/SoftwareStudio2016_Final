@@ -21,13 +21,14 @@ public class MainApplet extends PApplet
 {
 	private final static int width = 1000, height = 540;
 	private HashMap<String, PImage> images = new HashMap<String, PImage>();
-	private int curRoom;
+	public  int curRoom;
 	private ControlP5 cp5;
 	private int catMove = 0, backbutton = 0, startmenu = 1;
 	private int questionButton = 0;
 	private int inputQuestion = 0;
 	private int pusheenNum = 0;
 	private int beknifnum = 0, becutnum = 0;
+	public  int clue1 = 0, clue2 = 0, clue3 = 0, clue4 = 0;
 	private AudioClip cat;
 	private LeftRoom leftRoom = new LeftRoom();
 	private RightRoom rightRoom = new RightRoom();
@@ -90,7 +91,14 @@ public class MainApplet extends PApplet
 		"component/pusheen_bottle3.png",
 		"component/pusheen_bottle4.png",
 		"component/pusheen_bottle5.png",
-		
+		"component/clue1_1.png",
+		"component/clue1_2.png",
+		"component/clue2_1.png",
+		"component/clue2_2.png",
+		"component/clue3_1.png",
+		"component/clue3_2.png",
+		"component/clue4_1.png",
+		"component/clue4_2.png",
 	};
 	
 	public void setup()				// override the processing that initial the applet
@@ -301,7 +309,6 @@ public class MainApplet extends PApplet
 				}
 			}
 			
-			
 			if(leftRoom.pusheenCut()==1){
 				
 				image(images.get("pusheen_cut.png"), leftRoom.getComX("pusheenCut"), leftRoom.getComY("pusheenCut"), 840, 540);
@@ -382,6 +389,35 @@ public class MainApplet extends PApplet
 				this.startmenu = 0;
 			}
 		}
+		else if(this.curRoom == 4)		// clue1
+		{
+			if(this.clue1 == 1)
+				image(images.get("clue1_1.png"), 0, 0, 840, 540);
+			else if(this.clue1 == 2)
+				image(images.get("clue1_2.png"), 0, 0, 840, 540);
+		}
+		else if(this.curRoom == 5)		// clue2
+		{
+			if(this.clue2 == 1)
+				image(images.get("clue2_1.png"), 0, 0, 840, 540);
+			else if(this.clue2 == 2)
+				image(images.get("clue2_2.png"), 0, 0, 840, 540);
+		}
+		else if(this.curRoom == 6)		// clue3
+		{
+			if(this.clue3 == 1)
+				image(images.get("clue3_1.png"), 0, 0, 840, 540);
+			else if(this.clue3 == 2)
+				image(images.get("clue3_2.png"), 0, 0, 840, 540);
+		}
+		else if(this.curRoom == 7)		// clue4
+		{
+			if(this.clue4 == 1)
+				image(images.get("clue4_1.png"), 0, 0, 840, 540);
+			else if(this.clue4 == 2)
+				image(images.get("clue4_2.png"), 0, 0, 840, 540);
+		}
+		
 		
 		if(this.catMove < 19)
 			this.catMove ++;
@@ -650,22 +686,12 @@ public class MainApplet extends PApplet
 			}
 			else if(mouseX >= 328 && mouseX <= 462 && mouseY >= 147 && mouseY <= 269 && mouseState == 0)
 			{
-				MovePusheen pusheen = new MovePusheen();
+				//clue = pusheen.getPass();
 			}
 			else if(mouseX >= 585 && mouseX <= 650 && mouseY >= 215 && mouseY <= 250 && mouseState == 11){
-				if(middleRoom.middlebackground==0){
-					middleRoom.middlebackground = 1;//mid+lamp
-				}else if(middleRoom.middlebackground==2){
-					middleRoom.middlebackground = 3;//mid+lamp+candle
-				}
+				MovePusheen pusheen = new MovePusheen(this, middleRoom);
 			}
-			else if(mouseX >= 585 && mouseX <= 650 && mouseY >= 215 && mouseY <= 250 && mouseState == 11){
-				if(middleRoom.middlebackground==0){
-					middleRoom.middlebackground = 1;//mid+lamp
-				}else if(middleRoom.middlebackground==2){
-					middleRoom.middlebackground = 3;//mid+lamp+candle
-				}
-			}else if(mouseState==11  && mouseX >= 255 && mouseX <= 280 && mouseY >= 180 && mouseY <= 230){
+			else if(mouseState==11  && mouseX >= 255 && mouseX <= 280 && mouseY >= 180 && mouseY <= 230){
 				middleRoom.lightleft_appear();
 			}else if(mouseState==11  && mouseX >= 485 && mouseX <= 520 && mouseY >= 180 && mouseY <= 230){
 				middleRoom.lightright_appear();
@@ -740,7 +766,12 @@ public class MainApplet extends PApplet
 					RapidSorting sort = new RapidSorting();
 				}
 			}
+			
 		}
+		
+		System.out.println(this.curRoom);
+		if(this.curRoom > 3)
+			this.curRoom = 0;
 	}
 	
 	private void putItemBack(){

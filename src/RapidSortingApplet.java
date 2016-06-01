@@ -105,6 +105,7 @@ public class RapidSortingApplet extends PApplet{
 					moveX -= 8;
 				if(80+moveX >= 475 || 80+moveX <= -175)
 				{
+					this.isFirst = false;
 					genShape();
 					this.shapeState = 0;
 				}
@@ -132,30 +133,26 @@ public class RapidSortingApplet extends PApplet{
 		{
 			this.dir = 1;
 			this.shapeState = 1;
-			this.isFirst = false;
-			if(this.ans == 1)
+			if(this.ans == 1 || this.isFirst == true)
 			{
 				this.score += 1;
 			}
 			else
 			{
-				if(isFirst != true)
-					this.wrong = 1;
+				this.wrong = 1;
 			}
 		}
 		else if(arg0.getKeyCode() == KeyEvent.VK_LEFT && this.shapeState == 2)
 		{
 			this.dir = 0;
 			this.shapeState = 1;
-			this.isFirst = false;
-			if(this.ans == 0)
+			if(this.ans == 0 || this.isFirst == true)
 			{
 				this.score += 1;
 			}
 			else
 			{
-				if(isFirst != true)
-					this.wrong = 1;
+				this.wrong = 1;
 			}
 		}
 	}

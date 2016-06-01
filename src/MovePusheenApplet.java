@@ -9,12 +9,17 @@ public class MovePusheenApplet extends PApplet{
 	private HashMap<String, PImage> images = new HashMap<String, PImage>();
 	private int wrong = 0, pass = 0, moving = 0;
 	private float moveX = 110, moveY = 440;
+	private MovePusheen movepusheen;
 	private String[] file = 
 	{
 		"component/same_pusheen.png",
 		"component/different_pusheen.png",	
 	};
 	
+	public MovePusheenApplet(MovePusheen move)
+	{
+		this.movepusheen = move;
+	}
 	
 	public void setup()
 	{
@@ -91,6 +96,7 @@ public class MovePusheenApplet extends PApplet{
 			if(mouseX >= 70 && mouseX <= 147 && mouseY >= 411 && mouseY <= 483)
 			{
 				this.pass = 1;
+				this.movepusheen.getClue();
 			}
 		}
 	}
@@ -98,10 +104,5 @@ public class MovePusheenApplet extends PApplet{
 	public void mouseReleased()
 	{
 		this.moving = 0;
-	}
-	
-	public int getPass()
-	{
-		return this.pass;
 	}
 }

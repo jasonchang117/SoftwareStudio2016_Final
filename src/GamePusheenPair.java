@@ -22,8 +22,8 @@ public class GamePusheenPair extends PApplet{
 	private int openTime = 0;
 	private boolean win = false;
 	private int calculate = 0, time = 0;
-	private int limitedTime = 50;  // Game limited time
-	private int setedOpenTime = 2;
+	private int limitedTime = 300;  // Game limited time
+	private int setedOpenTime = 8;
 	private int pusheenMove = 1;
 	private int pusheenWidth = 100, pusheenHeight = 60;
 	private int pusheenX = width-pusheenWidth, pusheenY = height - pusheenHeight;
