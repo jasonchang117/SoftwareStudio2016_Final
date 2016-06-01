@@ -17,7 +17,6 @@ public class BiggestNumberApplet extends PApplet{
 	private boolean pass = false;
 	private boolean wrong = false;
 	private boolean submit = false;
-	private boolean empty = true;
 	private boolean curNumber1 = false;
 	private boolean curNumber2 = false;
 	private boolean lockscreen = false;
@@ -25,6 +24,7 @@ public class BiggestNumberApplet extends PApplet{
 	private boolean locked2_1 = false, locked2_2 = false, locked0_1 = false, locked0_2 = false;
 	private boolean on8 = false, on5 = false, on4 = false, on1 = false;
 	private boolean on2_1 = false, on2_2 = false, on0_1 = false, on0_2 = false;
+	private int space = 0;
 	private float moveX, moveY;
 	private float eightX = 80, eightY = 300;
 	private float fiveX = 230, fiveY = 60;
@@ -213,124 +213,334 @@ public class BiggestNumberApplet extends PApplet{
 	public void mouseReleased() {
 		if(on8){
 			if(eightY > 415 && eightY < 470){
-				if(empty){
+				if(space == 0){
 					eightX = 10;
 					eightY = 440;
-					empty = false;
+					space = 1;
 				}
-				else{
+				else if(space == 1){
 					eightX = 70;
 					eightY = 440;
+					space = 2;
+				}
+				else if(space == 2){
+					eightX = 130;
+					eightY = 440;
+					space = 3;
+				}
+				else if(space == 3){
+					eightX = 190;
+					eightY = 440;
+					space = 4;
+				}
+				else if(space == 4){
+					eightX = 250;
+					eightY = 440;
+					space = 5;
+				}
+				else if(space == 5){
+					eightX = 310;
+					eightY = 440;
+					space = 6;
+				}
+				else if(space == 6){
+					eightX = 370;
+					eightY = 440;
+					space = 7;
 				}
 			}
 			else locked8 = false;
 		}
 		if(on5){
 			if(fiveY > 415 && fiveY < 470){
-				if(empty){
+				if(space == 0){
 					fiveX = 10;
 					fiveY = 440;
-					empty = false;
+					space = 1;
 				}
-				else{
+				else if(space == 1){
 					fiveX = 70;
 					fiveY = 440;
+					space = 2;
+				}
+				else if(space == 2){
+					fiveX = 130;
+					fiveY = 440;
+					space = 3;
+				}
+				else if(space == 3){
+					fiveX = 190;
+					fiveY = 440;
+					space = 4;
+				}
+				else if(space == 4){
+					fiveX = 250;
+					fiveY = 440;
+					space = 5;
+				}
+				else if(space == 5){
+					fiveX = 310;
+					fiveY = 440;
+					space = 6;
+				}
+				else if(space == 6){
+					fiveX = 370;
+					fiveY = 440;
+					space = 7;
 				}
 			}
 			else locked5 = false;
 		}
 		if(on4){
 			if(fourY > 415 && fourY < 470){
-				if(empty){
+				if(space == 0){
 					fourX = 10;
 					fourY = 440;
-					empty = false;
+					space = 1;
 				}
-				else{
+				else if(space == 1){
 					fourX = 70;
 					fourY = 440;
+					space = 2;
+				}
+				else if(space == 2){
+					fourX = 130;
+					fourY = 440;
+					space = 3;
+				}
+				else if(space == 3){
+					fourX = 190;
+					fourY = 440;
+					space = 4;
+				}
+				else if(space == 4){
+					fourX = 250;
+					fourY = 440;
+					space = 5;
+				}
+				else if(space == 5){
+					fourX = 310;
+					fourY = 440;
+					space = 6;
+				}
+				else if(space == 6){
+					fourX = 370;
+					fourY = 440;
+					space = 7;
 				}
 			}
 			else locked4 = false;
 		}
 		if(on1){
 			if(oneY > 415 && oneY < 470){
-				if(empty){
+				if(space == 0){
 					oneX = 10;
 					oneY = 440;
-					empty = false;
+					space = 1;
 				}
-				else{
+				else if(space == 1){
 					oneX = 70;
 					oneY = 440;
+					space = 2;
+				}
+				else if(space == 2){
+					oneX = 130;
+					oneY = 440;
+					space = 3;
+				}
+				else if(space == 3){
+					oneX = 190;
+					oneY = 440;
+					space = 4;
+				}
+				else if(space == 4){
+					oneX = 250;
+					oneY = 440;
+					space = 5;
+				}
+				else if(space == 5){
+					oneX = 310;
+					oneY = 440;
+					space = 6;
+				}
+				else if(space == 6){
+					oneX = 370;
+					oneY = 440;
+					space = 7;
 				}
 			}
 			else locked1 = false;
 		}
 		if(on2_1){
 			if(two_oneY > 415 && two_oneY < 470){
-				if(empty){
+				if(space == 0){
 					two_oneX = 10;
 					two_oneY = 440;
-					empty = false;
+					space = 1;
 				}
-				else{
+				else if(space == 1){
 					two_oneX = 70;
 					two_oneY = 440;
+					space = 2;
+				}
+				else if(space == 2){
+					two_oneX = 130;
+					two_oneY = 440;
+					space = 3;
+				}
+				else if(space == 3){
+					two_oneX = 190;
+					two_oneY = 440;
+					space = 4;
+				}
+				else if(space == 4){
+					two_oneX = 250;
+					two_oneY = 440;
+					space = 5;
+				}
+				else if(space == 5){
+					two_oneX = 310;
+					two_oneY = 440;
+					space = 6;
+				}
+				else if(space == 6){
+					two_oneX = 370;
+					two_oneY = 440;
+					space = 7;
 				}
 			}
 			else locked2_1 = false;
 		}
 		if(on2_2){
 			if(two_twoY > 415 && two_twoY < 470){
-				if(empty){
+				if(space == 0){
 					two_twoX = 10;
 					two_twoY = 440;
-					empty = false;
+					space = 1;
 				}
-				else{
+				else if(space == 1){
 					two_twoX = 70;
 					two_twoY = 440;
+					space = 2;
+				}
+				else if(space == 2){
+					two_twoX = 130;
+					two_twoY = 440;
+					space = 3;
+				}
+				else if(space == 3){
+					two_twoX = 190;
+					two_twoY = 440;
+					space = 4;
+				}
+				else if(space == 4){
+					two_twoX = 250;
+					two_twoY = 440;
+					space = 5;
+				}
+				else if(space == 5){
+					two_twoX = 310;
+					two_twoY = 440;
+					space = 6;
+				}
+				else if(space == 6){
+					two_twoX = 370;
+					two_twoY = 440;
+					space = 7;
 				}
 			}
 			else locked2_2 = false;
 		}
 		if(on0_1){
 			if(zero_oneY > 415 && zero_oneY < 470){
-				if(empty){
+				if(space == 0){
 					zero_oneX = 10;
 					zero_oneY = 440;
-					empty = false;
+					space = 1;
 					this.curNumber1 = true;
 				}
 				else if(this.curNumber1){
 					zero_oneX = 70;
 					zero_oneY = 440;
 					this.curNumber2 = true;
+					space = 2;
 				}
-				else{
+				else if(space == 1){
 					zero_oneX = 70;
 					zero_oneY = 440;
+					space = 2;
+				}
+				else if(space == 2){
+					zero_oneX = 130;
+					zero_oneY = 440;
+					space = 3;
+				}
+				else if(space == 3){
+					zero_oneX = 190;
+					zero_oneY = 440;
+					space = 4;
+				}
+				else if(space == 4){
+					zero_oneX = 250;
+					zero_oneY = 440;
+					space = 5;
+				}
+				else if(space == 5){
+					zero_oneX = 310;
+					zero_oneY = 440;
+					space = 6;
+				}
+				else if(space == 6){
+					zero_oneX = 370;
+					zero_oneY = 440;
+					space = 7;
 				}
 			}
 			else locked0_1 = false;
 		}
 		if(on0_2){
 			if(zero_twoY > 415 && zero_twoY < 470){
-				if(empty){
+				if(space == 0){
 					zero_twoX = 10;
 					zero_twoY = 440;
-					empty = false;
+					space = 1;
 					this.curNumber1 = true;
 				}
 				else if(this.curNumber1){
 					zero_twoX = 70;
 					zero_twoY = 440;
 					this.curNumber2 = true;
+					space = 2;
 				}
-				else{
+				else if(space == 1){
 					zero_twoX = 70;
 					zero_twoY = 440;
+					space = 2;
+				}
+				else if(space == 2){
+					zero_twoX = 130;
+					zero_twoY = 440;
+					space = 3;
+				}
+				else if(space == 3){
+					zero_twoX = 190;
+					zero_twoY = 440;
+					space = 4;
+				}
+				else if(space == 4){
+					zero_twoX = 250;
+					zero_twoY = 440;
+					space = 5;
+				}
+				else if(space == 5){
+					zero_twoX = 310;
+					zero_twoY = 440;
+					space = 6;
+				}
+				else if(space == 6){
+					zero_twoX = 370;
+					zero_twoY = 440;
+					space = 7;
 				}
 			}
 			else locked0_2 = false;
