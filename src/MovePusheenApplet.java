@@ -46,13 +46,6 @@ public class MovePusheenApplet extends PApplet{
 		textSize(25);
 		this.text("Find the different Pusheen", 35, 40);
 		
-		if(wrong == 1)
-		{
-			fill(255, 0, 0);
-			this.text("You're wrong !", 100, 240);
-			fill(0);
-		}
-		
 		image(images.get("different_pusheen.png"), 65, 400, 90, 90);
 		image(images.get("same_pusheen.png"), 50, 80, 120, 120);
 		image(images.get("same_pusheen.png"), 50, 230, 120, 120);
@@ -65,6 +58,13 @@ public class MovePusheenApplet extends PApplet{
 		{
 			fill(0, 200, 0);
 			this.text("You're Right !", 115, 240);
+		}
+		
+		if(wrong == 1)
+		{
+			fill(255, 0, 0);
+			this.text("You're wrong !", 100, 240);
+			fill(0);
 		}
 	}
 	
@@ -95,6 +95,7 @@ public class MovePusheenApplet extends PApplet{
 		{
 			if(mouseX >= 70 && mouseX <= 147 && mouseY >= 411 && mouseY <= 483)
 			{
+				this.wrong = 0;
 				this.pass = 1;
 				this.movepusheen.getClue();
 			}
