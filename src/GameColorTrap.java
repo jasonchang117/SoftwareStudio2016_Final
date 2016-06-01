@@ -217,11 +217,11 @@ public class GameColorTrap extends PApplet {
 				}
 			}
 			if(wrongBlock == 0)
-				 cp6.addLabel(color[wrongRandomNum]).setPosition(colorblock_X0+60-color[colorNum0].length()*9,225);
+				 cp6.addLabel(color[wrongRandomNum]).setPosition(colorblock_X0+60-color[wrongRandomNum].length()*9,225);
 			else if(wrongBlock == 1)
-				 cp6.addLabel(color[wrongRandomNum]).setPosition(colorblock_X1+60-color[colorNum1].length()*9,225);
+				 cp6.addLabel(color[wrongRandomNum]).setPosition(colorblock_X1+60-color[wrongRandomNum].length()*9,225);
 			else
-				 cp6.addLabel(color[wrongRandomNum]).setPosition(colorblock_X2+60-color[colorNum2].length()*9,225);
+				 cp6.addLabel(color[wrongRandomNum]).setPosition(colorblock_X2+60-color[wrongRandomNum].length()*9,225);
 			
 		this.correct = 0;
 		
