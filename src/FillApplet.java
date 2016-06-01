@@ -29,7 +29,7 @@ public class FillApplet extends PApplet implements ActionListener{
 	String encoding = "UTF8";
 	private ControlP5 cp5;
 	public int option = 0; //1=always, 2=sometime, 3= never.
-	public String fileName, qContent;
+	public String fileName="", qContent="";
 	public int i_always=0, i_sometime=0, i_never=0;
 	public String str_always, str_sometime ,str_never;
 	public String chooseQues;
@@ -61,8 +61,10 @@ public class FillApplet extends PApplet implements ActionListener{
 	
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
+		fuilName = chooseQues();
 		fileName = "../"+fileName+".csv";
 		//chooseQues = chooseQues(fileName);
+		System.out.println(fileName);
 		update(fileName,qContent);
 	}
 	
@@ -100,7 +102,6 @@ public class FillApplet extends PApplet implements ActionListener{
 	public void update(String fileName, String QContent)
 	{
 		fileName = "../"+fileName+".csv";
-		System.out.println("Always-"+str_always+" Sometime-"+str_sometime+" Never-"+str_never);
 		try
 		{
 			//Create a blank workbook
@@ -143,7 +144,6 @@ public class FillApplet extends PApplet implements ActionListener{
 			e.printStackTrace();
 		}
 		System.out.println(question);
-		return question;
-
+		return fileName;
 	}
 }

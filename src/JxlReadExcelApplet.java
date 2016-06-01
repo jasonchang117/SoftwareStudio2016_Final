@@ -77,20 +77,19 @@ public class JxlReadExcelApplet extends PApplet implements ActionListener{
 	{
 		result = ""; //initial
 		try {
-			fileName = "../"+fileName+".csv";
 		// before we open the file check to see if it already exists
-			alreadyExists = new File(fileName).exists(); 
+			alreadyExists = new File("../"+fileName+".csv").exists(); 
 			
 			if (!alreadyExists){
 				result="Do not find your file.\nPlease type in again.";
 			}
 			else{
-				CsvReader XLfile = new CsvReader(fileName);		
+				CsvReader XLfile = new CsvReader("../"+fileName+".csv");		
 				XLfile.readHeaders();				
 				
 				while (XLfile.readRecord())
 				{
-					//String InputTime = XLfile.get("Time");
+					String InputTime = XLfile.get(fileName);
 					String InputQuestion = XLfile.get("Question");
 					String Option1 = XLfile.get("Always");
 					String Option2 = XLfile.get("Sometime");

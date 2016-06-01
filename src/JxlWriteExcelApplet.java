@@ -82,17 +82,17 @@ public class JxlWriteExcelApplet extends PApplet implements ActionListener{
 ///////////////////////////////About Excel///////////////////////////////////////////////	
 	public void create(String fileName, String QContent)
 	{
-		fileName = "../"+fileName+".csv";
 		// before we open the file check to see if it already exists
-		boolean alreadyExists = new File(fileName).exists();
+		boolean alreadyExists = new File("../"+fileName+".csv").exists();
 		try
 		{
 		//Create a blank workbook
-			CsvWriter csvOutput = new CsvWriter(new FileWriter(fileName, true), ',');
+			CsvWriter csvOutput = new CsvWriter(new FileWriter("../"+fileName+".csv", true), ',');
 		//Info Setup: Question - answerNum
 		// if the file didn't already exist then we need to write out the header line
 			if (!alreadyExists)
 			{
+				csvOutput.write(fileName);
 				csvOutput.write("Question");
 				csvOutput.write("Always");
 				csvOutput.write("");
@@ -102,6 +102,7 @@ public class JxlWriteExcelApplet extends PApplet implements ActionListener{
 				csvOutput.write("");
 				csvOutput.endRecord();
 			}//Create a new row in workbook
+			csvOutput.write(fileName);
 			csvOutput.write(QContent);	
 			csvOutput.write("Always");
 			csvOutput.write("");
