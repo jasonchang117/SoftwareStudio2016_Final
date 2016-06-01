@@ -91,12 +91,13 @@ public class BiggestNumberApplet extends PApplet{
 		image(images.get("zero_1.png"), zero_oneX, zero_oneY, 60, 60);
 		image(images.get("zero_2.png"), zero_twoX, zero_twoY, 60, 60);
 		
-		if(this.curNumber1 && this.curNumber2){
+		if(this.curNumber1 && this.curNumber2 && space == 2){
 			pass = true;
 			wrong = false;
 		}
 		else{
 			wrong = true;
+			pass = false;
 		}
 		
 		if(wrong && submit)
@@ -104,6 +105,7 @@ public class BiggestNumberApplet extends PApplet{
 			fill(255, 0, 0);
 			textSize(55);
 			this.text("You're wrong!", 20, 240);
+			lockscreen = true;
 		}
 		if(pass && submit){
 			fill(0, 200, 0);
@@ -242,11 +244,8 @@ public class BiggestNumberApplet extends PApplet{
 					eightX = 310;
 					eightY = 440;
 					space = 6;
-				}
-				else if(space == 6){
-					eightX = 370;
-					eightY = 440;
-					space = 7;
+					lockscreen = true;
+					submit = true;
 				}
 			}
 			else locked8 = false;
@@ -282,12 +281,10 @@ public class BiggestNumberApplet extends PApplet{
 					fiveX = 310;
 					fiveY = 440;
 					space = 6;
+					lockscreen = true;
+					submit = true;
 				}
-				else if(space == 6){
-					fiveX = 370;
-					fiveY = 440;
-					space = 7;
-				}
+
 			}
 			else locked5 = false;
 		}
@@ -322,11 +319,8 @@ public class BiggestNumberApplet extends PApplet{
 					fourX = 310;
 					fourY = 440;
 					space = 6;
-				}
-				else if(space == 6){
-					fourX = 370;
-					fourY = 440;
-					space = 7;
+					lockscreen = true;
+					submit = true;
 				}
 			}
 			else locked4 = false;
@@ -362,11 +356,8 @@ public class BiggestNumberApplet extends PApplet{
 					oneX = 310;
 					oneY = 440;
 					space = 6;
-				}
-				else if(space == 6){
-					oneX = 370;
-					oneY = 440;
-					space = 7;
+					lockscreen = true;
+					submit = true;
 				}
 			}
 			else locked1 = false;
@@ -402,11 +393,8 @@ public class BiggestNumberApplet extends PApplet{
 					two_oneX = 310;
 					two_oneY = 440;
 					space = 6;
-				}
-				else if(space == 6){
-					two_oneX = 370;
-					two_oneY = 440;
-					space = 7;
+					lockscreen = true;
+					submit = true;
 				}
 			}
 			else locked2_1 = false;
@@ -442,11 +430,8 @@ public class BiggestNumberApplet extends PApplet{
 					two_twoX = 310;
 					two_twoY = 440;
 					space = 6;
-				}
-				else if(space == 6){
-					two_twoX = 370;
-					two_twoY = 440;
-					space = 7;
+					lockscreen = true;
+					submit = true;
 				}
 			}
 			else locked2_2 = false;
@@ -459,7 +444,7 @@ public class BiggestNumberApplet extends PApplet{
 					space = 1;
 					this.curNumber1 = true;
 				}
-				else if(this.curNumber1){
+				else if(this.curNumber1 && space == 1){
 					zero_oneX = 70;
 					zero_oneY = 440;
 					this.curNumber2 = true;
@@ -489,11 +474,8 @@ public class BiggestNumberApplet extends PApplet{
 					zero_oneX = 310;
 					zero_oneY = 440;
 					space = 6;
-				}
-				else if(space == 6){
-					zero_oneX = 370;
-					zero_oneY = 440;
-					space = 7;
+					lockscreen = true;
+					submit = true;
 				}
 			}
 			else locked0_1 = false;
@@ -506,7 +488,7 @@ public class BiggestNumberApplet extends PApplet{
 					space = 1;
 					this.curNumber1 = true;
 				}
-				else if(this.curNumber1){
+				else if(this.curNumber1 && space == 1){
 					zero_twoX = 70;
 					zero_twoY = 440;
 					this.curNumber2 = true;
@@ -536,11 +518,8 @@ public class BiggestNumberApplet extends PApplet{
 					zero_twoX = 310;
 					zero_twoY = 440;
 					space = 6;
-				}
-				else if(space == 6){
-					zero_twoX = 370;
-					zero_twoY = 440;
-					space = 7;
+					lockscreen = true;
+					submit = true;
 				}
 			}
 			else locked0_2 = false;
