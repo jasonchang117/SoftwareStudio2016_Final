@@ -22,7 +22,7 @@ public class GameColorTrap extends PApplet {
 	private int score = 0;
 	private int addOneTime = 1;
 	private int calculate = 0, time = 0;
-	private int limitedTime = 100;  // Game limited time
+	private int limitedTime = 50;  // Game limited time
 	private int pusheenWidth = 100, pusheenHeight = 60;
 	private int pusheenX = width-pusheenWidth, pusheenY = height - pusheenHeight;
 	private int pusheenMove = 1;
@@ -151,7 +151,7 @@ public class GameColorTrap extends PApplet {
 		ran = new Random();
 		for(int i = 0; i < 3; i++){
 			if(i == 0)
-				colorNum1 = ran.nextInt(color.length);
+				colorNum0 = ran.nextInt(color.length);
 			else if(i == 1){
 				colorNum1 = ran.nextInt(color.length);
 				if(colorNum1 == colorNum0)
@@ -173,27 +173,30 @@ public class GameColorTrap extends PApplet {
 	public void addColorLabel(){
 		for(int i = 0; i < 3; i++){
 			if(i != wrongBlock){
-				 if(i == 0)
+				 if(i == 0){
 					 cp6.addLabel(color[colorNum0]).setPosition(colorblock_X0+60-color[colorNum0].length()*9,225);
-				 else if(i == 1)
+				 }
+				 else if(i == 1){
 					 cp6.addLabel(color[colorNum1]).setPosition(colorblock_X1+60-color[colorNum1].length()*9,225);
-				 else
+				 }
+				 else{
 					 cp6.addLabel(color[colorNum2]).setPosition(colorblock_X2+60-color[colorNum2].length()*9,225);
+				 }
 			}
 		}
 			ran = new Random();
 			for(int j = 0; j < 1; j++){
 				wrongRandomNum = ran.nextInt(color.length);
 				if(wrongBlock == 0){
-					if((wrongRandomNum == colorNum1) || (wrongRandomNum == colorNum2))
+					if((wrongRandomNum == colorNum0) || (wrongRandomNum == colorNum1) || (wrongRandomNum == colorNum2))
 						j = j - 1;
 				}
 				else if(wrongBlock == 1){
-					if((wrongRandomNum == colorNum0) || (wrongRandomNum == colorNum2))
+					if((wrongRandomNum == colorNum0) || (wrongRandomNum == colorNum1) || (wrongRandomNum == colorNum2))
 						j = j - 1;
 				}
 				else{
-					if((wrongRandomNum == colorNum0) || (wrongRandomNum == colorNum1))
+					if((wrongRandomNum == colorNum0) || (wrongRandomNum == colorNum1) || (wrongRandomNum == colorNum2))
 						j = j - 1;
 				}
 			}
