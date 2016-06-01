@@ -56,6 +56,7 @@ public class MainApplet extends PApplet
 		"background/light.png",
 		"background/light_left.png",
 		"background/lamp.png",
+		"background/middle+securitybox.png",
 		"component/beknif_pusheen.png",
 		"component/hammer.png",
 		"component/hose.png",
@@ -194,6 +195,7 @@ public class MainApplet extends PApplet
 			if(middleRoom.middlebackground==0){
 				image(images.get("middle.png"), 0, 0, 840, 540);
 			}else if(middleRoom.middlebackground==1){
+				image(images.get("middle.png"), 0, 0, 840, 540);
 				image(images.get("lamp.png"), 589, 220, 61, 33);
 			}
 			if(middleRoom.lightleft()==1){
@@ -201,6 +203,9 @@ public class MainApplet extends PApplet
 			}
 			if(middleRoom.lightright()==1){
 				image(images.get("light.png"), 482, 180, 51, 51);
+			}
+			if(middleRoom.lightleft() == 1 && middleRoom.lightright() == 1){
+				image(images.get("middle+securitybox.png"), 325, 145, 140, 130);
 			}
 			
 			if(middleRoom.pusheenBottle() == 1){
@@ -678,7 +683,7 @@ public class MainApplet extends PApplet
 		//////////// middle room
 		if(this.curRoom == 0)			
 		{
-			System.out.println(mouseX+" "+mouseY);
+			//System.out.println(mouseX+" "+mouseY);
 			if(mouseX >= middleRoom.getComX("pusheenBottle")+25 && mouseX <= middleRoom.getComX("pusheenBottle")+58 && mouseY >= middleRoom.getComY("pusheenBottle")+5 && mouseY <= middleRoom.getComY("pusheenBottle")+60 ){
 				middleRoom.pusheenBottle_vanish();
 				itemtable.pusheenBottle_appear();
@@ -692,7 +697,8 @@ public class MainApplet extends PApplet
 			}
 			else if(mouseState==11  && mouseX >= 255 && mouseX <= 280 && mouseY >= 180 && mouseY <= 230){
 				middleRoom.lightleft_appear();
-			}else if(mouseState==11  && mouseX >= 485 && mouseX <= 520 && mouseY >= 180 && mouseY <= 230){
+			}
+			else if(mouseState==11  && mouseX >= 485 && mouseX <= 520 && mouseY >= 180 && mouseY <= 230){
 				middleRoom.lightright_appear();
 			}
 		}
@@ -700,7 +706,7 @@ public class MainApplet extends PApplet
 		////////////// right room
 		else if(this.curRoom == 1)		
 		{
-			System.out.println(mouseX+" "+mouseY);
+		//	System.out.println(mouseX+" "+mouseY);
 			
 			if(mouseState==10 && mouseX >500 && mouseX <550 && mouseY>480 && mouseY <520 ){
 				rightroomState = 2;
@@ -727,7 +733,7 @@ public class MainApplet extends PApplet
 		}
 		else if(this.curRoom == -1)		// left room
 		{
-			System.out.println(mouseX+" "+mouseY);
+			//System.out.println(mouseX+" "+mouseY);
 			if(leftRoom.isanimate==0 && leftRoom.normalBottle()==1 && mouseX >= leftRoom.getComX("normalBottle")+23 && mouseX <= leftRoom.getComX("normalBottle")+53 && mouseY >= leftRoom.getComY("normalBottle") && mouseY <= leftRoom.getComY("normalBottle")+73 ){
 				leftRoom.normalBottle_vanish();
 				itemtable.normalBottle_appear();
@@ -768,7 +774,7 @@ public class MainApplet extends PApplet
 			
 		}
 		
-		System.out.println(this.curRoom);
+		//System.out.println(this.curRoom);
 		if(this.curRoom > 3)
 			this.curRoom = 0;
 	}
