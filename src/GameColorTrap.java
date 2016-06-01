@@ -22,14 +22,19 @@ public class GameColorTrap extends PApplet {
 	private int score = 0;
 	private int addOneTime = 1;
 	private int calculate = 0, time = 0;
-	private int limitedTime = 50;  // Game limited time
+	private int limitedTime = 60;  // Game limited time
+	private int gameWinScore = 15; // Win Score
+	private boolean gameWin = false;
+	private boolean gameLose = false;
 	private int pusheenWidth = 100, pusheenHeight = 60;
 	private int pusheenX = width-pusheenWidth, pusheenY = height - pusheenHeight;
 	private int pusheenMove = 1;
 	private HashMap<String, PImage> images = new HashMap<String, PImage>();
 	private String[] file = {
 			"background/colorbackground.png",
-			"background/colorhowplay.png"
+			"background/colorhowplay.png",
+			"pusheenpair/win.png",
+			"pusheenpair/lose.png"
 	};
 	private String[] color = {
 			"BLACK",
@@ -127,6 +132,12 @@ public class GameColorTrap extends PApplet {
 		if(this.howPlay == 1){
 			image(images.get("colorhowplay.png"), 0, 0, width, height);
 		}
+		if(this.gameWin){
+			image(loadImage(file[2]),0,0,width,height);
+		}
+		if(this.gameLose){
+			image(loadImage(file[3]),0,0,width,height);			
+		}
 	}
 	public void calculateTime(){
 		if(calculate < 15){
@@ -144,6 +155,11 @@ public class GameColorTrap extends PApplet {
 			this.game = 0;
 			this.howPlay = 0;
 			cp7.remove("Score: "+this.score);
+			removeColorLabel();
+			if(this.score >= gameWinScore)
+				gameWin = true;
+			else 
+				gameLose = true;
 			draw();
 		}
 	}
