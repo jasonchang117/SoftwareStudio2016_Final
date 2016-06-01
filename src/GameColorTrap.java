@@ -1,6 +1,6 @@
 import java.util.HashMap;
 import java.util.Random;
-
+import java.util.*;
 import controlP5.ControlP5;
 import controlP5.Label;
 import controlP5.Textlabel;
@@ -22,7 +22,7 @@ public class GameColorTrap extends PApplet {
 	private int score = 0;
 	private int addOneTime = 1;
 	private int calculate = 0, time = 0;
-	private int limitedTime = 60;  // Game limited time
+	private int limitedTime = 100;  // Game limited time
 	private int gameWinScore = 15; // Win Score
 	private boolean gameWin = false;
 	private boolean gameLose = false;
@@ -31,6 +31,8 @@ public class GameColorTrap extends PApplet {
 	private int pusheenMove = 1;
 	private GameColorTrapMain gameColorTrapMain;
 	private HashMap<String, PImage> images = new HashMap<String, PImage>();
+	private Date startTime;
+	private Date now;
 	private String[] file = {
 			"background/colorbackground.png",
 			"background/colorhowplay.png",
@@ -72,7 +74,9 @@ public class GameColorTrap extends PApplet {
 		Ani.init(this);
 		this.setLayout(null);
 		size(width, height);
-		
+		Calendar cal = Calendar.getInstance();
+		startTime = cal.getTime();
+		//System.out.println(startTime);
 		String []temp = new String[10];
 		for(int i=0;i<file.length;i++)
 		{
@@ -99,7 +103,9 @@ public class GameColorTrap extends PApplet {
 	public void draw()
 	{
 		background(255);
-		
+		Calendar cal = Calendar.getInstance();
+		now = cal.getTime();
+		//System.out.println(now.getTime());
 		
 		if(this.initial == 1){
 			image(images.get("colorbackground.png"), 0, 0, width, height);
@@ -146,10 +152,12 @@ public class GameColorTrap extends PApplet {
 		}
 	}
 	public void calculateTime(){
-		if(calculate < 15){
+		//System.out.println(now.getTime()-startTime.getTime());
+		 if(now.getTime()-startTime.getTime() > 50){
+			startTime = now;
 			calculate ++;
 		}
-		if(calculate == 15){
+		if(calculate == 2){
 			calculate = 0;
 			time ++;
 			pusheenMove *= -1;
