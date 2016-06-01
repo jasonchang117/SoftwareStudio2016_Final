@@ -433,7 +433,7 @@ public class MainApplet extends PApplet
 			cp5.addButton("buttonBack").setLabel("Back").setPosition(890, 450).setSize(50,50);
 			this.backbutton = 1;
 		}
-		else if(this.curRoom == 2 && backbutton == 1)
+		else if((this.curRoom != -1 &&this.curRoom!=0 &&this.curRoom!=1 &&this.curRoom!=3)&& backbutton == 1)
 		{
 			cp5.remove("buttonBack");
 			this.backbutton = 0;
