@@ -98,6 +98,13 @@ public class MovePusheenApplet extends PApplet{
 				this.pass = 1;
 				this.movepusheen.getClue();
 			}
+			else 
+			{
+				if(this.wrong == 0)
+					this.wrong = 1;
+				else
+					this.wrong = 0;
+			}
 		}
 	}
 	
