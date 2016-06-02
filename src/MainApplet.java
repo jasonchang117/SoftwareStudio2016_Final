@@ -29,6 +29,7 @@ public class MainApplet extends PApplet
 	private int pusheenNum = 0;
 	private int beknifnum = 0, becutnum = 0;
 	public  int clue1 = 0, clue2 = 0, clue3 = 0, clue4 = 0;
+	public  int success = 0;									// complete the game
 	private AudioClip cat;
 	private LeftRoom leftRoom = new LeftRoom();
 	private RightRoom rightRoom = new RightRoom();
@@ -549,6 +550,7 @@ public class MainApplet extends PApplet
 	
 	public void mousePressed()
 	{
+		System.out.println(this.success);
 		/////// item panel
 		if((this.curRoom == 0 || this.curRoom==1 || this.curRoom==-1) && mouseX>=840 ){
 			if(mouseX>840 && mouseX<920 && mouseY<265 && mouseY>200) {
@@ -724,6 +726,8 @@ public class MainApplet extends PApplet
 				rightroomState = 4;
 				itemtable.hammer_vanish();
 				mouseState = 0;
+			}else if(rightroomState == 4 && mouseState == 0 && mouseX >425 && mouseX <505 && mouseY>200 && mouseY <300){
+				BiggestNumber biggest = new BiggestNumber(this);
 			}else if(mouseState==9 && mouseX >650 && mouseX <750 && mouseY>430 && mouseY <470){
 				mouseState=0;
 				rightRoom.animate = 1;

@@ -1,12 +1,5 @@
-import java.applet.AudioClip;
-import java.awt.event.KeyEvent;
-import java.awt.image.ImagingOpException;
-import java.util.ArrayList;
 import java.util.HashMap;
-import javax.swing.JTextField;
 import controlP5.ControlP5;
-import ddf.minim.AudioPlayer;
-import ddf.minim.Minim;
 import de.looksgood.ani.Ani;
 import processing.core.PApplet;
 import processing.core.PFont;
@@ -14,9 +7,9 @@ import processing.core.PImage;
 
 @SuppressWarnings("serial")
 public class BiggestNumberApplet extends PApplet{
+	BiggestNumber biggest;
 	private boolean pass = false;
 	private boolean wrong = false;
-	private boolean submit = false;
 	private boolean curNumber1 = false;
 	private boolean curNumber2 = false;
 	private boolean lockscreen = false;
@@ -25,16 +18,16 @@ public class BiggestNumberApplet extends PApplet{
 	private boolean on8 = false, on5 = false, on4 = false, on1 = false;
 	private boolean on2_1 = false, on2_2 = false, on0_1 = false, on0_2 = false;
 	private int space = 0;
-	private float moveX, moveY;
-	private float eightX = 80, eightY = 300;
-	private float fiveX = 230, fiveY = 60;
-	private float fourX = 230, fourY = 140;
-	private float oneX = 230, oneY = 300;
-	private float two_oneX = 80, two_oneY = 60;
-	private float two_twoX = 80, two_twoY = 220;
-	private float zero_oneX = 230,zero_oneY = 220;
-	private float zero_twoX = 80, zero_twoY = 140;
-
+	private float two_oneX = 60, two_oneY = 20;
+	private float two_twoX = 80, two_twoY = 250;
+	private float zero_twoX = 90, zero_twoY = 120;
+	private float eightX = 200, eightY = 80;
+	private float fiveX = 300, fiveY = 300;
+	private float fourX = 250, fourY = 200;
+	private float zero_oneX = 180, zero_oneY = 350;
+	private float oneX = 320, oneY = 20;
+	private ControlP5 cp5;
+	
 	private HashMap<String, PImage> images = new HashMap<String, PImage>();
 	private String[] file = 
 	{
@@ -48,6 +41,10 @@ public class BiggestNumberApplet extends PApplet{
 		"component/zero_2.png",
 	};
 	
+	public BiggestNumberApplet(BiggestNumber b)
+	{
+		this.biggest = b;
+	}
 	
 	public void setup(){
 		Ani.init(this);
@@ -62,25 +59,24 @@ public class BiggestNumberApplet extends PApplet{
 			temp = this.file[i].split("/");
 			images.put(temp[1], image);
 		}
+		cp5 = new ControlP5(this);
+		PFont p = createFont("Consolas", 20);
+		cp5.setFont(p);
+		cp5.addButton("submit").setLabel("SUBMIT").setPosition(310, 500).setSize(90, 40);
+		cp5.addButton("retry").setLabel("RETRY").setPosition(0, 500).setSize(90, 40);
+		
 	}
 	
-	public void draw(){
+	public void draw()
+	{
 		background(160, 100, 100);
 		fill(0);
-		textSize(40);
-		text("Answer", 120 ,440);
+		textSize(36);
+		text("Answer", 136 ,435);
 		fill(0, 200, 160);
 		stroke(0, 200, 160);
 		rect(0, 440, 480, 60);
 		fill(0, 100, 160);
-		stroke(0, 100, 160);
-		rect(320, 500, 80, 40);
-		rect(0, 500, 80, 40);
-		fill(255);
-		textSize(20);
-		text("Submit", 328, 528);
-		textSize(20);
-		text("Again", 10, 528);
 		
 		image(images.get("eight.png"), eightX, eightY, 60, 60);
 		image(images.get("five.png"), fiveX, fiveY, 60, 60);
@@ -91,41 +87,23 @@ public class BiggestNumberApplet extends PApplet{
 		image(images.get("zero_1.png"), zero_oneX, zero_oneY, 60, 60);
 		image(images.get("zero_2.png"), zero_twoX, zero_twoY, 60, 60);
 		
-		if(this.curNumber1 && this.curNumber2 && space == 2){
-			pass = true;
-			wrong = false;
-		}
-		else{
-			wrong = true;
-			pass = false;
-		}
-		
-		if(wrong && submit)
+		if(wrong)
 		{
 			fill(255, 0, 0);
 			textSize(55);
 			this.text("You're wrong!", 20, 240);
-			lockscreen = true;
-		}
-		if(pass && submit){
+			}
+		if(pass)
+		{
 			fill(0, 200, 0);
 			textSize(60);
 			this.text("You Win !", 60, 240);
-			lockscreen = true;
 		}
 		
 	}
 
-	public void mousePressed() {
-		if(lockscreen){
-			mouseX = 0;
-			mouseY = 0;
-		}
-		
-		if(mouseX > 320 && mouseX < 400 && mouseY > 500 && mouseY < 540){
-			submit = true;
-		}
-		
+	public void mousePressed() 
+	{	
 		if(mouseX > eightX && mouseX < eightX+60 && mouseY > eightY && mouseY < eightY+60 && !locked8){
 			this.eightX = mouseX-30;
 			this.eightY = mouseY-30;
@@ -244,8 +222,6 @@ public class BiggestNumberApplet extends PApplet{
 					eightX = 310;
 					eightY = 440;
 					space = 6;
-					lockscreen = true;
-					submit = true;
 				}
 			}
 			else locked8 = false;
@@ -281,8 +257,6 @@ public class BiggestNumberApplet extends PApplet{
 					fiveX = 310;
 					fiveY = 440;
 					space = 6;
-					lockscreen = true;
-					submit = true;
 				}
 
 			}
@@ -319,8 +293,6 @@ public class BiggestNumberApplet extends PApplet{
 					fourX = 310;
 					fourY = 440;
 					space = 6;
-					lockscreen = true;
-					submit = true;
 				}
 			}
 			else locked4 = false;
@@ -356,8 +328,6 @@ public class BiggestNumberApplet extends PApplet{
 					oneX = 310;
 					oneY = 440;
 					space = 6;
-					lockscreen = true;
-					submit = true;
 				}
 			}
 			else locked1 = false;
@@ -393,8 +363,6 @@ public class BiggestNumberApplet extends PApplet{
 					two_oneX = 310;
 					two_oneY = 440;
 					space = 6;
-					lockscreen = true;
-					submit = true;
 				}
 			}
 			else locked2_1 = false;
@@ -430,8 +398,6 @@ public class BiggestNumberApplet extends PApplet{
 					two_twoX = 310;
 					two_twoY = 440;
 					space = 6;
-					lockscreen = true;
-					submit = true;
 				}
 			}
 			else locked2_2 = false;
@@ -474,8 +440,6 @@ public class BiggestNumberApplet extends PApplet{
 					zero_oneX = 310;
 					zero_oneY = 440;
 					space = 6;
-					lockscreen = true;
-					submit = true;
 				}
 			}
 			else locked0_1 = false;
@@ -518,8 +482,6 @@ public class BiggestNumberApplet extends PApplet{
 					zero_twoX = 310;
 					zero_twoY = 440;
 					space = 6;
-					lockscreen = true;
-					submit = true;
 				}
 			}
 			else locked0_2 = false;
@@ -533,4 +495,50 @@ public class BiggestNumberApplet extends PApplet{
 		on0_1 = false;
 		on0_2 = false;
 	}	
+	
+	public void submit()
+	{
+		this.lockscreen = true;
+		if(this.curNumber2 == true && this.space == 2)
+		{
+			this.pass = true;
+			biggest.getPass();
+		}
+		else
+			this.wrong = true;
+	}
+	
+	public void retry()
+	{
+		two_oneX = 60; two_oneY = 20;
+		two_twoX = 80; two_twoY = 250;
+		zero_twoX = 90; zero_twoY = 120;
+		eightX = 200; eightY = 80;
+		fiveX = 300; fiveY = 300;
+		fourX = 250; fourY = 200;
+		zero_oneX = 180; zero_oneY = 350;
+		oneX = 320; oneY = 20;
+		this.space = 0;
+		this.curNumber1 = false;
+		this.curNumber2 = false;
+		this.pass = false;
+		this.wrong = false;
+		this.lockscreen = false;
+		this.locked0_1 = false;
+		this.locked0_2 = false;
+		this.locked2_1 = false;
+		this.locked2_2 = false;
+		this.locked1 = false;
+		this.locked4 = false;
+		this.locked5 = false;
+		this.locked8 = false;
+	}
+	
+	public int getPass()
+	{
+		if(this.pass == true)
+			return 1;
+		else
+			return 0;
+	}
 }
