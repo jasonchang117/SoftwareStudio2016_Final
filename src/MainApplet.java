@@ -63,6 +63,7 @@ public class MainApplet extends PApplet
 		"component/hammer.png",
 		"component/hose.png",
 		"component/knif.png",
+		"component/knif_left.png",
 		"component/normal_bottle.png",
 		"component/normal_bottle_full.png",
 		"component/pusheen_bottle.png",
@@ -225,7 +226,7 @@ public class MainApplet extends PApplet
 				image(images.get("securitybox.png"), middleRoom.getComX("securitybox"), middleRoom.getComY("securitybox"), 100, 100);
 			}
 			if(middleRoom.knif() == 1){
-				image(images.get("knif.png"), middleRoom.getComX("knif"), middleRoom.getComY("knif"), 40, 60);
+				image(images.get("knif_left.png"), middleRoom.getComX("knif"), middleRoom.getComY("knif"), 70, 60);
 			}
 			if(middleRoom.lighter() == 1){
 				image(images.get("lighter.png"), middleRoom.getComX("lighter"), middleRoom.getComY("lighter"), 120, 100);
@@ -592,6 +593,11 @@ public class MainApplet extends PApplet
 			this.questionButton = 0;
 			//qs.removeText();
 		}
+		else if(this.curRoom == 0 && middleRoom.securityState==1){
+			securityboxnum = 0;
+			securityboxnumamount = 0;
+			middleRoom.securityState = 0;
+		}
 		else
 		{
 			cp5.remove("questionOne");
@@ -801,7 +807,7 @@ public class MainApplet extends PApplet
 				middleRoom.pusheenBottle_vanish();
 				itemtable.pusheenBottle_appear();
 			}
-			else if(middleRoom.securityState == 0 &&  mouseX >= 328 && mouseX <= 462 && mouseY >= 147 && mouseY <= 269 && middleRoom.lightleft() == 1 && middleRoom.lightright() == 1)
+			else if(middleRoom.securityboxopen()==0 && middleRoom.securityState == 0 &&  mouseX >= 328 && mouseX <= 462 && mouseY >= 147 && mouseY <= 269 && middleRoom.lightleft() == 1 && middleRoom.lightright() == 1)
 			{
 				//clue = pusheen.getPass();
 				middleRoom.securityState = 1;
@@ -816,6 +822,10 @@ public class MainApplet extends PApplet
 			}
 			else if(middleRoom.securityState==0 && mouseState==11  && mouseX >= 485 && mouseX <= 520 && mouseY >= 180 && mouseY <= 230){
 				middleRoom.lightright_appear();
+			}
+			else if(middleRoom.knif()==1 && mouseX>= middleRoom.getComX("knif") && mouseY>=middleRoom.getComY("knif")+20 && mouseX< middleRoom.getComX("knif")+70 && mouseY<middleRoom.getComY("knif")+40){
+				middleRoom.knif_vanish();
+				itemtable.knif_appear();
 			}
 		}
 		
@@ -902,6 +912,7 @@ public class MainApplet extends PApplet
 			if(securityboxnum==3432){
 				middleRoom.securityState = 0;
 				middleRoom.securityboxopen_appear();
+				middleRoom.knif_appear();
 			}
 		}
 		securityboxnum = 0;

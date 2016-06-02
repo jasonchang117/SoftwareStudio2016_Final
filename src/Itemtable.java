@@ -14,7 +14,7 @@ public class Itemtable {
 	public Itemtable() {
 		// TODO Auto-generated constructor stub
 		tape = 0;
-		knif = 1;
+		knif = 0;
 		pusheenBottle = 0;
 		normalBottleFull = 0;
 		lighter = 1;
