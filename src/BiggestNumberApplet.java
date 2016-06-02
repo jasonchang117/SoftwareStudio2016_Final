@@ -18,14 +18,14 @@ public class BiggestNumberApplet extends PApplet{
 	private boolean on8 = false, on5 = false, on4 = false, on1 = false;
 	private boolean on2_1 = false, on2_2 = false, on0_1 = false, on0_2 = false;
 	private int space = 0;
-	private float two_oneX = 60, two_oneY = 20;
-	private float two_twoX = 80, two_twoY = 250;
+	private float two_oneX = 360, two_oneY = 80;
+	private float two_twoX = 35, two_twoY = 280;
 	private float zero_twoX = 90, zero_twoY = 120;
 	private float eightX = 200, eightY = 80;
-	private float fiveX = 300, fiveY = 300;
-	private float fourX = 250, fourY = 200;
-	private float zero_oneX = 180, zero_oneY = 350;
-	private float oneX = 320, oneY = 20;
+	private float fiveX = 155, fiveY = 310;
+	private float fourX = 190, fourY = 190;
+	private float zero_oneX = 345, zero_oneY = 300;
+	private float oneX = 290, oneY = 165;
 	private ControlP5 cp5;
 	
 	private HashMap<String, PImage> images = new HashMap<String, PImage>();
@@ -49,7 +49,7 @@ public class BiggestNumberApplet extends PApplet{
 	public void setup(){
 		Ani.init(this);
 		this.setLayout(null);
-		size(400, 540);
+		size(500, 540);
 		smooth();
 		
 		String []temp = new String[10];
@@ -62,7 +62,7 @@ public class BiggestNumberApplet extends PApplet{
 		cp5 = new ControlP5(this);
 		PFont p = createFont("Consolas", 20);
 		cp5.setFont(p);
-		cp5.addButton("submit").setLabel("SUBMIT").setPosition(310, 500).setSize(90, 40);
+		cp5.addButton("submit").setLabel("SUBMIT").setPosition(400, 500).setSize(90, 40);
 		cp5.addButton("retry").setLabel("RETRY").setPosition(0, 500).setSize(90, 40);
 		
 	}
@@ -72,11 +72,16 @@ public class BiggestNumberApplet extends PApplet{
 		background(160, 100, 100);
 		fill(0);
 		textSize(36);
-		text("Answer", 136 ,435);
+		text("Answer", 186 ,435);
 		fill(0, 200, 160);
 		stroke(0, 200, 160);
-		rect(0, 440, 480, 60);
-		fill(0, 100, 160);
+		rect(0, 439, 500, 60);
+		fill(0, 100, 100);
+		stroke(0, 100, 100);
+		rect(0, 0, 500, 60);
+		fill(0);
+		textSize(42);
+		text("Find BiggestNumber", 32, 45);
 		
 		image(images.get("eight.png"), eightX, eightY, 60, 60);
 		image(images.get("five.png"), fiveX, fiveY, 60, 60);
