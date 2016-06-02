@@ -16,7 +16,8 @@ public class LeftRoom
 	public int isanimate;
 	public int bottleAnimate;
 	public int bottleAnimateNum;
-
+	public int securityState;
+	private int securityboxopen;
 	public LeftRoom() 
 	{	
 		hammer = 0;
@@ -59,6 +60,7 @@ public class LeftRoom
 		bottleAnimate = 0;
 		bottleAnimateNum = 0;
 		paperbackground = 0;
+		securityboxopen = 0;
 	}
 	
 	public int hammer() { return this.hammer; }
@@ -73,6 +75,7 @@ public class LeftRoom
 	public int securitybox(){return this.securitybox; }
 	public int normalBottle(){return this.normalBottle; }
 	public int pusheenBottle(){return this.pusheenBottle;}
+	public int securityboxopen() {return this.securityboxopen;}
 	
 	public void hammer_vanish() { this.hammer = 0; }
 	public void pusheenBack_vanish() {this.pusheenBack = 0; }
@@ -86,6 +89,7 @@ public class LeftRoom
 	public void securitybox_vanish(){ this.securitybox = 0;}
 	public void normalBottle_vanish(){	this.normalBottle = 0;}
 	public void pusheenBottle_vanish(){ this.pusheenBottle = 0;}
+	public void securityboxopen_vanish() {this.securityboxopen = 0;}
 	
 	public void hammer_appear() { this.hammer = 1; }
 	public void pusheenBack_appear() {this.pusheenBack = 1; }
@@ -99,7 +103,7 @@ public class LeftRoom
 	public void securitybox_appear(){this.securitybox = 1;}
 	public void normalBottle_appear(){this.normalBottle = 1;}
 	public void pusheenBottle_appear(){this.pusheenBottle = 1;}
-	
+	public void securityboxopen_appear() {this.securityboxopen = 1;}
 	public int getComX(String str)
 	{
 		if(str == "hammer")

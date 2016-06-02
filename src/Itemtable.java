@@ -19,7 +19,7 @@ public class Itemtable {
 		normalBottleFull = 0;
 		lighter = 1;
 		hammer = 0;
-		hose = 1;
+		hose = 0;
 		normalBottle = 0;
 		pusheenBottleFull = 0;
 		normalBottleWithHose = 0;
