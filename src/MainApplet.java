@@ -40,6 +40,7 @@ public class MainApplet extends PApplet
 	private int mouseState;
 	private int rightroomState;
 	public String fileName;
+	private int securityboxnum,securityboxnumamount;
 	
 	private String[] file = {
 		"background/middle.png",
@@ -72,6 +73,10 @@ public class MainApplet extends PApplet
 		"component/pusheenLeft.png",
 		"component/pusheenRight.png",
 		"component/securitybox.png",
+		"component/securitybox1.png",
+		"component/securitybox2.png",
+		"component/securitybox3.png",
+		"component/securitybox4.png",
 		"component/tape.png",
 		"component/pusheenFront.png",
 		"component/lighter.png",
@@ -209,6 +214,7 @@ public class MainApplet extends PApplet
 				image(images.get("middle+securitybox.png"), 325, 145, 140, 130);
 			}
 			
+			
 			if(middleRoom.pusheenBottle() == 1){
 				image(images.get("pusheen_bottle.png"), middleRoom.getComX("pusheenBottle"), middleRoom.getComY("pusheenBottle"), 80, 60);
 			}
@@ -221,6 +227,22 @@ public class MainApplet extends PApplet
 			if(middleRoom.lighter() == 1){
 				image(images.get("lighter.png"), middleRoom.getComX("lighter"), middleRoom.getComY("lighter"), 120, 100);
 				
+			}
+			
+			if(securityboxnumamount==1){
+				image(images.get("securitybox1.png"),0,0,840,540);
+			}
+			else if(securityboxnumamount==2){
+				image(images.get("securitybox2.png"),0,0,840,540);
+			}
+			else if(securityboxnumamount==3){
+				image(images.get("securitybox3.png"),0,0,840,540);
+			}
+			else if(securityboxnumamount>=4){
+				image(images.get("securitybox4.png"),0,0,840,540);
+			}
+			else if(middleRoom.securityState==1){
+				image(images.get("securitybox.png"),0,0,840,540);
 			}
 			if(this.startmenu == 1)
 			{
@@ -455,6 +477,93 @@ public class MainApplet extends PApplet
 		{
 			this.curRoom -= 1;
 		}
+		///////////////////////////////////////////////////////////////////////////////
+		else if(middleRoom.securityState==1 && arg0.getKeyCode()==KeyEvent.VK_NUMPAD0){
+			securityboxnumamount++;
+			securityboxnum = securityboxnum*10;
+		}
+		else if(middleRoom.securityState==1 && arg0.getKeyCode()==KeyEvent.VK_NUMPAD1){
+			securityboxnumamount++;
+			securityboxnum = securityboxnum*10+1;
+		}
+		else if(middleRoom.securityState==1 && arg0.getKeyCode()==KeyEvent.VK_NUMPAD2){
+			securityboxnumamount++;
+			securityboxnum = securityboxnum*10+2;
+		}
+		else if(middleRoom.securityState==1 && arg0.getKeyCode()==KeyEvent.VK_NUMPAD3){
+			securityboxnumamount++;
+			securityboxnum = securityboxnum*10+3;
+		}
+		else if(middleRoom.securityState==1 && arg0.getKeyCode()==KeyEvent.VK_NUMPAD4){
+			securityboxnumamount++;
+			securityboxnum = securityboxnum*10+4;
+		}
+		else if(middleRoom.securityState==1 && arg0.getKeyCode()==KeyEvent.VK_NUMPAD5){
+			securityboxnumamount++;
+			securityboxnum = securityboxnum*10+5;
+		}
+		else if(middleRoom.securityState==1 && arg0.getKeyCode()==KeyEvent.VK_NUMPAD6){
+			securityboxnumamount++;
+			securityboxnum = securityboxnum*10+6;
+		}
+		else if(middleRoom.securityState==1 && arg0.getKeyCode()==KeyEvent.VK_NUMPAD7){
+			securityboxnumamount++;
+			securityboxnum = securityboxnum*10+7;
+		}
+		else if(middleRoom.securityState==1 && arg0.getKeyCode()==KeyEvent.VK_NUMPAD8){
+			securityboxnumamount++;
+			securityboxnum = securityboxnum*10+8;
+		}
+		else if(middleRoom.securityState==1 && arg0.getKeyCode()==KeyEvent.VK_NUMPAD9){
+			securityboxnumamount++;
+			securityboxnum = securityboxnum*10+9;
+		}
+		else if(middleRoom.securityState==1 && arg0.getKeyCode()==KeyEvent.VK_ENTER){
+			checksecurity();
+		}
+		
+		else if(middleRoom.securityState==1 && arg0.getKeyCode()==KeyEvent.VK_0){
+			securityboxnumamount++;
+			securityboxnum = securityboxnum*10;
+		}
+		else if(middleRoom.securityState==1 && arg0.getKeyCode()==KeyEvent.VK_1){
+			securityboxnumamount++;
+			securityboxnum = securityboxnum*10+1;
+		}
+		else if(middleRoom.securityState==1 && arg0.getKeyCode()==KeyEvent.VK_2){
+			securityboxnumamount++;
+			securityboxnum = securityboxnum*10+2;
+		}
+		else if(middleRoom.securityState==1 && arg0.getKeyCode()==KeyEvent.VK_3){
+			securityboxnumamount++;
+			securityboxnum = securityboxnum*10+3;
+		}
+		else if(middleRoom.securityState==1 && arg0.getKeyCode()==KeyEvent.VK_4){
+			securityboxnumamount++;
+			securityboxnum = securityboxnum*10+4;
+		}
+		else if(middleRoom.securityState==1 && arg0.getKeyCode()==KeyEvent.VK_5){
+			securityboxnumamount++;
+			securityboxnum = securityboxnum*10+5;
+		}
+		else if(middleRoom.securityState==1 && arg0.getKeyCode()==KeyEvent.VK_6){
+			securityboxnumamount++;
+			securityboxnum = securityboxnum*10+6;
+		}
+		else if(middleRoom.securityState==1 && arg0.getKeyCode()==KeyEvent.VK_7){
+			securityboxnumamount++;
+			securityboxnum = securityboxnum*10+7;
+		}
+		else if(middleRoom.securityState==1 && arg0.getKeyCode()==KeyEvent.VK_8){
+			securityboxnumamount++;
+			securityboxnum = securityboxnum*10+8;
+		}
+		else if(middleRoom.securityState==1 && arg0.getKeyCode()==KeyEvent.VK_9){
+			securityboxnumamount++;
+			securityboxnum = securityboxnum*10+9;
+		}
+		
+		
 	}
 	
 	public void voice()
@@ -686,21 +795,24 @@ public class MainApplet extends PApplet
 		if(this.curRoom == 0)			
 		{
 			//System.out.println(mouseX+" "+mouseY);
-			if(mouseX >= middleRoom.getComX("pusheenBottle")+25 && mouseX <= middleRoom.getComX("pusheenBottle")+58 && mouseY >= middleRoom.getComY("pusheenBottle")+5 && mouseY <= middleRoom.getComY("pusheenBottle")+60 ){
+			if(middleRoom.securityState == 0 && mouseX >= middleRoom.getComX("pusheenBottle")+25 && mouseX <= middleRoom.getComX("pusheenBottle")+58 && mouseY >= middleRoom.getComY("pusheenBottle")+5 && mouseY <= middleRoom.getComY("pusheenBottle")+60 ){
 				middleRoom.pusheenBottle_vanish();
 				itemtable.pusheenBottle_appear();
 			}
-			else if(mouseX >= 328 && mouseX <= 462 && mouseY >= 147 && mouseY <= 269 && mouseState == 0)
+			else if(middleRoom.securityState == 0 &&  mouseX >= 328 && mouseX <= 462 && mouseY >= 147 && mouseY <= 269 && middleRoom.lightleft() == 1 && middleRoom.lightright() == 1)
 			{
 				//clue = pusheen.getPass();
+				middleRoom.securityState = 1;
+				securityboxnum = 0;
+				securityboxnumamount = 0;
 			}
-			else if(mouseX >= 585 && mouseX <= 650 && mouseY >= 215 && mouseY <= 250 && mouseState == 11){
+			else if(middleRoom.securityState==0 && mouseX >= 585 && mouseX <= 650 && mouseY >= 215 && mouseY <= 250 && mouseState == 11){
 				MovePusheen pusheen = new MovePusheen(this, middleRoom);
 			}
-			else if(mouseState==11  && mouseX >= 255 && mouseX <= 280 && mouseY >= 180 && mouseY <= 230){
+			else if(middleRoom.securityState==0 && mouseState==11  && mouseX >= 255 && mouseX <= 280 && mouseY >= 180 && mouseY <= 230){
 				middleRoom.lightleft_appear();
 			}
-			else if(mouseState==11  && mouseX >= 485 && mouseX <= 520 && mouseY >= 180 && mouseY <= 230){
+			else if(middleRoom.securityState==0 && mouseState==11  && mouseX >= 485 && mouseX <= 520 && mouseY >= 180 && mouseY <= 230){
 				middleRoom.lightright_appear();
 			}
 		}
@@ -777,10 +889,21 @@ public class MainApplet extends PApplet
 			}
 			
 		}
-		
 		//System.out.println(this.curRoom);
 		if(this.curRoom > 3)
 			this.curRoom = 0;
+	}
+	
+	private void checksecurity(){
+		if(securityboxnumamount==4){
+			System.out.println(securityboxnum);
+			if(securityboxnum==3432){
+				middleRoom.securityState = 0;
+				middleRoom.securityboxopen_appear();
+			}
+		}
+		securityboxnum = 0;
+		securityboxnumamount = 0;
 	}
 	
 	private void putItemBack(){

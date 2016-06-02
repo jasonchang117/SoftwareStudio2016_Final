@@ -6,7 +6,10 @@ public class MiddleRoom {
 	private int securitybox, securityboxX, securityboxY;
 	private int lighter, lighterX, lighterY;
 	private int lightleft, lightright;
+	private int securityboxopen;
 	public int middlebackground;
+	public int securityState;
+	
 	public MiddleRoom() 
 	{
 		pusheenBottle = 1;
@@ -24,6 +27,7 @@ public class MiddleRoom {
 		middlebackground = 0;
 		lightleft = 0;
 		lightright = 0;
+		securityState = 0;
 	}
 
 	public int knif() { return this.knif; }
@@ -32,11 +36,13 @@ public class MiddleRoom {
 	public int lighter() { return this.lighter; }
 	public int lightleft() {return this.lightleft;}
 	public int lightright() {return this.lightright;}
+	public int securityboxopen() {return this.securityboxopen;}
 	
 	public void knif_vanish() { this.knif = 0; }
 	public void pusheenBottle_vanish() {this.pusheenBottle = 0; }
 	public void securitybox_vanish(){	this.securitybox = 0;}
 	public void lighter_vanish() { this.lighter = 0; }
+	public void securityboxopen_vanish() {this.securityboxopen = 0;}
 	
 	public void knif_appear() { this.knif = 1; }
 	public void pusheenBottle_appear() {this.pusheenBottle = 1; }
@@ -44,6 +50,7 @@ public class MiddleRoom {
 	public void lighter_appear() { this.lighter = 1; }
 	public void lightleft_appear() {this.lightleft = 1;}
 	public void lightright_appear() {this.lightright = 1;}
+	public void securityboxopen_appear() {this.securityboxopen = 1;}
 	
 	public int getComX(String str)
 	{
