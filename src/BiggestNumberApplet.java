@@ -80,8 +80,8 @@ public class BiggestNumberApplet extends PApplet{
 		stroke(0, 100, 100);
 		rect(0, 0, 500, 60);
 		fill(0);
-		textSize(42);
-		text("Find BiggestNumber", 32, 45);
+		textSize(33);
+		text("Find The BiggestNumber", 34, 45);
 		
 		image(images.get("eight.png"), eightX, eightY, 60, 60);
 		image(images.get("five.png"), fiveX, fiveY, 60, 60);
@@ -92,23 +92,29 @@ public class BiggestNumberApplet extends PApplet{
 		image(images.get("zero_1.png"), zero_oneX, zero_oneY, 60, 60);
 		image(images.get("zero_2.png"), zero_twoX, zero_twoY, 60, 60);
 		
+		
+		
 		if(wrong)
 		{
 			fill(255, 0, 0);
 			textSize(55);
-			this.text("You're wrong!", 20, 240);
+			this.text("You're wrong!", 60, 260);
 			}
 		if(pass)
 		{
 			fill(0, 200, 0);
 			textSize(60);
-			this.text("You Win !", 60, 240);
+			this.text("You Win !", 120, 260);
 		}
 		
 	}
 
 	public void mousePressed() 
 	{	
+		if(lockscreen){
+			mouseX = 45;
+			mouseY = 520;
+		}
 		if(mouseX > eightX && mouseX < eightX+60 && mouseY > eightY && mouseY < eightY+60 && !locked8){
 			this.eightX = mouseX-30;
 			this.eightY = mouseY-30;
@@ -199,34 +205,44 @@ public class BiggestNumberApplet extends PApplet{
 		if(on8){
 			if(eightY > 415 && eightY < 470){
 				if(space == 0){
-					eightX = 10;
+					eightX = 5;
 					eightY = 440;
 					space = 1;
 				}
 				else if(space == 1){
-					eightX = 70;
+					eightX = 65;
 					eightY = 440;
 					space = 2;
 				}
 				else if(space == 2){
-					eightX = 130;
+					eightX = 125;
 					eightY = 440;
 					space = 3;
 				}
 				else if(space == 3){
-					eightX = 190;
+					eightX = 185;
 					eightY = 440;
 					space = 4;
 				}
 				else if(space == 4){
-					eightX = 250;
+					eightX = 245;
 					eightY = 440;
 					space = 5;
 				}
 				else if(space == 5){
-					eightX = 310;
+					eightX = 305;
 					eightY = 440;
 					space = 6;
+				}
+				else if(space == 6){
+					eightX = 365;
+					eightY = 440;
+					space = 7;
+				}
+				else if(space == 7){
+					eightX = 425;
+					eightY = 440;
+					space = 8;
 				}
 			}
 			else locked8 = false;
@@ -234,70 +250,89 @@ public class BiggestNumberApplet extends PApplet{
 		if(on5){
 			if(fiveY > 415 && fiveY < 470){
 				if(space == 0){
-					fiveX = 10;
+					fiveX = 5;
 					fiveY = 440;
 					space = 1;
 				}
 				else if(space == 1){
-					fiveX = 70;
+					fiveX = 65;
 					fiveY = 440;
 					space = 2;
 				}
 				else if(space == 2){
-					fiveX = 130;
+					fiveX = 125;
 					fiveY = 440;
 					space = 3;
 				}
 				else if(space == 3){
-					fiveX = 190;
+					fiveX = 185;
 					fiveY = 440;
 					space = 4;
 				}
 				else if(space == 4){
-					fiveX = 250;
+					fiveX = 245;
 					fiveY = 440;
 					space = 5;
 				}
 				else if(space == 5){
-					fiveX = 310;
+					fiveX = 305;
 					fiveY = 440;
 					space = 6;
 				}
-
+				else if(space == 6){
+					fiveX = 365;
+					fiveY = 440;
+					space = 7;
+				}
+				else if(space == 7){
+					fiveX = 425;
+					fiveY = 440;
+					space = 8;
+				}
 			}
 			else locked5 = false;
 		}
 		if(on4){
 			if(fourY > 415 && fourY < 470){
 				if(space == 0){
-					fourX = 10;
+					fourX = 5;
 					fourY = 440;
 					space = 1;
 				}
 				else if(space == 1){
-					fourX = 70;
+					fourX = 65;
 					fourY = 440;
 					space = 2;
 				}
 				else if(space == 2){
-					fourX = 130;
+					fourX = 125;
 					fourY = 440;
 					space = 3;
 				}
 				else if(space == 3){
-					fourX = 190;
+					fourX = 185;
 					fourY = 440;
 					space = 4;
 				}
 				else if(space == 4){
-					fourX = 250;
+					fourX = 245;
 					fourY = 440;
 					space = 5;
 				}
 				else if(space == 5){
-					fourX = 310;
+					fourX = 305;
 					fourY = 440;
 					space = 6;
+				}
+				else if(space == 6){
+					fourX = 365;
+					fourY = 440;
+					space = 7;
+				}
+				else if(space == 7){
+					fourX = 425;
+					fourY = 440;
+					space = 8;
 				}
 			}
 			else locked4 = false;
@@ -305,34 +340,44 @@ public class BiggestNumberApplet extends PApplet{
 		if(on1){
 			if(oneY > 415 && oneY < 470){
 				if(space == 0){
-					oneX = 10;
+					oneX = 5;
 					oneY = 440;
 					space = 1;
 				}
 				else if(space == 1){
-					oneX = 70;
+					oneX = 65;
 					oneY = 440;
 					space = 2;
 				}
 				else if(space == 2){
-					oneX = 130;
+					oneX = 125;
 					oneY = 440;
 					space = 3;
 				}
 				else if(space == 3){
-					oneX = 190;
+					oneX = 185;
 					oneY = 440;
 					space = 4;
 				}
 				else if(space == 4){
-					oneX = 250;
+					oneX = 245;
 					oneY = 440;
 					space = 5;
 				}
 				else if(space == 5){
-					oneX = 310;
+					oneX = 305;
 					oneY = 440;
 					space = 6;
+				}
+				else if(space == 6){
+					oneX = 365;
+					oneY = 440;
+					space = 7;
+				}
+				else if(space == 7){
+					oneX = 425;
+					oneY = 440;
+					space = 8;
 				}
 			}
 			else locked1 = false;
@@ -340,34 +385,44 @@ public class BiggestNumberApplet extends PApplet{
 		if(on2_1){
 			if(two_oneY > 415 && two_oneY < 470){
 				if(space == 0){
-					two_oneX = 10;
+					two_oneX = 5;
 					two_oneY = 440;
 					space = 1;
 				}
 				else if(space == 1){
-					two_oneX = 70;
+					two_oneX = 65;
 					two_oneY = 440;
 					space = 2;
 				}
 				else if(space == 2){
-					two_oneX = 130;
+					two_oneX = 125;
 					two_oneY = 440;
 					space = 3;
 				}
 				else if(space == 3){
-					two_oneX = 190;
+					two_oneX = 185;
 					two_oneY = 440;
 					space = 4;
 				}
 				else if(space == 4){
-					two_oneX = 250;
+					two_oneX = 245;
 					two_oneY = 440;
 					space = 5;
 				}
 				else if(space == 5){
-					two_oneX = 310;
+					two_oneX = 305;
 					two_oneY = 440;
 					space = 6;
+				}
+				else if(space == 6){
+					two_oneX = 365;
+					two_oneY = 440;
+					space = 7;
+				}
+				else if(space == 7){
+					two_oneX = 425;
+					two_oneY = 440;
+					space = 8;
 				}
 			}
 			else locked2_1 = false;
@@ -375,34 +430,44 @@ public class BiggestNumberApplet extends PApplet{
 		if(on2_2){
 			if(two_twoY > 415 && two_twoY < 470){
 				if(space == 0){
-					two_twoX = 10;
+					two_twoX = 5;
 					two_twoY = 440;
 					space = 1;
 				}
 				else if(space == 1){
-					two_twoX = 70;
+					two_twoX = 65;
 					two_twoY = 440;
 					space = 2;
 				}
 				else if(space == 2){
-					two_twoX = 130;
+					two_twoX = 125;
 					two_twoY = 440;
 					space = 3;
 				}
 				else if(space == 3){
-					two_twoX = 190;
+					two_twoX = 185;
 					two_twoY = 440;
 					space = 4;
 				}
 				else if(space == 4){
-					two_twoX = 250;
+					two_twoX = 245;
 					two_twoY = 440;
 					space = 5;
 				}
 				else if(space == 5){
-					two_twoX = 310;
+					two_twoX = 305;
 					two_twoY = 440;
 					space = 6;
+				}
+				else if(space == 6){
+					two_twoX = 365;
+					two_twoY = 440;
+					space = 7;
+				}
+				else if(space == 7){
+					two_twoX = 425;
+					two_twoY = 440;
+					space = 8;
 				}
 			}
 			else locked2_2 = false;
@@ -410,41 +475,51 @@ public class BiggestNumberApplet extends PApplet{
 		if(on0_1){
 			if(zero_oneY > 415 && zero_oneY < 470){
 				if(space == 0){
-					zero_oneX = 10;
+					zero_oneX = 5;
 					zero_oneY = 440;
 					space = 1;
 					this.curNumber1 = true;
 				}
 				else if(this.curNumber1 && space == 1){
-					zero_oneX = 70;
+					zero_oneX = 65;
 					zero_oneY = 440;
 					this.curNumber2 = true;
 					space = 2;
 				}
 				else if(space == 1){
-					zero_oneX = 70;
+					zero_oneX = 65;
 					zero_oneY = 440;
 					space = 2;
 				}
 				else if(space == 2){
-					zero_oneX = 130;
+					zero_oneX = 125;
 					zero_oneY = 440;
 					space = 3;
 				}
 				else if(space == 3){
-					zero_oneX = 190;
+					zero_oneX = 185;
 					zero_oneY = 440;
 					space = 4;
 				}
 				else if(space == 4){
-					zero_oneX = 250;
+					zero_oneX = 245;
 					zero_oneY = 440;
 					space = 5;
 				}
 				else if(space == 5){
-					zero_oneX = 310;
+					zero_oneX = 305;
 					zero_oneY = 440;
 					space = 6;
+				}
+				else if(space == 6){
+					zero_oneX = 365;
+					zero_oneY = 440;
+					space = 7;
+				}
+				else if(space == 7){
+					zero_oneX = 425;
+					zero_oneY = 440;
+					space = 8;
 				}
 			}
 			else locked0_1 = false;
@@ -452,41 +527,51 @@ public class BiggestNumberApplet extends PApplet{
 		if(on0_2){
 			if(zero_twoY > 415 && zero_twoY < 470){
 				if(space == 0){
-					zero_twoX = 10;
+					zero_twoX = 5;
 					zero_twoY = 440;
 					space = 1;
 					this.curNumber1 = true;
 				}
 				else if(this.curNumber1 && space == 1){
-					zero_twoX = 70;
+					zero_twoX = 65;
 					zero_twoY = 440;
 					this.curNumber2 = true;
 					space = 2;
 				}
 				else if(space == 1){
-					zero_twoX = 70;
+					zero_twoX = 65;
 					zero_twoY = 440;
 					space = 2;
 				}
 				else if(space == 2){
-					zero_twoX = 130;
+					zero_twoX = 125;
 					zero_twoY = 440;
 					space = 3;
 				}
 				else if(space == 3){
-					zero_twoX = 190;
+					zero_twoX = 185;
 					zero_twoY = 440;
 					space = 4;
 				}
 				else if(space == 4){
-					zero_twoX = 250;
+					zero_twoX = 245;
 					zero_twoY = 440;
 					space = 5;
 				}
 				else if(space == 5){
-					zero_twoX = 310;
+					zero_twoX = 305;
 					zero_twoY = 440;
 					space = 6;
+				}
+				else if(space == 6){
+					zero_twoX = 365;
+					zero_twoY = 440;
+					space = 7;
+				}
+				else if(space == 7){
+					zero_twoX = 425;
+					zero_twoY = 440;
+					space = 8;
 				}
 			}
 			else locked0_2 = false;
@@ -515,14 +600,14 @@ public class BiggestNumberApplet extends PApplet{
 	
 	public void retry()
 	{
-		two_oneX = 60; two_oneY = 20;
-		two_twoX = 80; two_twoY = 250;
+		two_oneX = 360; two_oneY = 80;
+		two_twoX = 35; two_twoY = 280;
 		zero_twoX = 90; zero_twoY = 120;
 		eightX = 200; eightY = 80;
-		fiveX = 300; fiveY = 300;
-		fourX = 250; fourY = 200;
-		zero_oneX = 180; zero_oneY = 350;
-		oneX = 320; oneY = 20;
+		fiveX = 155; fiveY = 310;
+		fourX = 190; fourY = 190;
+		zero_oneX = 345; zero_oneY = 300;
+		oneX = 290; oneY = 165;
 		this.space = 0;
 		this.curNumber1 = false;
 		this.curNumber2 = false;
