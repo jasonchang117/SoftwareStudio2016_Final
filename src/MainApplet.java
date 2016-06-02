@@ -59,6 +59,7 @@ public class MainApplet extends PApplet
 		"background/light_left.png",
 		"background/lamp.png",
 		"background/middle+securitybox.png",
+		"background/carpet paper.png",
 		"component/beknif_pusheen.png",
 		"component/hammer.png",
 		"component/hose.png",
@@ -107,6 +108,7 @@ public class MainApplet extends PApplet
 		"component/clue4_1.png",
 		"component/clue4_2.png",
 		"component/securitybox_open.png"
+		
 	};
 	
 	public void setup()				// override the processing that initial the applet
@@ -289,7 +291,9 @@ public class MainApplet extends PApplet
 		}
 		else if(this.curRoom == -1) //left room
 		{
-			image(images.get("left.png"),0,0,840,540);
+			
+			if(leftRoom.paperbackground==1)image(images.get("carpet paper.png"), 0, 0, 840, 540);
+			else image(images.get("left.png"),0,0,840,540);
 			if(leftRoom.pusheenFront()==1)
 			{
 				if(pusheenNum%120 < 30){
@@ -861,7 +865,14 @@ public class MainApplet extends PApplet
 		}
 		else if(this.curRoom == -1)		// left room
 		{
-			//System.out.println(mouseX+" "+mouseY);
+			System.out.println(mouseX+" "+mouseY);
+			if(leftRoom.isanimate==0 && leftRoom.paperbackground==0 && mouseX>200 && mouseX<310 && mouseY>440 && mouseY<485){
+				leftRoom.paperbackground = 1;
+			}
+			if(leftRoom.isanimate==0 && leftRoom.paperbackground==1 && mouseX>240 && mouseX<292 && mouseY>440 && mouseY<485){
+				//clue5
+				
+			}
 			if(leftRoom.isanimate==0 && leftRoom.normalBottle()==1 && mouseX >= leftRoom.getComX("normalBottle")+23 && mouseX <= leftRoom.getComX("normalBottle")+53 && mouseY >= leftRoom.getComY("normalBottle") && mouseY <= leftRoom.getComY("normalBottle")+73 ){
 				leftRoom.normalBottle_vanish();
 				itemtable.normalBottle_appear();
