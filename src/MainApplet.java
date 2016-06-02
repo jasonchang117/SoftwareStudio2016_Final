@@ -105,6 +105,7 @@ public class MainApplet extends PApplet
 		"component/clue3_2.png",
 		"component/clue4_1.png",
 		"component/clue4_2.png",
+		"component/securitybox_open.png"
 	};
 	
 	public void setup()				// override the processing that initial the applet
@@ -213,7 +214,9 @@ public class MainApplet extends PApplet
 			if(middleRoom.lightleft() == 1 && middleRoom.lightright() == 1){
 				image(images.get("middle+securitybox.png"), 325, 145, 140, 130);
 			}
-			
+			if(middleRoom.securityboxopen()==1){
+				image(images.get("securitybox_open.png"), 325, 145, 140, 130);
+			}
 			
 			if(middleRoom.pusheenBottle() == 1){
 				image(images.get("pusheen_bottle.png"), middleRoom.getComX("pusheenBottle"), middleRoom.getComY("pusheenBottle"), 80, 60);
@@ -226,7 +229,6 @@ public class MainApplet extends PApplet
 			}
 			if(middleRoom.lighter() == 1){
 				image(images.get("lighter.png"), middleRoom.getComX("lighter"), middleRoom.getComY("lighter"), 120, 100);
-				
 			}
 			
 			if(securityboxnumamount==1){
