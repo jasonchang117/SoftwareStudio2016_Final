@@ -61,7 +61,7 @@ public class FillApplet extends PApplet implements ActionListener{
 	
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		fuilName = chooseQues();
+		fileName = chooseQues();
 		fileName = "../"+fileName+".csv";
 		//chooseQues = chooseQues(fileName);
 		System.out.println(fileName);

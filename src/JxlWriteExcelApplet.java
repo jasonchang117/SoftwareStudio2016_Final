@@ -70,6 +70,7 @@ public class JxlWriteExcelApplet extends PApplet implements ActionListener{
 		input_ques = textfield_ques.getText();
 		input_comm = textfield_comm.getText();
 		
+		system(input_name ,input_ques ,input_comm);
 		create(input_name ,input_ques);
 		
 		textfield_ques.setText("");   //Clear after Enter.
@@ -79,37 +80,62 @@ public class JxlWriteExcelApplet extends PApplet implements ActionListener{
 	}	
 
 
-///////////////////////////////About Excel///////////////////////////////////////////////	
-	public void create(String fileName, String QContent)
+///////////////////////////////About Excel///////////////////////////////////////////////
+	public void system(String user, String QContent, String QComment)
 	{
 		// before we open the file check to see if it already exists
-		boolean alreadyExists = new File("../"+fileName+".csv").exists();
+		boolean alreadyExists = new File("../"+user+".csv").exists();
 		try
 		{
 		//Create a blank workbook
-			CsvWriter csvOutput = new CsvWriter(new FileWriter("../"+fileName+".csv", true), ',');
+			CsvWriter csvOutput = new CsvWriter(new FileWriter("../System.csv", true), ',');
 		//Info Setup: Question - answerNum
 		// if the file didn't already exist then we need to write out the header line
 			if (!alreadyExists)
 			{
-				csvOutput.write(fileName);
+				csvOutput.write("File name");
 				csvOutput.write("Question");
 				csvOutput.write("Always");
-				csvOutput.write("");
 				csvOutput.write("Sometime");
-				csvOutput.write("");
 				csvOutput.write("Never");
-				csvOutput.write("");
+				csvOutput.write("Comment");
 				csvOutput.endRecord();
 			}//Create a new row in workbook
-			csvOutput.write(fileName);
+			csvOutput.write(user);
 			csvOutput.write(QContent);	
 			csvOutput.write("Always");
-			csvOutput.write("");
 			csvOutput.write("Sometime");
-			csvOutput.write("");
 			csvOutput.write("Never");
-			csvOutput.write("");
+			csvOutput.write(QComment);	
+			csvOutput.endRecord();
+			
+			csvOutput.close();	
+		}
+		catch(IOException e)
+		{
+		     e.printStackTrace();
+		} 	
+	}
+	
+	public void create(String user, String QContent)
+	{
+		// before we open the file check to see if it already exists
+		boolean alreadyExists = new File("../"+user+".csv").exists();
+		try
+		{
+		//Create a blank workbook
+			CsvWriter csvOutput = new CsvWriter(new FileWriter("../"+user+".csv", true), ',');
+		//Info Setup: Question - answerNum
+		// if the file didn't already exist then we need to write out the header line
+			if (!alreadyExists)
+			{
+				csvOutput.write("Question");
+				csvOutput.write("Always");
+				csvOutput.write("Sometime");
+				csvOutput.write("Never");
+				csvOutput.endRecord();
+			}//Create a new row in workbook
+			csvOutput.write(QContent);	
 			csvOutput.endRecord();
 			
 			csvOutput.close();	
