@@ -29,10 +29,9 @@ public class FillApplet extends PApplet implements ActionListener{
 	String encoding = "UTF8";
 	private ControlP5 cp5;
 	public int option = 0; //1=always, 2=sometime, 3= never.
-	public String user="", qContent="";
 	public int i_always=0, i_sometime=0, i_never=0;
 	public String str_always, str_sometime ,str_never;
-	public String questionShow, commentShow;
+	public String questionShow, commentShow, fileName;
 	
 	public void setup(){
 		Ani.init(this);
@@ -49,6 +48,7 @@ public class FillApplet extends PApplet implements ActionListener{
 		
 		questionShow = chooseQues();
 		commentShow = chooseComm();
+		fileName = readUser();
 	}
 	public void draw(){
 		background(200);
@@ -80,60 +80,42 @@ public class FillApplet extends PApplet implements ActionListener{
 		option = 3;
 		getOption();
 	}
-	public String getOption(){
+	public void getOption(){
 		if(option==1){
-			i_always++;
-			str_always = Integer.toString(i_always);
+			i_always = 1;
+			i_sometime=0;
+			i_never=0;
+			
 		}
 		else if(option==2){
-			i_sometime++;
-			str_sometime = Integer.toString(i_sometime);
+			i_always=0;
+			i_sometime=1;
+			i_never=0;
 		}
 		else if(option==3){
-			i_never++;
-			str_never = Integer.toString(i_never);
+			i_always=0;
+			i_sometime=0;
+			i_never=1;
 		}
+		str_always = Integer.toString(i_always);
+		str_sometime = Integer.toString(i_sometime);
+		str_never = Integer.toString(i_never);
 		System.out.println(str_always+","+str_sometime+","+str_never);
-		return str_always+","+str_sometime+","+str_never;
+		update(fileName);
 	}
 	
 ///////////////////////////////About Excel///////////////////////////////////////////////	
-	public void update(String user, String QContent)
-	{
-		user = "../"+user+".csv";
-		try
-		{
-			//Create a blank workbook
-			CsvWriter csvOutput = new CsvWriter(new FileWriter(user, true), ',');
-			//Info Setup: Question - answerNum
-			csvOutput.write(QContent);	
-			csvOutput.write("Always");
-			csvOutput.write(str_always);
-			csvOutput.write("Sometime");
-			csvOutput.write(str_sometime);
-			csvOutput.write("Never");
-			csvOutput.write(str_never);
-			csvOutput.endRecord();
-			
-			csvOutput.close();	
-		}
-		catch(IOException e)
-		{
-			e.printStackTrace();
-		} 	
-	}
-	
-	public String chooseQues() //Read question from System.csv 
+	public String chooseQues() //Read question from System.csv --> display
 	{
 		String question = ""; //initial
 		try {
-			user = "../System.csv";
-			CsvReader XLfile = new CsvReader(user);		
+			CsvReader XLfile = new CsvReader("../System.csv");		
 			XLfile.readHeaders();				
 			
 			while (XLfile.readRecord())
 			{
 				question = XLfile.get("Question");
+				System.out.println(question);
 			}
 			XLfile.close();
 		
@@ -144,12 +126,11 @@ public class FillApplet extends PApplet implements ActionListener{
 		}
 		return question;
 	}
-	public String chooseComm() //Read question from System.csv 
+	public String chooseComm() //Read comment from System.csv --> display
 	{
 		String comment = ""; //initial
 		try {
-			user = "../System.csv";
-			CsvReader XLfile = new CsvReader(user);		
+			CsvReader XLfile = new CsvReader("../System.csv");		
 			XLfile.readHeaders();				
 			
 			while (XLfile.readRecord())
@@ -165,4 +146,55 @@ public class FillApplet extends PApplet implements ActionListener{
 		}
 		return comment;
 	}
+	
+	
+	public String readUser() //Get file name from System.csv--> update user.csv 
+	{
+		String fileName = "";  
+		try {
+			CsvReader XLfile = new CsvReader("../System.csv");		
+			XLfile.readHeaders();				
+			
+			while (XLfile.readRecord())
+			{
+				fileName = XLfile.get("File name");
+			}
+			XLfile.close();
+		
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		System.out.println("fileName = "+fileName);
+		
+		return fileName;
+	}	
+	
+	
+	public void update(String fileName)
+	{
+		fileName = "../"+fileName+".csv";
+		try
+		{
+			//Create a blank workbook
+			CsvWriter csvOutput = new CsvWriter(new FileWriter(fileName, true), ',');
+			//Info Setup: Question - answerNum
+			csvOutput.write(questionShow);	
+			//csvOutput.write("Always");
+			csvOutput.write(str_always);
+			//csvOutput.write("Sometime");
+			csvOutput.write(str_sometime);
+			//csvOutput.write("Never");
+			csvOutput.write(str_never);
+			csvOutput.endRecord();
+			
+			csvOutput.close();	
+		}
+		catch(IOException e)
+		{
+			e.printStackTrace();
+		} 	
+	}
+	
 }

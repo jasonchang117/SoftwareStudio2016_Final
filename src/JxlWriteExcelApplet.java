@@ -15,13 +15,16 @@ import java.io.File;    //Collide with import jxl.read.biff.File;
 
 public class JxlWriteExcelApplet extends PApplet implements ActionListener{
 	private final static int width = 1000, height = 540;
-	public String input_name, input_ques, input_comm;
 	private Font f = new Font("Consolas", 0, 35);
 	TextField textfield_name = new TextField(15);	
 	TextField textfield_ques = new TextField(15);
 	TextField textfield_comm = new TextField(15);
 	private PImage bkg = loadImage("background/questionInput.png");
 	String encoding = "UTF8";
+	public String input_name, input_ques, input_comm;
+	public String fileName;
+	public int order = 0;
+	
 	
 	public void setup()
 	{
@@ -69,22 +72,36 @@ public class JxlWriteExcelApplet extends PApplet implements ActionListener{
 		input_name = textfield_name.getText();
 		input_ques = textfield_ques.getText();
 		input_comm = textfield_comm.getText();
-		
+
+		createOrder();
+		fileName = createFileName();
 		system(input_name ,input_ques ,input_comm);
-		create(input_name ,input_ques);
+		create(fileName ,input_ques);
 		
 		textfield_ques.setText("");   //Clear after Enter.
 		textfield_name.setText("");   //Clear after Enter.	
 		textfield_comm.setText("");
 		
 	}	
-
-
+	public void createOrder()
+	{
+		order++;
+		//createFileName();
+		fileName = Integer.toString(order);
+		System.out.println("order = "+order);
+		System.out.println("fileName = "+fileName);
+	}
+	public String createFileName()//to create fileName 
+	{
+		fileName = Integer.toString(order);
+		return fileName;
+	}
+	
 ///////////////////////////////About Excel///////////////////////////////////////////////
 	public void system(String user, String QContent, String QComment)
 	{
 		// before we open the file check to see if it already exists
-		boolean alreadyExists = new File("../"+user+".csv").exists();
+		boolean alreadyExists = new File("../System.csv").exists();
 		try
 		{
 		//Create a blank workbook
@@ -93,6 +110,7 @@ public class JxlWriteExcelApplet extends PApplet implements ActionListener{
 		// if the file didn't already exist then we need to write out the header line
 			if (!alreadyExists)
 			{
+				csvOutput.write("User");
 				csvOutput.write("File name");
 				csvOutput.write("Question");
 				csvOutput.write("Always");
@@ -102,10 +120,11 @@ public class JxlWriteExcelApplet extends PApplet implements ActionListener{
 				csvOutput.endRecord();
 			}//Create a new row in workbook
 			csvOutput.write(user);
+			csvOutput.write(fileName); //System manager will set a fileName for questionnaire-designer.
 			csvOutput.write(QContent);	
-			csvOutput.write("Always");
-			csvOutput.write("Sometime");
-			csvOutput.write("Never");
+			csvOutput.write("");
+			csvOutput.write("");
+			csvOutput.write("");
 			csvOutput.write(QComment);	
 			csvOutput.endRecord();
 			
@@ -117,14 +136,14 @@ public class JxlWriteExcelApplet extends PApplet implements ActionListener{
 		} 	
 	}
 	
-	public void create(String user, String QContent)
+	public void create(String fileName, String QContent)
 	{
 		// before we open the file check to see if it already exists
-		boolean alreadyExists = new File("../"+user+".csv").exists();
+		boolean alreadyExists = new File("../"+fileName+".csv").exists();
 		try
 		{
 		//Create a blank workbook
-			CsvWriter csvOutput = new CsvWriter(new FileWriter("../"+user+".csv", true), ',');
+			CsvWriter csvOutput = new CsvWriter(new FileWriter("../"+fileName+".csv", true), ',');
 		//Info Setup: Question - answerNum
 		// if the file didn't already exist then we need to write out the header line
 			if (!alreadyExists)
