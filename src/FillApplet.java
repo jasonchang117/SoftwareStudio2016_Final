@@ -29,10 +29,10 @@ public class FillApplet extends PApplet implements ActionListener{
 	String encoding = "UTF8";
 	private ControlP5 cp5;
 	public int option = 0; //1=always, 2=sometime, 3= never.
-	public String fileName="", qContent="";
+	public String user="", qContent="";
 	public int i_always=0, i_sometime=0, i_never=0;
 	public String str_always, str_sometime ,str_never;
-	public String chooseQues;
+	public String questionShow, commentShow;
 	
 	public void setup(){
 		Ani.init(this);
@@ -46,6 +46,9 @@ public class FillApplet extends PApplet implements ActionListener{
 		cp5.addButton("always").setLabel("Always").setPosition(60, 250).setSize(200, 50);
 		cp5.addButton("sometime").setLabel("Sometime").setPosition(380, 250).setSize(200, 50);
 		cp5.addButton("never").setLabel("Never").setPosition(700, 250).setSize(200,50);
+		
+		questionShow = chooseQues();
+		commentShow = chooseComm();
 	}
 	public void draw(){
 		background(200);
@@ -54,18 +57,13 @@ public class FillApplet extends PApplet implements ActionListener{
 		textSize(20);
 		this.text("Please type in your answer.", 35, 40);		
 		textSize(30);
-		this.text("Question????????", 60, 100);	/////////Wait for improve.
+		this.text(questionShow, 60, 100);	/////////Wait for improve.
 		textSize(20);
-		this.text("comment??????", 100, 150);/////////Wait for improve.
+		this.text(commentShow, 100, 150);/////////Wait for improve.
 	}
 	
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		fuilName = chooseQues();
-		fileName = "../"+fileName+".csv";
-		//chooseQues = chooseQues(fileName);
-		System.out.println(fileName);
-		update(fileName,qContent);
 	}
 	
 	
@@ -95,17 +93,18 @@ public class FillApplet extends PApplet implements ActionListener{
 			i_never++;
 			str_never = Integer.toString(i_never);
 		}
+		System.out.println(str_always+","+str_sometime+","+str_never);
 		return str_always+","+str_sometime+","+str_never;
 	}
 	
 ///////////////////////////////About Excel///////////////////////////////////////////////	
-	public void update(String fileName, String QContent)
+	public void update(String user, String QContent)
 	{
-		fileName = "../"+fileName+".csv";
+		user = "../"+user+".csv";
 		try
 		{
 			//Create a blank workbook
-			CsvWriter csvOutput = new CsvWriter(new FileWriter(fileName, true), ',');
+			CsvWriter csvOutput = new CsvWriter(new FileWriter(user, true), ',');
 			//Info Setup: Question - answerNum
 			csvOutput.write(QContent);	
 			csvOutput.write("Always");
@@ -124,12 +123,12 @@ public class FillApplet extends PApplet implements ActionListener{
 		} 	
 	}
 	
-	public String chooseQues(String fileName) 
+	public String chooseQues() //Read question from System.csv 
 	{
 		String question = ""; //initial
 		try {
-			fileName = "../"+fileName+".csv";
-			CsvReader XLfile = new CsvReader(fileName);		
+			user = "../System.csv";
+			CsvReader XLfile = new CsvReader(user);		
 			XLfile.readHeaders();				
 			
 			while (XLfile.readRecord())
@@ -143,7 +142,27 @@ public class FillApplet extends PApplet implements ActionListener{
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		System.out.println(question);
-		return fileName;
+		return question;
+	}
+	public String chooseComm() //Read question from System.csv 
+	{
+		String comment = ""; //initial
+		try {
+			user = "../System.csv";
+			CsvReader XLfile = new CsvReader(user);		
+			XLfile.readHeaders();				
+			
+			while (XLfile.readRecord())
+			{
+				comment = XLfile.get("Comment");
+			}
+			XLfile.close();
+		
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return comment;
 	}
 }
