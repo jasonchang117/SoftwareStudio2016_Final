@@ -166,13 +166,13 @@ public class FillApplet extends PApplet implements ActionListener{
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		System.out.println("fileName = "+fileName);
+		//System.out.println("fileName = "+fileName);
 		
 		return fileName;
 	}	
 	
 	
-	public void update(String fileName)
+	public void update(String fileName)  //to key in player's answer.
 	{
 		fileName = "../"+fileName+".csv";
 		try
@@ -196,5 +196,6 @@ public class FillApplet extends PApplet implements ActionListener{
 			e.printStackTrace();
 		} 	
 	}
+	
 	
 }

@@ -64,7 +64,7 @@ public class JxlReadExcelApplet extends PApplet implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		input_name = textfield_name.getText();
-				
+		
 		read(input_name);
 		
 		textfield_name.setText("");   //Clear after Enter.	
@@ -76,6 +76,8 @@ public class JxlReadExcelApplet extends PApplet implements ActionListener{
 	public void read(String fileName) 
 	{
 		result = ""; //initial
+		int i_always=0, i_sometime=0, i_never=0;
+		int always=0, sometime=0, never=0;
 		try {
 		// before we open the file check to see if it already exists
 			alreadyExists = new File("../"+fileName+".csv").exists(); 
@@ -95,6 +97,14 @@ public class JxlReadExcelApplet extends PApplet implements ActionListener{
 					String Option2 = XLfile.get("Sometime");
 					String Option3 = XLfile.get("Never");
 					
+					i_always = Integer.valueOf(Option1);
+					i_sometime = Integer.valueOf(Option2);
+					i_never = Integer.valueOf(Option3);
+					
+					always += i_always;
+					sometime += i_sometime;
+					never += i_never;
+					System.out.println("int result: always="+always+" sometime="+sometime+" never="+never);
 				//////jump to show the result.
 					result = result +"\n" + InputQuestion +" Always- " + Option1+"  Sometime- " +Option2+"  Never- "+Option3;
 				}
