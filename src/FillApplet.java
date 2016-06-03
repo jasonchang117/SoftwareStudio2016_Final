@@ -56,9 +56,9 @@ public class FillApplet extends PApplet implements ActionListener{
 		image(bkg, 0, 0, 1000, 540);
 		textSize(20);
 		this.text("Please type in your answer.", 35, 40);		
+		/*textSize(30);
+		this.text(questionShow, 60, 100);	/////////Wait for improve.*/
 		textSize(30);
-		this.text(questionShow, 60, 100);	/////////Wait for improve.
-		textSize(20);
 		this.text(commentShow, 100, 150);/////////Wait for improve.
 	}
 	
@@ -129,13 +129,18 @@ public class FillApplet extends PApplet implements ActionListener{
 	public String chooseComm() //Read comment from System.csv --> display
 	{
 		String comment = ""; //initial
+		String q ;
 		try {
 			CsvReader XLfile = new CsvReader("../System.csv");		
 			XLfile.readHeaders();				
 			
+			
 			while (XLfile.readRecord())
-			{
+			{	
+				q = XLfile.get("File name");
 				comment = XLfile.get("Comment");
+				if(q.toString().equals("2")) //!!!!!!!!!!!!!!!!!!
+					break;
 			}
 			XLfile.close();
 		
@@ -157,7 +162,9 @@ public class FillApplet extends PApplet implements ActionListener{
 			
 			while (XLfile.readRecord())
 			{
-				fileName = XLfile.get("File name");
+				if(fileName.equals("2"))
+					break;
+				fileName = XLfile.get("File name"); //!!!!!!!!!!!!
 			}
 			XLfile.close();
 		

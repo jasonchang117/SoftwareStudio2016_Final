@@ -42,7 +42,7 @@ public class JxlReadExcelApplet extends PApplet implements ActionListener{
 			fill(0);
 			image(bkg, 0, 0, 1000, 540);
 			textSize(25);
-			this.text("Your name:", 35, 120);
+			this.text("Question number:", 35, 120);
 			textSize(35);
 			this.text(result, 100, 200);
 			
@@ -51,9 +51,9 @@ public class JxlReadExcelApplet extends PApplet implements ActionListener{
 			fill(0);
 			image(bkg, 0, 0, 1000, 540);
 			textSize(35);
-			this.text("Please type in your name to see your questionnaire.", 35, 40);
+			this.text("Please type in the question number to see your questionnaire.", 35, 40);
 			textSize(25);
-			this.text("Your name:", 35, 120);
+			this.text("Question number", 35, 120);
 		//Show the file result.
 			textSize(20);
 			this.text(result, 100, 180);

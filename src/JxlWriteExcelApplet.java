@@ -15,11 +15,10 @@ import java.io.File;    //Collide with import jxl.read.biff.File;
 
 public class JxlWriteExcelApplet extends PApplet implements ActionListener{
 	private final static int width = 1000, height = 540;
-	private Font f = new Font("Consolas", 0, 35);
-	JxlWriteExcel jxl;
-	TextField textfield_name = new TextField(15);	
-	TextField textfield_ques = new TextField(15);
-	TextField textfield_comm = new TextField(15);
+	private Font f = new Font("Consolas", 0,30);
+	JxlWriteExcel jxl;	
+	TextField textfield_ques = new TextField();
+	TextField textfield_comm = new TextField();
 	private PImage bkg = loadImage("background/questionInput.png");
 	String encoding = "UTF8";
 	public String input_name, input_ques, input_comm;
@@ -36,20 +35,15 @@ public class JxlWriteExcelApplet extends PApplet implements ActionListener{
 		this.setLayout(null);
 		size(width, height);
 		smooth();
-	//textfield_name
-		textfield_name.setFont(f);
-		textfield_name.addActionListener(this);
-		textfield_name.setBounds(200,80,300,45);
-		this.add(textfield_name);
 	//textfield_ques
-		textfield_name.setFont(f);
+		textfield_ques.setFont(f);
 		textfield_ques.addActionListener(this);
-		textfield_ques.setBounds(250,170,300,45);
+		textfield_ques.setBounds(280,80,250,45);
 		this.add(textfield_ques);
 	//textfield_comment
-		textfield_name.setFont(f);
+		textfield_comm.setFont(f);
 		textfield_comm.addActionListener(this);
-		textfield_comm.setBounds(250,260,300,100);
+		textfield_comm.setBounds(280,170,600,45);
 		this.add(textfield_comm);
 	}
 	
@@ -60,10 +54,9 @@ public class JxlWriteExcelApplet extends PApplet implements ActionListener{
 		image(bkg, 0, 0, 1000, 540);
 		textSize(35);
 		this.text("Please type in your questionnaire.", 35, 40);
-		textSize(25);
-		this.text("Your name:", 35, 120);
-		this.text("Your Question:", 35, 200);
-		this.text("YourComment:", 35, 280);
+		textSize(30);
+		this.text("Your Question:", 35, 110);
+		this.text("Your Comment:", 35, 200);
 		textSize(19);
 		this.text("¡° Please use _Tab_ to get to next blank.", 250, 400);
 		this.text("¡° After filling all the blanks, press _Enter_ and we'll create an Excel file for you.", 250, 430);
@@ -73,7 +66,6 @@ public class JxlWriteExcelApplet extends PApplet implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent arg0) 
 	{
-		input_name = textfield_name.getText();
 		input_ques = textfield_ques.getText();
 		input_comm = textfield_comm.getText();
 
@@ -83,7 +75,6 @@ public class JxlWriteExcelApplet extends PApplet implements ActionListener{
 		create(fileName ,input_ques);
 		
 		textfield_ques.setText("");   //Clear after Enter.
-		textfield_name.setText("");   //Clear after Enter.	
 		textfield_comm.setText("");
 		
 	}
