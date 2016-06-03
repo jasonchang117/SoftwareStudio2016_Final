@@ -198,11 +198,12 @@ public class MainApplet extends PApplet
 				image(images.get("pusheen_bottle_full.png"), 925, 270, 60, 60);
 			}
 		}
-		else {
+		else 
+		{
 			cursor(ARROW);
 		}
 		
-		if(this.curRoom == 0) //middle room
+		if(this.curRoom == 0) 		//middle room
 		{
 			if(middleRoom.middlebackground==0){
 				image(images.get("middle.png"), 0, 0, 840, 540);

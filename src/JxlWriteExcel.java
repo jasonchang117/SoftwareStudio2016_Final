@@ -4,7 +4,7 @@
 import javax.swing.JFrame;
 
 public class JxlWriteExcel extends JFrame {
-	private final static int windowWidth = 600, windowHeight = 600;
+	private final static int windowWidth = 1000, windowHeight = 600;
 	
 	public JxlWriteExcel() {		
 		JxlWriteExcelApplet xl = new JxlWriteExcelApplet();

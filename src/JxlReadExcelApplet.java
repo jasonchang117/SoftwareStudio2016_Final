@@ -99,7 +99,7 @@ public class JxlReadExcelApplet extends PApplet implements ActionListener{
 					String Option2 = XLfile.get("Sometime");
 					String Option3 = XLfile.get("Never");
 					
-					/**********BUG: want to sumup the answer and show up, while fail.
+					/**********BUG: want to sum up the answer and show up, while fail.
 					 * 
 					 * i_always = Integer.parseInt(Option1, 10);
 					i_sometime = Integer.parseInt(Option2, 10);

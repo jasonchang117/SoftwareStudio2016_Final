@@ -1,7 +1,7 @@
 import javax.swing.JFrame;
 
 public class JxlReadExcel {
-	private final static int windowWidth = 600, windowHeight = 600;
+	private final static int windowWidth = 1000, windowHeight = 600;
 	public JxlReadExcel() {
 		
 		JxlReadExcelApplet xl = new JxlReadExcelApplet();
