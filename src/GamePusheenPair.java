@@ -8,8 +8,9 @@ import processing.core.PApplet;
 import processing.core.PFont;
 import processing.core.PImage;
 
+@SuppressWarnings("serial")
 public class GamePusheenPair extends PApplet{
-	
+	GamePusheenPairMain main;
 	private ControlP5 cp5;
 	private int width = 1000, height = 600;
 	private int cardSize = 150;
@@ -58,9 +59,12 @@ public class GamePusheenPair extends PApplet{
 			"pusheenpair/F.png",
 			"pusheenpair/back.png",
 	};
-	
-	
 	private int [] cardPosition = new int [12];
+	
+	public GamePusheenPair(GamePusheenPairMain m)
+	{
+		this.main = m;
+	}
 	
 	public void setup()		
 	{	
@@ -249,6 +253,7 @@ public class GamePusheenPair extends PApplet{
 			this.game = 0;
 			this.howPlay = 0;
 			this.winGame = 1;
+			main.getClue(1);
 		}
 		else if (time >= limitedTime && this.win == false){
 			this.initial = 0;
@@ -256,6 +261,7 @@ public class GamePusheenPair extends PApplet{
 			this.game = 0;
 			this.howPlay = 0;
 			this.loseGame = 1;
+			main.getClue(0);
 		}
 			
 	}

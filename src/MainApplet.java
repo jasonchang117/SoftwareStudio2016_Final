@@ -29,7 +29,8 @@ public class MainApplet extends PApplet
 	private int pusheenNum = 0;
 	private int beknifnum = 0, becutnum = 0;
 	public  int clue1 = 0, clue2 = 0, clue3 = 0, clue4 = 0, clue_password2 = 0;
-	public  int success = 0;									// complete the game
+	public  int success = 0;		// complete the game
+	private int filled = 0;			// for clue4
 	private AudioClip cat;
 	private LeftRoom leftRoom = new LeftRoom();
 	private RightRoom rightRoom = new RightRoom();
@@ -147,7 +148,6 @@ public class MainApplet extends PApplet
 	public void draw()				// override the processing that paint the main components
 	{
 		background(0);
-		System.out.println(this.clue_password2);
 		
 		if(this.curRoom == 0 || this.curRoom == 1 || this.curRoom == -1){
 			image(images.get("itemtable.png"), 840, 0, 160, 400);
@@ -281,6 +281,8 @@ public class MainApplet extends PApplet
 				}else if(rightRoom.animateNum<=30*6){
 					image(images.get("fillingbottle6.png"), 540, 360, 200, 200);
 				}else{
+					this.clue4 = 2;
+					this.curRoom = 7;
 					itemtable.normalBottleFull_appear();
 					rightRoom.animate = 0;
 				}
@@ -360,6 +362,7 @@ public class MainApplet extends PApplet
 					image(images.get("normal_bottle_rotate120.png"), 620, 50,60,60);
 					image(images.get("pusheen_bottle5.png"), leftRoom.getComX("pusheenBottle"), leftRoom.getComY("pusheenBottle"),60,60);
 				}else {
+					this.filled = 1;
 					leftRoom.bottleAnimate = 0;
 					itemtable.pusheenBottleFull_appear();
 				}
@@ -705,6 +708,8 @@ public class MainApplet extends PApplet
 	{
 		if(this.clue_password2 == 1)
 			this.clue_password2 = 0;
+		if(this.curRoom > 3)
+			this.curRoom = 0;
 		/////// item panel
 		if((this.curRoom == 0 || this.curRoom==1 || this.curRoom==-1) && mouseX>=840 ){
 			if(mouseX>840 && mouseX<920 && mouseY<265 && mouseY>200) {
@@ -892,8 +897,11 @@ public class MainApplet extends PApplet
 			}else if(mouseState==9 && mouseX >650 && mouseX <750 && mouseY>430 && mouseY <470){
 				mouseState=0;
 				rightRoom.animate = 1;
+			}else if(mouseState==0 && mouseX >650 && mouseX <750 && mouseY>430 && mouseY <470){
+				this.curRoom = 7;
+				this.clue4 = 1;
 			}else if(mouseX > 366 && mouseX < 496 && mouseY > 18 && mouseY < 77){
-				GamePusheenPairMain pusheenpair = new GamePusheenPairMain();
+				GamePusheenPairMain pusheenpair = new GamePusheenPairMain(this);
 			}
 		}
 		else if(this.curRoom == -1)		// left room
@@ -947,14 +955,11 @@ public class MainApplet extends PApplet
 			{
 				if( ( ((mouseX-681.f)*(mouseX-681.f))/10000.f+((mouseY-485.f)*(mouseY-485.f))/900.f) <= 1.f )
 				{
-					RapidSorting sort = new RapidSorting();
+					RapidSorting sort = new RapidSorting(this);
 				}
 			}
 			
 		}
-		if(this.curRoom > 3)
-			this.curRoom = 0;
-	
 	}
 	
 	private void checksecurity(){

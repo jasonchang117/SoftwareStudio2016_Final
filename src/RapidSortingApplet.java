@@ -13,6 +13,7 @@ import processing.core.PImage;
 @SuppressWarnings("serial")
 public class RapidSortingApplet extends PApplet{
 	private final static int width = 400, height = 540;
+	private RapidSorting sort;
 	private ControlP5 cp5;
 	private int shape = 0, ans, dir;
 	private int wrong;
@@ -20,7 +21,6 @@ public class RapidSortingApplet extends PApplet{
 	private int prevShape = 0;
 	private float moveX = 0, moveY = 0;
 	private int shapeState = 0;
-	private float timeLimit = 300, time = 0;
 	private boolean isFirst = true;
 	private int gameStart = 0;
 	Random rand = new Random();
@@ -36,6 +36,11 @@ public class RapidSortingApplet extends PApplet{
 		"background/rapidsortingBackground.png",
 		"background/sorting_gameinfo.png",
 	};
+	
+	public RapidSortingApplet(RapidSorting s)
+	{
+		this.sort = s;
+	}
 	
 	public void setup()
 	{
@@ -67,8 +72,6 @@ public class RapidSortingApplet extends PApplet{
 	
 	public void draw()
 	{
-		
-		
 		if(this.now.getTime() - this.startTime.getTime() >= 30000)
 		{
 			this.shapeState = 3;
@@ -126,9 +129,6 @@ public class RapidSortingApplet extends PApplet{
 				this.fill(255);
 			}
 			
-			
-			//image(images.get("pusheentime.png"), 400-width/30*((this.now.getTime()-this.startTime.getTime())/1000), 460, 100, 50);
-			
 			textSize(20);
 			fill(0);
 			text("Your Score: " + this.score, 10, 40);
@@ -137,15 +137,17 @@ public class RapidSortingApplet extends PApplet{
 		else if(this.gameStart == 2)
 		{
 			textSize(35);
-			if(this.score >= 20)
+			if(this.score >= 15)
 			{
 				fill(0, 200, 50);
 				text("You Win !", 120, 240);
+				sort.getClue();
 			}
 			else
 			{
 				fill(200, 0, 50);
 				text("You Lose !", 110, 240);
+				sort.getClue();
 			}
 		}
 	}
@@ -228,5 +230,13 @@ public class RapidSortingApplet extends PApplet{
 		cp5.addButton("howplay").setLabel("How to Play ?").setPosition(95, 460).setSize(200, 50);
 		cp5.remove("back");
 		this.gameStart = 0;
+	}
+	
+	public int getPass()
+	{
+		if(this.score >= 15)
+			return 1;
+		else
+			return 0;
 	}
 }
