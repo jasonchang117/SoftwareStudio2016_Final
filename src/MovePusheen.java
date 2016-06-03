@@ -22,4 +22,15 @@ public class MovePusheen extends JFrame{
 		window.setVisible(true);
 	}
 	
+	public void getClue()
+	{
+		if(middleroom.middlebackground==0)
+		{
+			middleroom.middlebackground = 1;		//mid+lamp
+		}
+		else if(middleroom.middlebackground==2)
+		{
+			middleroom.middlebackground = 3;		//mid+lamp+candle
+		}
+	}
 }
