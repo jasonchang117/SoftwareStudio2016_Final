@@ -35,11 +35,7 @@ public class JxlWriteExcelApplet extends PApplet implements ActionListener{
 		this.setLayout(null);
 		size(width, height);
 		smooth();
-	//textfield_ques
-		textfield_ques.setFont(f);
-		textfield_ques.addActionListener(this);
-		textfield_ques.setBounds(280,80,250,45);
-		this.add(textfield_ques);
+	
 	//textfield_comment
 		textfield_comm.setFont(f);
 		textfield_comm.addActionListener(this);
@@ -55,8 +51,7 @@ public class JxlWriteExcelApplet extends PApplet implements ActionListener{
 		textSize(35);
 		this.text("Please type in your questionnaire.", 35, 40);
 		textSize(30);
-		this.text("Your Question:", 35, 110);
-		this.text("Your Comment:", 35, 200);
+		this.text("Your Question:", 35, 200);
 		textSize(19);
 		this.text("¡° Please use _Tab_ to get to next blank.", 250, 400);
 		this.text("¡° After filling all the blanks, press _Enter_ and we'll create an Excel file for you.", 250, 430);
@@ -107,21 +102,11 @@ public class JxlWriteExcelApplet extends PApplet implements ActionListener{
 		// if the file didn't already exist then we need to write out the header line
 			if (!alreadyExists)
 			{
-				csvOutput.write("User");
 				csvOutput.write("File name");
-				csvOutput.write("Question");
-				csvOutput.write("Always");
-				csvOutput.write("Sometime");
-				csvOutput.write("Never");
 				csvOutput.write("Comment");
 				csvOutput.endRecord();
-			}//Create a new row in workbook
-			csvOutput.write(user);
-			csvOutput.write(fileName); //System manager will set a fileName for questionnaire-designer.
-			csvOutput.write(QContent);	
-			csvOutput.write("");
-			csvOutput.write("");
-			csvOutput.write("");
+			}							//Create a new row in workbook
+			csvOutput.write(fileName); 		//System manager will set a fileName for questionnaire-designer.
 			csvOutput.write(QComment);	
 			csvOutput.endRecord();
 			
@@ -145,14 +130,14 @@ public class JxlWriteExcelApplet extends PApplet implements ActionListener{
 		// if the file didn't already exist then we need to write out the header line
 			if (!alreadyExists)
 			{
-				csvOutput.write("Question");
+				//csvOutput.write("Question");
 				csvOutput.write("Always");
 				csvOutput.write("Sometime");
 				csvOutput.write("Never");
 				csvOutput.endRecord();
 			}//Create a new row in workbook
-			csvOutput.write(QContent);	
-			csvOutput.endRecord();
+			else
+				csvOutput.endRecord();
 			
 			csvOutput.close();	
 		}

@@ -884,7 +884,13 @@ public class MainApplet extends PApplet
 				securityboxnumamount = 0;
 			}
 			else if(middleRoom.securityState==0 && mouseX >= 585 && mouseX <= 650 && mouseY >= 215 && mouseY <= 250 && mouseState == 11){
-				MovePusheen pusheen = new MovePusheen(this, middleRoom);
+				if(this.question_four_done == 0)
+				{
+					Fill fill = new Fill(this, "4");
+					this.question_four_done = 1;
+				}
+				else
+					callGame(4);
 			}
 			else if(middleRoom.securityState==0 && mouseState==11  && mouseX >= 255 && mouseX <= 280 && mouseY >= 180 && mouseY <= 230){
 				middleRoom.lightleft_appear();
@@ -920,7 +926,13 @@ public class MainApplet extends PApplet
 				itemtable.hammer_vanish();
 				mouseState = 0;
 			}else if(rightroomState == 4 && mouseState == 0 && mouseX >425 && mouseX <505 && mouseY>200 && mouseY <300){
-				BiggestNumber biggest = new BiggestNumber(this);
+				if(this.question_five_done == 0)
+				{
+					Fill fill = new Fill(this, "5");
+					this.question_five_done = 1;
+				}
+				else
+					callGame(5);
 			}else if(mouseState==9 && mouseX >650 && mouseX <750 && mouseY>430 && mouseY <470){
 				mouseState=0;
 				rightRoom.animate = 1;
@@ -935,7 +947,8 @@ public class MainApplet extends PApplet
 					this.question_one_done = 1;
 				}
 				else
-					callPusheenPair();			}
+					callGame(1);			
+			}
 		}
 		else if(this.curRoom == -1)		// left room
 		{
@@ -975,14 +988,25 @@ public class MainApplet extends PApplet
 				
 			}
 			if(mouseX >= 225 && mouseX <= 370 && mouseY >= 310 && mouseY <= 370 && mouseState == 0){
-				GameColorTrapMain colorTrap = new GameColorTrapMain(this);
-				
+				if(this.question_three_done == 0)
+				{
+					Fill fill = new Fill(this, "3");
+					this.question_three_done = 1;
+				}
+				else
+					callGame(3);
 			}
 			if(mouseX >= 0)  //  567,491    642,462    789,478    722,521   (681,485)
 			{
 				if( ( ((mouseX-681.f)*(mouseX-681.f))/10000.f+((mouseY-485.f)*(mouseY-485.f))/900.f) <= 1.f)
 				{
-					RapidSorting sort = new RapidSorting(this);
+					if(this.question_two_done == 0)
+					{
+						Fill fill = new Fill(this, "2");
+						this.question_two_done = 1;
+					}
+					else
+						callGame(2);
 				}
 			}
 			if(leftRoom.isanimate==0 && leftRoom.paperbackground==1 && mouseX>240 && mouseX<292 && mouseY>440 && mouseY<485){
@@ -993,8 +1017,6 @@ public class MainApplet extends PApplet
 			if(leftRoom.isanimate==0 && leftRoom.paperbackground==0 && mouseX>200 && mouseX<310 && mouseY>440 && mouseY<485){
 				leftRoom.paperbackground = 1;
 			}
-			
-			
 		}
 	}
 	
@@ -1028,9 +1050,12 @@ public class MainApplet extends PApplet
 		else if(mouseState==10) itemtable.pusheenBottleFull_appear();
 	}
 	
-	
-	public void callPusheenPair()
+	public void callGame(int n)
 	{
-		GamePusheenPairMain pusheenpair = new GamePusheenPairMain(this);
+		if(n == 1){ GamePusheenPairMain pusheenpair = new GamePusheenPairMain(this); }
+		else if(n == 2) { RapidSorting sort = new RapidSorting(this); }
+		else if(n == 3) { GameColorTrapMain colorTrap = new GameColorTrapMain(this); }
+		else if(n == 4) { MovePusheen pusheen = new MovePusheen(this, middleRoom); }
+		else if(n == 5) { BiggestNumber biggest = new BiggestNumber(this); }
 	}
 }

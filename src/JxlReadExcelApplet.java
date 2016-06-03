@@ -13,7 +13,7 @@ import java.awt.event.ActionEvent;
 import com.csvreader.CsvReader;
 
 public class JxlReadExcelApplet extends PApplet implements ActionListener{
-	private final static int width = 1000, height = 540;
+	private final static int width = 1200, height = 540;
 	public String input_name, input_ques;
 	private Font f = new Font("Consolas", 0, 35);
 	TextField textfield_name = new TextField(15);	
@@ -32,28 +32,27 @@ public class JxlReadExcelApplet extends PApplet implements ActionListener{
 	//textfield_name
 		textfield_name.setFont(f);
 		textfield_name.addActionListener(this);
-		textfield_name.setBounds(200,80,300,45);
+		textfield_name.setBounds(270,80,300,45);
 		this.add(textfield_name);
 	}
 	public void draw()
 	{
-		if (!alreadyExists){
+		if (!alreadyExists)
+		{	
 			background(200);
 			fill(0);
-			image(bkg, 0, 0, 1000, 540);
-			textSize(25);
-			this.text("Question number:", 35, 120);
+			image(bkg, 0, 0, 1200, 540);
 			textSize(35);
 			this.text(result, 100, 200);
 			
 		}else{
 			background(200);
 			fill(0);
-			image(bkg, 0, 0, 1000, 540);
+			image(bkg, 0, 0, 1200, 540);
 			textSize(35);
-			this.text("Please type in the question number to see your questionnaire.", 35, 40);
+			this.text("Please type in the question number to see your questionnaire.", 25, 40);
 			textSize(25);
-			this.text("Question number", 35, 120);
+			this.text("Question number:", 35, 115);
 		//Show the file result.
 			textSize(20);
 			this.text(result, 100, 180);
@@ -92,26 +91,21 @@ public class JxlReadExcelApplet extends PApplet implements ActionListener{
 				
 				while (XLfile.readRecord())
 				{
-					
 					String InputTime = XLfile.get(fileName);
 					String InputQuestion = XLfile.get("Question");
 					String Option1 = XLfile.get("Always");
 					String Option2 = XLfile.get("Sometime");
 					String Option3 = XLfile.get("Never");
 					
-					/**********BUG: want to sum up the answer and show up, while fail.
-					 * 
-					 * i_always = Integer.parseInt(Option1, 10);
-					i_sometime = Integer.parseInt(Option2, 10);
-					i_never = Integer.parseInt(Option3, 10);
-					always += i_always;
-					sometime += i_sometime;
-					never += i_never;*/
-					
-				//////jump to show the result.
 					result = result +"\n" + InputQuestion +" Always- " + Option1+"  Sometime- " +Option2+"  Never- "+Option3;
 				}
+					
+				XLfile.readHeaders();				
 				
+				while (XLfile.readRecord())
+				{	
+				
+				}
 				
 				XLfile.close();
 			}

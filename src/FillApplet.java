@@ -54,7 +54,6 @@ public class FillApplet extends PApplet implements ActionListener{
 		cp5.addButton("sometime").setLabel("Sometime").setPosition(380, 250).setSize(200, 50);
 		cp5.addButton("never").setLabel("Never").setPosition(700, 250).setSize(200,50);
 		
-		questionShow = chooseQues();
 		commentShow = chooseComm();
 		fileName = readUser();
 	}
@@ -64,15 +63,12 @@ public class FillApplet extends PApplet implements ActionListener{
 		image(bkg, 0, 0, 1000, 540);
 		textSize(20);
 		this.text("Please type in your answer.", 35, 40);		
-		/*textSize(30);
-		this.text(questionShow, 60, 100);	/////////Wait for improve.*/
 		textSize(30);
 		this.text(commentShow, 100, 150);/////////Wait for improve.
 	}
 	
 	@Override
-	public void actionPerformed(ActionEvent arg0) {
-	}
+	public void actionPerformed(ActionEvent arg0) {}
 	
 	
 /////To decide which option be chosen.
@@ -96,7 +92,6 @@ public class FillApplet extends PApplet implements ActionListener{
 			i_always = 1;
 			i_sometime=0;
 			i_never=0;
-			
 		}
 		else if(option==2){
 			i_always=0;
@@ -116,27 +111,7 @@ public class FillApplet extends PApplet implements ActionListener{
 	}
 	
 ///////////////////////////////About Excel///////////////////////////////////////////////	
-	public String chooseQues() //Read question from System.csv --> display
-	{
-		String question = ""; //initial
-		try {
-			CsvReader XLfile = new CsvReader("../System.csv");		
-			XLfile.readHeaders();				
-			
-			while (XLfile.readRecord())
-			{
-				question = XLfile.get("Question");
-				System.out.println(question);
-			}
-			XLfile.close();
-		
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return question;
-	}
+
 	public String chooseComm() //Read comment from System.csv --> display
 	{
 		String comment = ""; //initial
@@ -144,7 +119,6 @@ public class FillApplet extends PApplet implements ActionListener{
 		try {
 			CsvReader XLfile = new CsvReader("../System.csv");		
 			XLfile.readHeaders();				
-			
 			
 			while (XLfile.readRecord())
 			{	
@@ -173,9 +147,9 @@ public class FillApplet extends PApplet implements ActionListener{
 			
 			while (XLfile.readRecord())
 			{
+				fileName = XLfile.get("File name"); //!!!!!!!!!!!!
 				if(fileName.equals(num))
 					break;
-				fileName = XLfile.get("File name"); //!!!!!!!!!!!!
 			}
 			XLfile.close();
 		
@@ -198,7 +172,7 @@ public class FillApplet extends PApplet implements ActionListener{
 			//Create a blank workbook
 			CsvWriter csvOutput = new CsvWriter(new FileWriter(fileName, true), ',');
 			//Info Setup: Question - answerNum
-			csvOutput.write(questionShow);	
+			//csvOutput.write("");	
 			//csvOutput.write("Always");
 			csvOutput.write(str_always);
 			//csvOutput.write("Sometime");

@@ -25,7 +25,8 @@ public class Fill extends JFrame {
 	
 	public void callGame()
 	{
-		main.callPusheenPair();
+		int k = Integer.parseInt(num);
+		main.callGame(k);
 	}
 	
 }
