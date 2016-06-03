@@ -1,8 +1,11 @@
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.applet.AudioClip;
 import java.util.*;
 import controlP5.ControlP5;
+import ddf.minim.AudioPlayer;
+import ddf.minim.Minim;
 import de.looksgood.ani.Ani;
 import processing.core.PApplet;
 import processing.core.PFont;
@@ -41,6 +44,8 @@ public class GamePusheenPair extends PApplet{
 	private Date startTime;
 	private Date now;
 	
+	private AudioPlayer song;
+	private Minim  minim;
 	
 	
 	private String[] file = {
@@ -76,10 +81,13 @@ public class GamePusheenPair extends PApplet{
 		System.out.println(startTime);
 		cp5 = new ControlP5(this);
 		PFont p = createFont("Consolas", 20);
+		
+		minim = new Minim(this);
+		
 		cp5.setFont(p);
 		cp5.addButton("startbutton").setLabel("START").setPosition(100, 500).setSize(200, 50);
 		cp5.addButton("howplay").setLabel("How to play ?").setPosition(700, 500).setSize(200, 50);
-	    
+		
 		// load image
 		pusheentime_img = loadImage("pusheenpair/pusheentime.png");
 		A_img = loadImage("pusheenpair/A.png");
@@ -248,6 +256,8 @@ public class GamePusheenPair extends PApplet{
 	}
 	public void ifWin(){
 		if(this.win == true && time < limitedTime){
+			song = minim.loadFile("sound/correct.mp3");
+			song.play();
 			this.initial = 0;
 			this.howPlay = 0;
 			this.game = 0;
@@ -256,11 +266,14 @@ public class GamePusheenPair extends PApplet{
 			main.getClue(1);
 		}
 		else if (time >= limitedTime && this.win == false){
+			
 			this.initial = 0;
 			this.howPlay = 0;
 			this.game = 0;
 			this.howPlay = 0;
 			this.loseGame = 1;
+			song = minim.loadFile("sound/Fail.mp3");
+			song.play();
 			main.getClue(0);
 		}
 			
@@ -297,9 +310,12 @@ public class GamePusheenPair extends PApplet{
 	}
 	public void mousePressed()
 	{
-		if(this.game == 1 && this.openCard != 2){
+		if(this.game == 1 && this.openCard!=2){
+			song = minim.loadFile("sound/flip.mp3");
+			song.play();
 			for(int i = 0; i < 12; i ++){
 				if(IFOPEN==false && mouseX >= positionX[i] && mouseX <= positionX[i] + cardSize && mouseY >= positionY[i] && mouseY <= positionY[i] + cardSize && cardAlwaysOpen[i] != 1){
+					
 					
 					cardOpen[i] = 1;
 					openCard += 1;

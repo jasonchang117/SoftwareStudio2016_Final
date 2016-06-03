@@ -497,7 +497,7 @@ public class MainApplet extends PApplet
 		}
 		
 		//for object drag but it can only drag lighter now	
-		System.out.println(this.curRoom);
+		//System.out.println(this.curRoom);
 		q.display();
 	}
 	
