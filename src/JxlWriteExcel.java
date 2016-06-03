@@ -5,9 +5,12 @@ import javax.swing.JFrame;
 
 public class JxlWriteExcel extends JFrame {
 	private final static int windowWidth = 1000, windowHeight = 600;
+	MainApplet main;
+	private JxlWriteExcelApplet xl;
 	
-	public JxlWriteExcel() {		
-		JxlWriteExcelApplet xl = new JxlWriteExcelApplet();
+	public JxlWriteExcel(MainApplet m) {	
+		this.main = m;
+		xl = new JxlWriteExcelApplet(this);
 		xl.init();
 		xl.start();
 		xl.setFocusable(true);
@@ -18,7 +21,9 @@ public class JxlWriteExcel extends JFrame {
 		window.setVisible(true);
 		
 	}
-
+	public void setOrder(int o){
+		xl.setOrder(o);
+	}
 	
 }
 

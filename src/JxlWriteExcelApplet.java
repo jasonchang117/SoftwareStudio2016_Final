@@ -16,6 +16,7 @@ import java.io.File;    //Collide with import jxl.read.biff.File;
 public class JxlWriteExcelApplet extends PApplet implements ActionListener{
 	private final static int width = 1000, height = 540;
 	private Font f = new Font("Consolas", 0, 35);
+	JxlWriteExcel jxl;
 	TextField textfield_name = new TextField(15);	
 	TextField textfield_ques = new TextField(15);
 	TextField textfield_comm = new TextField(15);
@@ -23,8 +24,11 @@ public class JxlWriteExcelApplet extends PApplet implements ActionListener{
 	String encoding = "UTF8";
 	public String input_name, input_ques, input_comm;
 	public String fileName;
-	public int order = 0;
+	public int order ;
 	
+	public JxlWriteExcelApplet(JxlWriteExcel jx){
+		this.jxl = jx;
+	}
 	
 	public void setup()
 	{
@@ -82,11 +86,12 @@ public class JxlWriteExcelApplet extends PApplet implements ActionListener{
 		textfield_name.setText("");   //Clear after Enter.	
 		textfield_comm.setText("");
 		
-	}	
+	}
+	public void setOrder(int o){
+		this.order = o;
+	}
 	public void createOrder()
 	{
-		order++;
-		//createFileName();
 		fileName = Integer.toString(order);
 		System.out.println("order = "+order);
 		System.out.println("fileName = "+fileName);
@@ -94,6 +99,7 @@ public class JxlWriteExcelApplet extends PApplet implements ActionListener{
 	public String createFileName()//to create fileName 
 	{
 		fileName = Integer.toString(order);
+		System.out.print("filename :  "+fileName);
 		return fileName;
 	}
 	
