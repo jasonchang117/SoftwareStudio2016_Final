@@ -651,7 +651,7 @@ public class MainApplet extends PApplet
 			cp5.remove("questionThree");
 			cp5.remove("questionFour");
 			cp5.remove("questionFive");
-			cp5.remove("questionSix");
+			cp5.remove("Read");
 			questionButton = 0;
 			q.setQuestionSet(false);
 			this.curRoom = 2;
@@ -681,7 +681,7 @@ public class MainApplet extends PApplet
 	 	inputQuestion = 1;
 	 }
 	 public void questionFive(){
-		 Fill createExcel = new Fill();
+		 JxlWriteExcel createExcel = new JxlWriteExcel();
 	 	inputQuestion = 1;
 	 }
 	 public void Read() throws IOException{
