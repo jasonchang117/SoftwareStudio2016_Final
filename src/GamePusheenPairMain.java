@@ -26,11 +26,13 @@ public class GamePusheenPairMain extends JFrame {
 		if(result == 1 && this.called == 0)
 		{
 			main.clue3 = 2;
+			main.prevRoom = main.curRoom;
 			main.curRoom = 6;
 		}
 		else if(result == 0 && this.called == 0)
 		{
 			main.clue3 = 1;
+			main.prevRoom = main.curRoom;
 			main.curRoom = 6;
 		}
 		this.called = 1;

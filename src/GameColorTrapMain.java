@@ -26,11 +26,13 @@ public class GameColorTrapMain extends JFrame {
 		if(colorTrap.getScore() >= 15)
 		{
 			main.clue1 = 2;
+			main.prevRoom = main.curRoom;
 			main.curRoom = 4;
 		}
 		else
 		{
 			main.clue1 = 1;
+			main.prevRoom = main.curRoom;
 			main.curRoom = 4;
 		}
 	}

@@ -27,12 +27,14 @@ public class MovePusheen extends JFrame{
 		if(middleroom.middlebackground==0)
 		{
 			main.clue4 = 2;
+			main.prevRoom = main.curRoom;
 			main.curRoom = 7;
 			middleroom.middlebackground = 1;		//mid+lamp
 		}
 		else if(middleroom.middlebackground==2)
 		{
 			main.clue4 = 2;
+			main.prevRoom = main.curRoom;
 			main.curRoom = 7;
 			middleroom.middlebackground = 3;		//mid+lamp+candle
 		}

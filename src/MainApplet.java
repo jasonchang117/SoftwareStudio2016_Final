@@ -21,7 +21,7 @@ public class MainApplet extends PApplet
 {
 	private final static int width = 1000, height = 540;
 	private HashMap<String, PImage> images = new HashMap<String, PImage>();
-	public  int curRoom;
+	public  int curRoom, prevRoom;
 	private ControlP5 cp5;
 	private int catMove = 0, backbutton = 0, startmenu = 1;
 	private int questionButton = 0;
@@ -282,7 +282,9 @@ public class MainApplet extends PApplet
 					image(images.get("fillingbottle6.png"), 540, 360, 200, 200);
 				}else{
 					this.clue4 = 2;
+					this.prevRoom = this.curRoom;
 					this.curRoom = 7;
+					this.filled = 1;
 					itemtable.normalBottleFull_appear();
 					rightRoom.animate = 0;
 				}
@@ -342,11 +344,6 @@ public class MainApplet extends PApplet
 				else {
 					image(images.get("securitybox.png"), leftRoom.getComX("securitybox"), leftRoom.getComY("securitybox"),840,540);
 				}
-			}
-			
-			if(this.clue_password2 == 1)
-			{
-				image(images.get("clue_password2.png"), 0, 0, 840, 540);
 			}
 			
 			if(leftRoom.bottleAnimate==1){
@@ -476,6 +473,11 @@ public class MainApplet extends PApplet
 			else if(this.clue4 == 2)
 				image(images.get("clue4_2.png"), 0, 0, 840, 540);
 		}
+		else if(this.curRoom == 8)		// password2
+		{
+			if(this.clue_password2 == 1)
+				image(images.get("clue_password2.png"), 0, 0, 840, 540);
+		}
 		
 		
 		if(this.catMove < 19)
@@ -483,19 +485,19 @@ public class MainApplet extends PApplet
 		else
 			this.catMove = 0;
 		
-		if( (this.curRoom == 0 || this.curRoom == 1 || this.curRoom == -1 || this.curRoom == 3) && backbutton == 0)     // waiting for modifying
+		if( (this.curRoom == 0 || this.curRoom == 1 || this.curRoom == -1 || this.curRoom >= 3) && backbutton == 0)     // waiting for modifying
 		{
 			cp5.addButton("buttonBack").setLabel("Back").setPosition(890, 450).setSize(50,50);
 			this.backbutton = 1;
 		}
-		else if((this.curRoom != -1 &&this.curRoom!=0 &&this.curRoom!=1 &&this.curRoom!=3)&& backbutton == 1)
+		else if((this.curRoom != -1 &&this.curRoom!=0 &&this.curRoom!=1 &&this.curRoom!=3 && this.curRoom!=4 && this.curRoom!=5 && this.curRoom!=6 && this.curRoom!=7 && this.curRoom!=8)&& backbutton == 1)
 		{
 			cp5.remove("buttonBack");
 			this.backbutton = 0;
 		}
 		
 		//for object drag but it can only drag lighter now	
-		
+		System.out.println(this.curRoom);
 		q.display();
 	}
 	
@@ -618,6 +620,7 @@ public class MainApplet extends PApplet
 	
 	public void buttonBack()
 	{
+		System.out.println(this.curRoom);
 		if(this.curRoom == 3 && this.inputQuestion == 1)
 		{
 			this.curRoom = 3;
@@ -634,6 +637,11 @@ public class MainApplet extends PApplet
 			securityboxnum = 0;
 			securityboxnumamount = 0;
 			leftRoom.securityState = 0;
+		}
+		else if(this.curRoom > 3)
+		{
+			System.out.println(this.prevRoom);
+			this.curRoom = this.prevRoom;
 		}
 		else
 		{
@@ -706,10 +714,6 @@ public class MainApplet extends PApplet
 	
 	public void mousePressed()
 	{
-		if(this.clue_password2 == 1)
-			this.clue_password2 = 0;
-		if(this.curRoom > 3)
-			this.curRoom = 0;
 		/////// item panel
 		if((this.curRoom == 0 || this.curRoom==1 || this.curRoom==-1) && mouseX>=840 ){
 			if(mouseX>840 && mouseX<920 && mouseY<265 && mouseY>200) {
@@ -897,9 +901,10 @@ public class MainApplet extends PApplet
 			}else if(mouseState==9 && mouseX >650 && mouseX <750 && mouseY>430 && mouseY <470){
 				mouseState=0;
 				rightRoom.animate = 1;
-			}else if(mouseState==0 && mouseX >650 && mouseX <750 && mouseY>430 && mouseY <470){
+			}else if(mouseState==0 && filled == 1 && mouseX >650 && mouseX <750 && mouseY>430 && mouseY <470){
+				this.prevRoom = this.curRoom;
 				this.curRoom = 7;
-				this.clue4 = 1;
+				this.clue4 = 2;
 			}else if(mouseX > 366 && mouseX < 496 && mouseY > 18 && mouseY < 77){
 				GamePusheenPairMain pusheenpair = new GamePusheenPairMain(this);
 			}
@@ -907,12 +912,6 @@ public class MainApplet extends PApplet
 		else if(this.curRoom == -1)		// left room
 		{
 			//System.out.println(mouseX+" "+mouseY);
-			if(leftRoom.isanimate==0 && leftRoom.paperbackground==0 && mouseX>200 && mouseX<310 && mouseY>440 && mouseY<485){
-				leftRoom.paperbackground = 1;
-			}
-			if(leftRoom.isanimate==0 && leftRoom.paperbackground==1 && mouseX>240 && mouseX<292 && mouseY>440 && mouseY<485){
-				this.clue_password2 = 1;	//clue5
-			}
 			if(leftRoom.isanimate==0 && mouseX>324 && mouseX<505 && mouseY>460 && mouseY<525){
 				leftRoom.securityState = 1;
 			}
@@ -921,17 +920,17 @@ public class MainApplet extends PApplet
 				leftRoom.hose_vanish();
 				itemtable.hose_appear();
 			}
-			if(leftRoom.isanimate==0 && leftRoom.normalBottle()==1 && mouseX >= leftRoom.getComX("normalBottle")+23 && mouseX <= leftRoom.getComX("normalBottle")+53 && mouseY >= leftRoom.getComY("normalBottle") && mouseY <= leftRoom.getComY("normalBottle")+73 ){
+			if(leftRoom.isanimate==0 && leftRoom.normalBottle()==1 && mouseX >= leftRoom.getComX("normalBottle")+23 && mouseX <= leftRoom.getComX("normalBottle")+53 && mouseY >= leftRoom.getComY("normalBottle") && mouseY <= leftRoom.getComY("normalBottle")+73){
 				leftRoom.normalBottle_vanish();
 				itemtable.normalBottle_appear();
 			}
-			if(mouseState==1 && leftRoom.isanimate==0 && leftRoom.pusheenFront()==1 && mouseX >= leftRoom.getComX("pusheenBack")+30 && mouseX <= leftRoom.getComX("pusheenBack")+125 && mouseY >= leftRoom.getComY("pusheenBack")+35 && mouseY <= leftRoom.getComY("pusheenBack")+120 ){
+			if(mouseState==1 && leftRoom.isanimate==0 && leftRoom.pusheenFront()==1 && mouseX >= leftRoom.getComX("pusheenBack")+30 && mouseX <= leftRoom.getComX("pusheenBack")+125 && mouseY >= leftRoom.getComY("pusheenBack")+35 && mouseY <= leftRoom.getComY("pusheenBack")+120){
 				leftRoom.pusheenFront_vanish();
 				leftRoom.pusheenBeKnif_appear();
 				leftRoom.isanimate = 1;
 				mouseState = 0;
 			}
-			if(leftRoom.isanimate==1 && leftRoom.hammer()==1 && mouseX >= leftRoom.getComX("hammer")+20 && mouseX <= leftRoom.getComX("hammer")+80 && mouseY >= leftRoom.getComY("hammer")+0 && mouseY <= leftRoom.getComY("hammer")+90 ){
+			if(leftRoom.isanimate==1 && leftRoom.hammer()==1 && mouseX >= leftRoom.getComX("hammer")+20 && mouseX <= leftRoom.getComX("hammer")+80 && mouseY >= leftRoom.getComY("hammer")+0 && mouseY <= leftRoom.getComY("hammer")+90){
 				leftRoom.hammer_vanish();
 				leftRoom.pusheenWithoutHammer_vanish();
 				itemtable.hammer_appear();
@@ -953,11 +952,20 @@ public class MainApplet extends PApplet
 			}
 			if(mouseX >= 0)  //  567,491    642,462    789,478    722,521   (681,485)
 			{
-				if( ( ((mouseX-681.f)*(mouseX-681.f))/10000.f+((mouseY-485.f)*(mouseY-485.f))/900.f) <= 1.f )
+				if( ( ((mouseX-681.f)*(mouseX-681.f))/10000.f+((mouseY-485.f)*(mouseY-485.f))/900.f) <= 1.f)
 				{
 					RapidSorting sort = new RapidSorting(this);
 				}
 			}
+			if(leftRoom.isanimate==0 && leftRoom.paperbackground==1 && mouseX>240 && mouseX<292 && mouseY>440 && mouseY<485){
+				this.clue_password2 = 1;
+				this.prevRoom = this.curRoom;
+				this.curRoom = 8;
+			}
+			if(leftRoom.isanimate==0 && leftRoom.paperbackground==0 && mouseX>200 && mouseX<310 && mouseY>440 && mouseY<485){
+				leftRoom.paperbackground = 1;
+			}
+			
 			
 		}
 	}

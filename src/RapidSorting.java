@@ -26,11 +26,13 @@ public class RapidSorting extends JFrame{
 		if(sort.getPass() == 1 && this.called == 0)
 		{
 			main.clue2 = 2;
+			main.prevRoom = main.curRoom;
 			main.curRoom = 5;
 		}
 		else if(sort.getPass() == 0 && this.called == 0)
 		{
 			main.clue2 = 1;
+			main.prevRoom = main.curRoom;
 			main.curRoom = 5;
 		}
 		this.called = 1;
