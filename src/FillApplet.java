@@ -123,7 +123,7 @@ public class FillApplet extends PApplet implements ActionListener{
 			while (XLfile.readRecord())
 			{	
 				q = XLfile.get("File name");
-				comment = XLfile.get("Comment");
+				comment = XLfile.get("Question");
 				if(q.toString().equals(num)) //!!!!!!!!!!!!!!!!!!
 					break;
 			}

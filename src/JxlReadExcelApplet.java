@@ -89,17 +89,23 @@ public class JxlReadExcelApplet extends PApplet implements ActionListener{
 				CsvReader XLfile = new CsvReader("../"+fileName+".csv");		
 				XLfile.readHeaders();				
 				
+				String InputTime = XLfile.get(fileName);
+				String InputQuestion = XLfile.get("Question");
+				
+				
+				int al= 0, so = 0, ne = 0;
 				while (XLfile.readRecord())
 				{
-					String InputTime = XLfile.get(fileName);
-					String InputQuestion = XLfile.get("Question");
 					String Option1 = XLfile.get("Always");
 					String Option2 = XLfile.get("Sometime");
 					String Option3 = XLfile.get("Never");
 					
-					result = result +"\n" + InputQuestion +" Always- " + Option1+"  Sometime- " +Option2+"  Never- "+Option3;
+					al += Integer.parseInt(Option1);
+					so += Integer.parseInt(Option2);
+					ne += Integer.parseInt(Option3);
 				}
-					
+				result = "Always :" + al + " \nSometimes :" + so + " \nNever :" + ne;
+				
 				XLfile.readHeaders();				
 				
 				while (XLfile.readRecord())

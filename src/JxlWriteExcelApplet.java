@@ -103,7 +103,7 @@ public class JxlWriteExcelApplet extends PApplet implements ActionListener{
 			if (!alreadyExists)
 			{
 				csvOutput.write("File name");
-				csvOutput.write("Comment");
+				csvOutput.write("Question");
 				csvOutput.endRecord();
 			}							//Create a new row in workbook
 			csvOutput.write(fileName); 		//System manager will set a fileName for questionnaire-designer.

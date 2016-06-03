@@ -862,7 +862,6 @@ public class MainApplet extends PApplet
 					itemtable.pusheenBottleFull_appear();
 				}
 			}
-			
 		}
 		
 		if(mouseState==5 && (this.curRoom==0 || this.curRoom==1 || this.curRoom==-1)){
