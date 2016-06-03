@@ -135,6 +135,8 @@ public class RapidSortingApplet extends PApplet{
 			this.shapeState = 1;
 			if(this.ans == 1 || this.isFirst == true)
 			{
+				if(this.isFirst == true)
+					this.ans = 1;
 				this.score += 1;
 			}
 			else
@@ -148,6 +150,8 @@ public class RapidSortingApplet extends PApplet{
 			this.shapeState = 1;
 			if(this.ans == 0 || this.isFirst == true)
 			{
+				if(this.isFirst == true)
+					this.ans = 0;
 				this.score += 1;
 			}
 			else
