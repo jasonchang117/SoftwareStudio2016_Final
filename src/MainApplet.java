@@ -42,6 +42,7 @@ public class MainApplet extends PApplet
 	private int rightroomState;
 	public String fileName;
 	private int questionOneSet = 0, questionTwoSet = 0, questionThreeSet = 0, questionFourSet = 0, questionFiveSet = 0;
+	private int question_one_done = 0, question_two_done = 0, question_three_done = 0, question_four_done = 0, question_five_done = 0;
 	private int securityboxnum,securityboxnumamount;
 	
 	private String[] file = {
@@ -928,8 +929,13 @@ public class MainApplet extends PApplet
 				this.curRoom = 7;
 				this.clue4 = 2;
 			}else if(mouseX > 366 && mouseX < 496 && mouseY > 18 && mouseY < 77){
-				GamePusheenPairMain pusheenpair = new GamePusheenPairMain(this);
-			}
+				if(this.question_one_done == 0)
+				{
+					Fill fill = new Fill(this, "1");
+					this.question_one_done = 1;
+				}
+				else
+					callPusheenPair();			}
 		}
 		else if(this.curRoom == -1)		// left room
 		{
@@ -1022,4 +1028,9 @@ public class MainApplet extends PApplet
 		else if(mouseState==10) itemtable.pusheenBottleFull_appear();
 	}
 	
+	
+	public void callPusheenPair()
+	{
+		GamePusheenPairMain pusheenpair = new GamePusheenPairMain(this);
+	}
 }

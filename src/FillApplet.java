@@ -32,6 +32,14 @@ public class FillApplet extends PApplet implements ActionListener{
 	public int i_always=0, i_sometime=0, i_never=0;
 	public String str_always, str_sometime ,str_never;
 	public String questionShow, commentShow, fileName;
+	private String num;
+	private Fill fill; 
+	
+	public FillApplet(Fill f, String str)
+	{
+		this.fill = f;
+		this.num = str;
+	}
 	
 	public void setup(){
 		Ani.init(this);
@@ -71,14 +79,17 @@ public class FillApplet extends PApplet implements ActionListener{
 	public void always(){
 		option = 1;
 		getOption();
+		fill.callGame();
 	}
 	public void sometime(){
 		option = 2;
 		getOption();
+		fill.callGame();
 	}
 	public void never(){
 		option = 3;
 		getOption();
+		fill.callGame();
 	}
 	public void getOption(){
 		if(option==1){
@@ -139,7 +150,7 @@ public class FillApplet extends PApplet implements ActionListener{
 			{	
 				q = XLfile.get("File name");
 				comment = XLfile.get("Comment");
-				if(q.toString().equals("2")) //!!!!!!!!!!!!!!!!!!
+				if(q.toString().equals(num)) //!!!!!!!!!!!!!!!!!!
 					break;
 			}
 			XLfile.close();
@@ -162,7 +173,7 @@ public class FillApplet extends PApplet implements ActionListener{
 			
 			while (XLfile.readRecord())
 			{
-				if(fileName.equals("2"))
+				if(fileName.equals(num))
 					break;
 				fileName = XLfile.get("File name"); //!!!!!!!!!!!!
 			}

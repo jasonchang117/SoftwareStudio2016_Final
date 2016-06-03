@@ -15,7 +15,7 @@ public class GamePusheenPairMain extends JFrame {
 		pusheenpair.start();
 		pusheenpair.setFocusable(true);
 		
-		JFrame window = new JFrame("Color Trap");
+		JFrame window = new JFrame("PusheenPair");
 		window.setContentPane(pusheenpair);
 		window.setSize(windowWidth, windowHeight);
 		window.setVisible(true);
