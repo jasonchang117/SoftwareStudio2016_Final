@@ -28,7 +28,7 @@ public class MainApplet extends PApplet
 	private int inputQuestion = 0;
 	private int pusheenNum = 0;
 	private int beknifnum = 0, becutnum = 0;
-	public  int clue1 = 0, clue2 = 0, clue3 = 0, clue4 = 0;
+	public  int clue1 = 0, clue2 = 0, clue3 = 0, clue4 = 0, clue_password2 = 0;
 	public  int success = 0;									// complete the game
 	private AudioClip cat;
 	private LeftRoom leftRoom = new LeftRoom();
@@ -107,6 +107,7 @@ public class MainApplet extends PApplet
 		"component/clue3_2.png",
 		"component/clue4_1.png",
 		"component/clue4_2.png",
+		"component/clue_password2.png",
 		"component/securitybox_open.png"
 		
 	};
@@ -146,6 +147,7 @@ public class MainApplet extends PApplet
 	public void draw()				// override the processing that paint the main components
 	{
 		background(0);
+		System.out.println(this.clue_password2);
 		
 		if(this.curRoom == 0 || this.curRoom == 1 || this.curRoom == -1){
 			image(images.get("itemtable.png"), 840, 0, 160, 400);
@@ -340,6 +342,10 @@ public class MainApplet extends PApplet
 				}
 			}
 			
+			if(this.clue_password2 == 1)
+			{
+				image(images.get("clue_password2.png"), 0, 0, 840, 540);
+			}
 			
 			if(leftRoom.bottleAnimate==1){
 				leftRoom.bottleAnimateNum++;
@@ -689,13 +695,16 @@ public class MainApplet extends PApplet
 		if(mouseState==11 && (this.curRoom==0 || this.curRoom==1 || this.curRoom==-1)){
 			mouseState = 5;
 		}
+		
+		
 	}
 	
 ////////////////////////////////////////////////////////////////////////////////////////////////////	
 	
 	public void mousePressed()
 	{
-		System.out.println(this.success);
+		if(this.clue_password2 == 1)
+			this.clue_password2 = 0;
 		/////// item panel
 		if((this.curRoom == 0 || this.curRoom==1 || this.curRoom==-1) && mouseX>=840 ){
 			if(mouseX>840 && mouseX<920 && mouseY<265 && mouseY>200) {
@@ -894,8 +903,7 @@ public class MainApplet extends PApplet
 				leftRoom.paperbackground = 1;
 			}
 			if(leftRoom.isanimate==0 && leftRoom.paperbackground==1 && mouseX>240 && mouseX<292 && mouseY>440 && mouseY<485){
-				//clue5
-				
+				this.clue_password2 = 1;	//clue5
 			}
 			if(leftRoom.isanimate==0 && mouseX>324 && mouseX<505 && mouseY>460 && mouseY<525){
 				leftRoom.securityState = 1;
@@ -946,11 +954,11 @@ public class MainApplet extends PApplet
 		}
 		if(this.curRoom > 3)
 			this.curRoom = 0;
+	
 	}
 	
 	private void checksecurity(){
 		if(securityboxnumamount==4){
-			System.out.println(securityboxnum);
 			if(securityboxnum==3432 && middleRoom.securityState==1){
 				middleRoom.securityState = 0;
 				middleRoom.securityboxopen_appear();

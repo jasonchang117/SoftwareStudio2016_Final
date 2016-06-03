@@ -1,4 +1,6 @@
 import java.awt.event.KeyEvent;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Random;
 
@@ -22,6 +24,8 @@ public class RapidSortingApplet extends PApplet{
 	private boolean isFirst = true;
 	private int gameStart = 0;
 	Random rand = new Random();
+	private Date startTime = new Date();
+	private Date now = new Date();
 	private HashMap<String, PImage> images = new HashMap<String, PImage>();
 	private String[] file = 
 	{
@@ -58,10 +62,18 @@ public class RapidSortingApplet extends PApplet{
 		cp5.setFont(p);
 		cp5.addButton("startbutton").setLabel("START").setPosition(95, 380).setSize(200, 50);
 		cp5.addButton("howplay").setLabel("How to Play ?").setPosition(95, 460).setSize(200, 50);
+		
 	}
 	
 	public void draw()
 	{
+		
+		
+		if(this.now.getTime() - this.startTime.getTime() >= 30000)
+		{
+			this.shapeState = 3;
+			this.gameStart = 2;
+		}
 		background(255);
 		
 		if(gameStart == -1)
@@ -74,13 +86,8 @@ public class RapidSortingApplet extends PApplet{
 		}
 		else if(this.gameStart == 1)
 		{
-			if(time == timeLimit)
-			{	shapeState = 3; 
-				//System.out.println("finish");
-			}
-			else 
-				time += 0.1;
-			
+			Calendar cal = Calendar.getInstance();
+			now = cal.getTime();
 			if(this.shape == 0)
 				image(images.get("heartShape.png"), 120+moveX, -190+moveY, 150, 150);
 			else if(this.shape == 1)
@@ -119,11 +126,27 @@ public class RapidSortingApplet extends PApplet{
 				this.fill(255);
 			}
 			
-			image(images.get("pusheentime.png"), 400-this.time*2, 460, 100, 50);
+			
+			//image(images.get("pusheentime.png"), 400-width/30*((this.now.getTime()-this.startTime.getTime())/1000), 460, 100, 50);
 			
 			textSize(20);
 			fill(0);
 			text("Your Score: " + this.score, 10, 40);
+			text("Time Left : " + (30-((this.now.getTime()-this.startTime.getTime())/1000)), 230, 40);
+		}
+		else if(this.gameStart == 2)
+		{
+			textSize(35);
+			if(this.score >= 20)
+			{
+				fill(0, 200, 50);
+				text("You Win !", 120, 240);
+			}
+			else
+			{
+				fill(200, 0, 50);
+				text("You Lose !", 110, 240);
+			}
 		}
 	}
 	
@@ -161,7 +184,7 @@ public class RapidSortingApplet extends PApplet{
 		}
 	}
 	
-	public void genShape()
+	private void genShape()
 	{
 		this.prevShape = this.shape;
 		this.shape = rand.nextInt(3);
@@ -187,6 +210,8 @@ public class RapidSortingApplet extends PApplet{
 		cp5.remove("startbutton");
 		cp5.remove("howplay");
 		this.gameStart = 1;
+		Calendar cal = Calendar.getInstance();
+		this.startTime = cal.getTime();
 	}
 	
 	public void howplay()
