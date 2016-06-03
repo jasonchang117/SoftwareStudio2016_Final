@@ -78,6 +78,7 @@ public class JxlReadExcelApplet extends PApplet implements ActionListener{
 		result = ""; //initial
 		int i_always=0, i_sometime=0, i_never=0;
 		int always=0, sometime=0, never=0;
+		
 		try {
 		// before we open the file check to see if it already exists
 			alreadyExists = new File("../"+fileName+".csv").exists(); 
@@ -91,23 +92,27 @@ public class JxlReadExcelApplet extends PApplet implements ActionListener{
 				
 				while (XLfile.readRecord())
 				{
+					
 					String InputTime = XLfile.get(fileName);
 					String InputQuestion = XLfile.get("Question");
 					String Option1 = XLfile.get("Always");
 					String Option2 = XLfile.get("Sometime");
 					String Option3 = XLfile.get("Never");
 					
-					i_always = Integer.valueOf(Option1);
-					i_sometime = Integer.valueOf(Option2);
-					i_never = Integer.valueOf(Option3);
-					
+					/**********BUG: want to sumup the answer and show up, while fail.
+					 * 
+					 * i_always = Integer.parseInt(Option1, 10);
+					i_sometime = Integer.parseInt(Option2, 10);
+					i_never = Integer.parseInt(Option3, 10);
 					always += i_always;
 					sometime += i_sometime;
-					never += i_never;
-					System.out.println("int result: always="+always+" sometime="+sometime+" never="+never);
+					never += i_never;*/
+					
 				//////jump to show the result.
 					result = result +"\n" + InputQuestion +" Always- " + Option1+"  Sometime- " +Option2+"  Never- "+Option3;
 				}
+				
+				
 				XLfile.close();
 			}
 		
