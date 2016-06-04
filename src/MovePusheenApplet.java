@@ -56,6 +56,7 @@ public class MovePusheenApplet extends PApplet{
 		
 		if(pass == 1)
 		{
+			this.wrong = 0;
 			fill(0, 200, 0);
 			this.text("You're Right !", 115, 240);
 		}
@@ -70,41 +71,47 @@ public class MovePusheenApplet extends PApplet{
 	
 	public void mouseDragged()
 	{
-		this.wrong = 0;
-		if(mouseX >= moveX-40 && mouseX <= moveX+40 && mouseY >= moveY-40 && mouseY <= moveY+40)   // 110 440
+		if(this.pass != 1)
 		{
-			this.moving = 1;
-		}
-		if(moving == 1)
-		{
-			this.moveX = mouseX;
-			this.moveY = mouseY;
+			this.wrong = 0;
+			if(mouseX >= moveX-40 && mouseX <= moveX+40 && mouseY >= moveY-40 && mouseY <= moveY+40)   // 110 440
+			{
+				this.moving = 1;
+			}
+			if(moving == 1)
+			{
+				this.moveX = mouseX;
+				this.moveY = mouseY;
+			}
 		}
 	}
 	
 	public void mouseClicked()
 	{
-		if(moveX >= 66 && moveX <= 157 && moveY >= 397 && moveY <= 488)	
+		if(this.pass != 1)
 		{
-			if(this.wrong == 0)
-				this.wrong = 1;
-			else
-				this.wrong = 0;
-		}
-		else
-		{
-			if(mouseX >= 70 && mouseX <= 147 && mouseY >= 411 && mouseY <= 483)
-			{
-				this.wrong = 0;
-				this.pass = 1;
-				this.movepusheen.getClue();
-			}
-			else 
+			if(moveX >= 66 && moveX <= 157 && moveY >= 397 && moveY <= 488)	
 			{
 				if(this.wrong == 0)
 					this.wrong = 1;
 				else
 					this.wrong = 0;
+			}
+			else
+			{
+				if(mouseX >= 70 && mouseX <= 147 && mouseY >= 411 && mouseY <= 483)
+				{
+					this.wrong = 0;
+					this.pass = 1;
+					this.movepusheen.getClue();
+				}
+				else 
+				{
+					if(this.wrong == 0)
+						this.wrong = 1;
+					else
+						this.wrong = 0;
+				}
 			}
 		}
 	}

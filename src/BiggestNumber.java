@@ -13,7 +13,7 @@ public class BiggestNumber extends JFrame{
 		applet.start();
 		applet.setFocusable(true);
 		window.setContentPane(applet);
-		window.setSize(500, 580);
+		window.setSize(540, 580);
 		window.setVisible(true);
 	}	
 	
