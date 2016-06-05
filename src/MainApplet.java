@@ -976,11 +976,11 @@ public class MainApplet extends PApplet
 				itemtable.hammer_appear();
 				leftRoom.isanimate = 0;
 			}
-			if(leftRoom.isanimate==0 && mouseState==3 && mouseX >740 && mouseX <770 && mouseY>320 && mouseY <350){
+			if(leftRoom.isanimate==0 && mouseState==3 && mouseX >730 && mouseX <780 && mouseY>310 && mouseY <360){
 				mouseState= 0;
 				leftRoom.pusheenBottle_appear();
 			}
-			if(leftRoom.isanimate==0 && leftRoom.pusheenBottle()==1 && mouseState==8 && mouseX >650 && mouseX <690 && mouseY>75 && mouseY <95){
+			if(leftRoom.isanimate==0 && leftRoom.pusheenBottle()==1 && mouseState==8 && mouseX >630 && mouseX <700 && mouseY>65 && mouseY <105){
 				mouseState = 0;
 				leftRoom.bottleAnimate = 1;
 				leftRoom.pusheenBottle_vanish();
