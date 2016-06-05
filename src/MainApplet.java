@@ -744,9 +744,9 @@ public class MainApplet extends PApplet
 					putItemBack();
 					mouseState=1;
 					itemtable.knif_vanish();
-				}else if(mouseState==1 && itemtable.knif()==0){
+				}else if(mouseState!=0){
+					putItemBack();
 					mouseState=0;
-					itemtable.knif_appear();
 				}
 			}
 			else if(mouseX>840 && mouseX<920 && mouseY<198 && mouseY>140) {
@@ -766,9 +766,9 @@ public class MainApplet extends PApplet
 					else mouseState=2;
 					
 					itemtable.normalBottle_vanish();;
-				}else if(mouseState==2 && itemtable.normalBottle()==0){
+				}else if(mouseState!=0){
+					putItemBack();
 					mouseState=0;
-					itemtable.normalBottle_appear();
 				}
 			}
 			else if(mouseX>840 && mouseX<920 && mouseY<135 && mouseY>65) {
@@ -786,9 +786,9 @@ public class MainApplet extends PApplet
 					putItemBack();
 					mouseState=4;
 					itemtable.hammer_vanish();
-				}else if(mouseState==4 && itemtable.hammer()==0){
+				}else if(mouseState!=0){
+					putItemBack();
 					mouseState=0;
-					itemtable.hammer_appear();
 				}
 			}
 			else if(mouseX>840 && mouseX<920 && mouseY<330 && mouseY>265) {
@@ -796,9 +796,9 @@ public class MainApplet extends PApplet
 					putItemBack();
 					mouseState=5;
 					itemtable.lighter_vanish();;
-				}else if(mouseState==5 && itemtable.lighter()==0){
+				}else if(mouseState!=0){
+					putItemBack();
 					mouseState=0;
-					itemtable.lighter_appear();
 				}
 			}
 			else if(mouseX>920 && mouseX<1000 && mouseY<63 && mouseY>2) {
@@ -806,9 +806,9 @@ public class MainApplet extends PApplet
 					putItemBack();
 					mouseState=6;
 					itemtable.tape_vanish();
-				}else if(mouseState==6 && itemtable.tape()==0){
+				}else if(mouseState!=0){
+					putItemBack();
 					mouseState=0;
-					itemtable.tape_appear();
 				}
 			}
 			else if(mouseX>920 && mouseX<1000 && mouseY<135 && mouseY>65) {
@@ -827,9 +827,9 @@ public class MainApplet extends PApplet
 					if(mouseState==2) mouseState = 0;
 					else mouseState=7;
 					itemtable.hose_vanish();
-				}else if(mouseState==7 && itemtable.hose()==0){
+				}else if(mouseState!=0){
+					putItemBack();
 					mouseState=0;
-					itemtable.hose_appear();
 				}
 			}
 			else if(mouseX>920 && mouseX<1000 && mouseY<195 && mouseY>135) {
@@ -837,9 +837,9 @@ public class MainApplet extends PApplet
 					putItemBack();
 					mouseState=8;
 					itemtable.normalBottleFull_vanish();
-				}else if(mouseState==8 && itemtable.normalBottleFull()==0){
+				}else if(mouseState!=0){
+					putItemBack();
 					mouseState=0;
-					itemtable.normalBottleFull_appear();
 				}
 			}
 			else if(mouseX>920 && mouseX<1000 && mouseY<265 && mouseY>200) {
@@ -847,9 +847,9 @@ public class MainApplet extends PApplet
 					putItemBack();
 					mouseState=9;
 					itemtable.normalBottleFullWithHose_vanish();
-				}else if(mouseState==9 && itemtable.normalBottleWithHose()==0){
+				}else if(mouseState!=0){
+					putItemBack();
 					mouseState=0;
-					itemtable.normalBottleFullWithHose_appear();
 				}
 			}
 			else if(mouseX>920 && mouseX<1000 && mouseY<330 && mouseY>265) {
@@ -857,9 +857,9 @@ public class MainApplet extends PApplet
 					putItemBack();
 					mouseState=10;
 					itemtable.pusheenBottleFull_vanish();
-				}else if(mouseState==10 && itemtable.pusheenBottleFull()==0){
+				}else if(mouseState!=0){
+					putItemBack();
 					mouseState=0;
-					itemtable.pusheenBottleFull_appear();
 				}
 			}
 		}
@@ -958,7 +958,11 @@ public class MainApplet extends PApplet
 			if(leftRoom.securitybox()==1&& mouseX>324 && mouseX<470 && mouseY>210 && mouseY<350){
 				leftRoom.securitybox_vanish();
 				leftRoom.hose_vanish();
-				itemtable.hose_appear();
+				if(leftRoom.hoseBeTaken==0){
+					itemtable.hose_appear();
+					leftRoom.hoseBeTaken = 1;
+				}
+				
 			}
 			if(leftRoom.isanimate==0 && leftRoom.normalBottle()==1 && mouseX >= leftRoom.getComX("normalBottle")+23 && mouseX <= leftRoom.getComX("normalBottle")+53 && mouseY >= leftRoom.getComY("normalBottle") && mouseY <= leftRoom.getComY("normalBottle")+73){
 				leftRoom.normalBottle_vanish();
@@ -1029,7 +1033,10 @@ public class MainApplet extends PApplet
 				leftRoom.securityState = 0;
 				leftRoom.securitybox_appear();
 				leftRoom.securityboxopen_appear();
-				leftRoom.hose_appear();
+				if(leftRoom.hoseBeTaken==0){
+					leftRoom.hose_appear();
+				}
+				
 			}
 		}
 		securityboxnum = 0;

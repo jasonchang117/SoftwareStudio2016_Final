@@ -18,6 +18,7 @@ public class LeftRoom
 	public int bottleAnimateNum;
 	public int securityState;
 	private int securityboxopen;
+	public int hoseBeTaken;
 	public LeftRoom() 
 	{	
 		hammer = 0;
@@ -61,6 +62,7 @@ public class LeftRoom
 		bottleAnimateNum = 0;
 		paperbackground = 0;
 		securityboxopen = 0;
+		hoseBeTaken = 0;
 	}
 	
 	public int hammer() { return this.hammer; }
