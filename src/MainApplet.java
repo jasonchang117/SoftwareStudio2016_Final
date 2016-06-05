@@ -323,12 +323,6 @@ public class MainApplet extends PApplet
 			if(leftRoom.normalBottle()==1){
 				image(images.get("normal_bottle.png"), leftRoom.getComX("normalBottle"), leftRoom.getComY("normalBottle"),75,75);
 			}
-			if(leftRoom.securitybox()==1){
-				image(images.get("securitybox_open.png"),0,0,840,540);
-			}
-			if(leftRoom.hose()==1){
-				image(images.get("hose.png"), 320, 200,150,150);
-			}
 			if(leftRoom.pusheenBottle()==1){
 				image(images.get("pusheen_bottle.png"), leftRoom.getComX("pusheenBottle"), leftRoom.getComY("pusheenBottle"),60,60);
 			}
@@ -367,7 +361,12 @@ public class MainApplet extends PApplet
 					itemtable.pusheenBottleFull_appear();
 				}
 			}
-			
+			if(leftRoom.securitybox()==1){
+				image(images.get("securitybox_open.png"),0,0,840,540);
+			}
+			if(leftRoom.hose()==1){
+				image(images.get("hose.png"), 320, 200,150,150);
+			}
 			if(leftRoom.pusheenCut()==1){
 				
 				image(images.get("pusheen_cut.png"), leftRoom.getComX("pusheenCut"), leftRoom.getComY("pusheenCut"), 840, 540);
