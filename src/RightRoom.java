@@ -1,3 +1,4 @@
+import javax.swing.JFrame;
 
 public class RightRoom {
 	private int tape, tapeX, tapeY;	
@@ -48,4 +49,16 @@ public class RightRoom {
 			this.tapeX = x; this.tapeY = y;
 		}
 	}
+	
+	public void success()  //Play media
+	{
+		JFrame media = new JFrame();
+		media.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		media.setSize(300,  300);
+		media.setVisible(true);	
+	}
+	
+	
+
 }

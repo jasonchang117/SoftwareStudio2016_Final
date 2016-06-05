@@ -111,7 +111,8 @@ public class MainApplet extends PApplet
 		"component/clue4_1.png",
 		"component/clue4_2.png",
 		"component/clue_password2.png",
-		"component/securitybox_open.png"
+		"component/securitybox_open.png",
+		"background/finish_temp.png"
 		
 	};
 	
@@ -296,6 +297,11 @@ public class MainApplet extends PApplet
 			
 			if(rightRoom.tape() == 1){
 				image(images.get("tape.png"), rightRoom.getComX("tape"), rightRoom.getComY("tape"), 30, 20);
+			}
+		////Finish the game!
+			else if(rightroomState == 4 & rightRoom.tape() == 1){  
+				//rightRoom.success();
+				image(images.get("finish_temp.png"), rightRoom.getComX("tape"), rightRoom.getComY("tape"), 30, 20);
 			}
 		}
 		else if(this.curRoom == -1) //left room
@@ -923,14 +929,13 @@ public class MainApplet extends PApplet
 				rightroomState = 4;
 				itemtable.hammer_vanish();
 				mouseState = 0;
-			}else if(rightroomState == 4 && mouseState == 0 && mouseX >425 && mouseX <505 && mouseY>200 && mouseY <300){
+			}else if(rightroomState == 4 && mouseState == 0 && mouseX >425 && mouseX <505 && mouseY>200 && mouseY <300){ //Break the window
+				callGame(5);   //Biggest Number
 				if(this.question_five_done == 0)
 				{
 					Fill fill = new Fill(this, "5");
 					this.question_five_done = 1;
-				}
-				else
-					callGame(5);
+				}					
 			}else if(mouseState==9 && mouseX >650 && mouseX <750 && mouseY>430 && mouseY <470){
 				mouseState=0;
 				rightRoom.animate = 1;
@@ -948,6 +953,7 @@ public class MainApplet extends PApplet
 					callGame(1);			
 			}
 		}
+		//////////////left room
 		else if(this.curRoom == -1)		// left room
 		{
 			//System.out.println(mouseX+" "+mouseY);
@@ -960,6 +966,8 @@ public class MainApplet extends PApplet
 				if(leftRoom.hoseBeTaken==0){
 					itemtable.hose_appear();
 					leftRoom.hoseBeTaken = 1;
+				////BUG
+					//if(back)
 				}
 				
 			}
