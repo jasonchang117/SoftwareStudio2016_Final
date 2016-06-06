@@ -659,6 +659,10 @@ public class MainApplet extends PApplet
 			cp5.remove("questionFour");
 			cp5.remove("questionFive");
 			cp5.remove("Read");
+			this.clue1 = 0;
+			this.clue2 = 0;
+			this.clue3 = 0;
+			this.clue4 = 0;
 			questionButton = 0;
 			q.setQuestionSet(false);
 			this.curRoom = 2;
