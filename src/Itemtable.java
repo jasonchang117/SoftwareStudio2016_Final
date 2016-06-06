@@ -10,6 +10,7 @@ public class Itemtable {
 	private int normalBottle;
 	private int pusheenBottleFull;
 	private int normalBottleWithHose;
+	private int pusheenmouse;
 	
 	public Itemtable() {
 		// TODO Auto-generated constructor stub
@@ -23,6 +24,7 @@ public class Itemtable {
 		normalBottle = 0;
 		pusheenBottleFull = 0;
 		normalBottleWithHose = 0;
+		pusheenmouse = 0;
 	}
 
 	
@@ -38,6 +40,7 @@ public class Itemtable {
 	public int pusheenBottleFull() {return this.pusheenBottleFull;}
 	public int normalBottleWithHose() {return this.normalBottleWithHose;}
 	public int normalBottleFull() {return this.normalBottleFull;}
+	public int pusheenmouse() {return this.pusheenmouse;}
 	
 	
 	public void tape_vanish() { this.tape = 0; }
@@ -50,6 +53,7 @@ public class Itemtable {
 	public void pusheenBottleFull_vanish() { this.pusheenBottleFull = 0;}
 	public void normalBottleFull_vanish() {this.normalBottleFull = 0;}
 	public void normalBottleFullWithHose_vanish() {this.normalBottleWithHose = 0;}
+	public void pusheenmouse_vanish() {this.pusheenmouse = 0;}
 	
 	public void tape_appear() { this.tape = 1; }
 	public void knif_appear() { this.knif = 1; }
@@ -61,5 +65,6 @@ public class Itemtable {
 	public void pusheenBottleFull_appear() {this.pusheenBottleFull = 1;}
 	public void normalBottleFull_appear() {this.normalBottleFull = 1;}
 	public void normalBottleFullWithHose_appear() {this.normalBottleWithHose = 1;}
+	public void pusheenmouse_appear() {this.pusheenmouse = 1;}
 	
 }

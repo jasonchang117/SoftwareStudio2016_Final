@@ -111,6 +111,7 @@ public class MainApplet extends PApplet
 		"component/clue4_2.png",
 		"component/clue_password2.png",
 		"component/securitybox_open.png",
+		"component/pusheenmouse.png",
 		"background/finish_temp.png"
 		
 	};
@@ -167,6 +168,7 @@ public class MainApplet extends PApplet
 			else if(mouseState == 9) cursor(images.get("normalBottle+hose.png"),16,16);
 			else if(mouseState == 10) cursor(images.get("pusheen_bottle_full.png"),16,16);
 			else if(mouseState == 11) cursor(images.get("lighterfire.png"),16,16);
+			else if(mouseState == 12) cursor(images.get("pusheenmouse.png"),16,16);
 			else cursor(ARROW);
 			
 			if(itemtable.hammer()==1){
@@ -198,6 +200,9 @@ public class MainApplet extends PApplet
 			}
 			if(itemtable.pusheenBottleFull()==1){
 				image(images.get("pusheen_bottle_full.png"), 925, 270, 60, 60);
+			}
+			if(itemtable.pusheenmouse()==1){
+				image(images.get("pusheenmouse.png"), 870, 320, 90,90);
 			}
 		}
 		else 
@@ -861,6 +866,15 @@ public class MainApplet extends PApplet
 					putItemBack();
 					mouseState=0;
 				}
+			}else if(mouseY>330 && mouseY<390){
+				if(itemtable.pusheenmouse()==1){
+					putItemBack();
+					mouseState = 12;
+					itemtable.pusheenmouse_vanish();
+				}else if(mouseState!=0){
+					putItemBack();
+					mouseState = 0;
+				}
 			}
 		}
 		
@@ -972,6 +986,7 @@ public class MainApplet extends PApplet
 				leftRoom.hammer_vanish();
 				leftRoom.pusheenWithoutHammer_vanish();
 				itemtable.hammer_appear();
+				itemtable.pusheenmouse_appear();
 				leftRoom.isanimate = 0;
 			}
 			if(leftRoom.isanimate==0 && mouseState==3 && mouseX >730 && mouseX <780 && mouseY>310 && mouseY <360){
@@ -1043,6 +1058,7 @@ public class MainApplet extends PApplet
 		else if(mouseState==8) itemtable.normalBottleFull_appear();
 		else if(mouseState==9) itemtable.normalBottleFullWithHose_appear();
 		else if(mouseState==10) itemtable.pusheenBottleFull_appear();
+		else if(mouseState == 12) itemtable.pusheenmouse_appear();
 	}
 	
 	public void callGame(int n)
