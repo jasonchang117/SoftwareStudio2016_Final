@@ -33,7 +33,9 @@ public class FillApplet extends PApplet implements ActionListener{
 	public String str_always, str_sometime ,str_never;
 	public String questionShow, commentShow, fileName;
 	private String num;
-	private Fill fill; 
+	private Fill fill;
+	private boolean isReplied = false;
+	private int showWrong = 0;
 	
 	public FillApplet(Fill f, String str)
 	{
@@ -65,30 +67,56 @@ public class FillApplet extends PApplet implements ActionListener{
 		this.text("Please type in your answer.", 35, 40);		
 		textSize(30);
 		this.text(commentShow, 100, 150);/////////Wait for improve.
+		
+		if(this.showWrong == 1)
+		{
+			textSize(20);
+			this.text("You have answered this question", 335, 400);
+		}
 	}
 	
 	@Override
 	public void actionPerformed(ActionEvent arg0) {}
 	
-	
 /////To decide which option be chosen.
-	public void always(){
-		option = 1;
-		getOption();
-		fill.isReply();
-		fill.callGame();
+	public void always()
+	{
+		if(this.isReplied == false)
+		{
+			option = 1;
+			getOption();
+			fill.isReply();
+			fill.callGame();
+			this.isReplied = true;
+		}
+		else
+			this.showWrong = 1;
 	}
-	public void sometime(){
-		option = 2;
-		getOption();
-		fill.isReply();
-		fill.callGame();
+	public void sometime()
+	{
+		if(this.isReplied == false)
+		{
+			option = 2;
+			getOption();
+			fill.isReply();
+			fill.callGame();
+			this.isReplied = true;
+		}
+		else
+			this.showWrong = 1;
 	}
-	public void never(){
-		option = 3;
-		getOption();
-		fill.isReply();
-		fill.callGame();
+	public void never()
+	{
+		if(this.isReplied == false)
+		{
+			option = 3;
+			getOption();
+			fill.isReply();
+			fill.callGame();
+			this.isReplied = true;
+		}
+		else
+			this.showWrong = 1;
 	}
 	public void getOption(){
 		if(option==1){
