@@ -20,7 +20,7 @@ public class GamePusheenPair extends PApplet{
 	private int initial = 1, howPlay = 0, game = 0, winGame = 0, loseGame = 0;
 	private int [] positionX = new int [12];
 	private int [] positionY = new int [12];
-	private int cardX = 0, cardY = 0, cardX_1 = 0, cardY_1 = 0;
+	private int cardXS = 0, cardXB = 0, cardYS = 0, cardYB = 0, cardXS_1 = 0, cardXB_1 = 0, cardYS_1 = 0, cardYB_1 = 0;
 	private int [] cardOpen  = new int [12]; 
 	private int openCard = 0, cardOpened = -1, cardOpened1 = -1, cardOpenedPosition = -1, cardOpened1Position = -1;
 	private int [] cardAlwaysOpen = new int[12] ;
@@ -184,14 +184,16 @@ public class GamePusheenPair extends PApplet{
 			if(openCard == 1){
 				cardOpened1 = cardOpened;
 				cardOpened1Position = cardOpenedPosition;
-				cardX_1 = cardX;
-				cardY_1 = cardY;
+				cardXS_1 = cardXS;
+				cardXB_1 = cardXB;
+				cardYS_1 = cardYS;
+				cardYB_1 = cardYB;
 			}
 			if(openCard == 2){
 				IFOPEN = true;
 				
 				if(cardOpened == cardOpened1 ){
-					if(cardX_1 == cardX && cardY_1 == cardY){
+					if(cardXS_1 == cardXS && cardYS_1 == cardYS && cardXB_1 == cardXB && cardYB_1 == cardYB){
 						IFOPEN = false;
 						openCard = 1;
 					}
@@ -328,8 +330,10 @@ public class GamePusheenPair extends PApplet{
 					openCard += 1;
 					cardOpened = cardPosition[i];
 					cardOpenedPosition = i;
-					cardX = mouseX;
-					cardY = mouseY;
+					cardXS = positionX[i];
+					cardXB = positionX[i] + cardSize;
+					cardYS = positionY[i];
+					cardYB = positionY[i] + cardSize;
 				}
 			}
 		}
