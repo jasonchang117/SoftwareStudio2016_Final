@@ -56,6 +56,7 @@ public class MainApplet extends PApplet
 		"background/left.png",
 		"background/start.jpg",
 		"background/start2.jpg",
+		"background/howToPlay.png",
 		"background/password.png",
 		"background/setquestion.png",
 		"background/questionInput.png",
@@ -146,7 +147,7 @@ public class MainApplet extends PApplet
 		cp5 = new ControlP5(this);
 		PFont p = createFont("Consolas", 20);
 		cp5.setFont(p);
-		cp5.addButton("voice").setLabel("Voice On").setPosition(60, 450).setSize(200, 50);
+		cp5.addButton("howplay").setLabel("How to play?").setPosition(60, 450).setSize(200, 50);
 		cp5.addButton("startbutton").setLabel("Start").setPosition(380, 450).setSize(200, 50);
 		cp5.addButton("questionnaire").setLabel("questionnaire").setPosition(700, 450).setSize(200,50);
 		
@@ -264,7 +265,7 @@ public class MainApplet extends PApplet
 			}
 			if(this.startmenu == 1)
 			{
-				cp5.remove("voice");
+				cp5.remove("howplay");
 				cp5.remove("startbutton");
 				cp5.remove("questionnaire");
 				this.startmenu = 0;
@@ -432,7 +433,7 @@ public class MainApplet extends PApplet
 		{
 			if(this.startmenu == 0)
 			{
-				cp5.addButton("voice").setLabel("Voice On").setPosition(60, 450).setSize(200, 50);
+				cp5.addButton("howplay").setLabel("How to play?").setPosition(60, 450).setSize(200, 50);
 				cp5.addButton("startbutton").setLabel("Start").setPosition(380, 450).setSize(200, 50);
 				cp5.addButton("questionnaire").setLabel("questionnaire").setPosition(700, 450).setSize(200,50);
 				this.startmenu = 1;
@@ -465,7 +466,7 @@ public class MainApplet extends PApplet
 			
 			if(this.startmenu == 1)
 			{
-				cp5.remove("voice");
+				cp5.remove("howplay");
 				cp5.remove("startbutton");
 				cp5.remove("questionnaire");
 				this.startmenu = 0;
@@ -504,7 +505,15 @@ public class MainApplet extends PApplet
 			if(this.clue_password2 == 1)
 				image(images.get("clue_password2.png"), 0, 0, 840, 540);
 		}
-		
+		else if(this.curRoom == 9) // how to play?
+		{
+			image(images.get("howToPlay.png"), 0, 0, 1000, 540);
+			cp5.remove("howplay");
+			cp5.remove("startbutton");
+			cp5.remove("questionnaire");
+			this.prevRoom = 2;
+			this.startmenu = 0;
+		}
 		
 		if(this.catMove < 19)
 			this.catMove ++;
@@ -516,7 +525,7 @@ public class MainApplet extends PApplet
 			cp5.addButton("buttonBack").setLabel("Back").setPosition(890, 450).setSize(50,50);
 			this.backbutton = 1;
 		}
-		else if((this.curRoom != -1 &&this.curRoom!=0 &&this.curRoom!=1 &&this.curRoom!=3 && this.curRoom!=4 && this.curRoom!=5 && this.curRoom!=6 && this.curRoom!=7 && this.curRoom!=8)&& backbutton == 1)
+		else if((this.curRoom != -1 &&this.curRoom!=0 &&this.curRoom!=1 &&this.curRoom!=3 && this.curRoom!=4 && this.curRoom!=5 && this.curRoom!=6 && this.curRoom!=7 && this.curRoom!=8 && this.curRoom!=9)&& backbutton == 1)
 		{
 			cp5.remove("buttonBack");
 			this.backbutton = 0;
@@ -627,9 +636,9 @@ public class MainApplet extends PApplet
 		
 	}
 	
-	public void voice()
+	public void howplay()
 	{
-		
+		this.curRoom = 9;
 	}
 	
 	public void startbutton()
