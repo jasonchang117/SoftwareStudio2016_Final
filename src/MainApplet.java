@@ -28,7 +28,7 @@ public class MainApplet extends PApplet
 	private int pusheenNum = 0;
 	private int beknifnum = 0, becutnum = 0;
 	public  int clue1 = 0, clue2 = 0, clue3 = 0, clue4 = 0, clue_password2 = 0;
-	public  int success = 0;		// complete the game
+	public  int success = 0, success_count = 0;		// complete the game
 	private int filled = 0;			// for clue4
 	private AudioClip cat;
 	private LeftRoom leftRoom = new LeftRoom();
@@ -111,9 +111,14 @@ public class MainApplet extends PApplet
 		"component/clue4_2.png",
 		"component/clue_password2.png",
 		"component/securitybox_open.png",
-		"component/pusheenmouse.png",
-		"background/finish_temp.png"
-		
+		"background/ending1.jpg",
+		"background/ending2.jpg",
+		"background/ending3.jpg",
+		"background/ending4.jpg",
+		"background/ending5.jpg",
+		"background/ending6.jpg",
+		"background/ending7.jpg",
+		"background/ending8.jpg"
 	};
 	
 	public void setup()				// override the processing that initial the applet
@@ -133,7 +138,7 @@ public class MainApplet extends PApplet
 			temp = this.file[i].split("/");
 			images.put(temp[1], image);
 		}
-		
+		success_count = 0;
 		cat = getAudioClip(getCodeBase(), "sound/cat.mp3");
 		curRoom = 2;
 		cp5 = new ControlP5(this);
@@ -168,7 +173,6 @@ public class MainApplet extends PApplet
 			else if(mouseState == 9) cursor(images.get("normalBottle+hose.png"),16,16);
 			else if(mouseState == 10) cursor(images.get("pusheen_bottle_full.png"),16,16);
 			else if(mouseState == 11) cursor(images.get("lighterfire.png"),16,16);
-			else if(mouseState == 12) cursor(images.get("pusheenmouse.png"),16,16);
 			else cursor(ARROW);
 			
 			if(itemtable.hammer()==1){
@@ -200,9 +204,6 @@ public class MainApplet extends PApplet
 			}
 			if(itemtable.pusheenBottleFull()==1){
 				image(images.get("pusheen_bottle_full.png"), 925, 270, 60, 60);
-			}
-			if(itemtable.pusheenmouse()==1){
-				image(images.get("pusheenmouse.png"), 870, 320, 90,90);
 			}
 		}
 		else 
@@ -269,6 +270,8 @@ public class MainApplet extends PApplet
 		}
 		else if(this.curRoom == 1) //right room
 		{
+			
+			
 			if(rightroomState==1) image(images.get("right.png"), 0, 0, 840, 540);
 			else if(rightroomState == 2) image(images.get("right2.png"), 0, 0, 840, 540);
 			else if(rightroomState == 3) image(images.get("right3.png"), 0, 0, 840, 540);
@@ -296,17 +299,39 @@ public class MainApplet extends PApplet
 					itemtable.normalBottleFull_appear();
 					rightRoom.animate = 0;
 				}
-				
 			}
 			
 			if(rightRoom.tape() == 1){
 				image(images.get("tape.png"), rightRoom.getComX("tape"), rightRoom.getComY("tape"), 30, 20);
 			}
-		////Finish the game!
-			else if(rightroomState == 4 & rightRoom.tape() == 1){  
-				//rightRoom.success();
-				image(images.get("finish_temp.png"), rightRoom.getComX("tape"), rightRoom.getComY("tape"), 30, 20);
+			if(success ==1 ){
+				
+				image(images.get("finish_temp.png"), 0, 0, width, height);
+
+				success_count++;
+				if(success_count<=20){
+					image(images.get("ending1.jpg"), 0, 0, width, height);
+				}else if(success_count<=20*2){
+					image(images.get("ending2.jpg"), 0, 0, width, height);
+				}else if(success_count<=20*3){
+					image(images.get("ending3.jpg"), 0, 0, width, height);
+				}else if(success_count<=20*4){
+					image(images.get("ending4.jpg"), 0, 0, width, height);
+				}else if(success_count<=20*5){
+					image(images.get("ending5.jpg"), 0, 0, width, height);
+				}else if(success_count<=20*6){
+					image(images.get("ending6.jpg"), 0, 0, width, height);
+				}else if(success_count<=20*7+10){
+					image(images.get("ending7.jpg"), 0, 0, width, height);   //Blank
+				}else if(success_count<=150+5){
+					image(images.get("ending8.jpg"), 0, 0, width, height);  
+				}else{
+					image(images.get("ending8.jpg"), 0, 0, width, height);   
+					success_count = 30*8+11;
+					//success = 0;
+				}	
 			}
+			
 		}
 		else if(this.curRoom == -1) //left room
 		{
@@ -435,18 +460,6 @@ public class MainApplet extends PApplet
 					 questionButton = 1;
 				}
 			}
-			
-			/*if(inputQuestion == 1) //Input question room.
-			{	 	
-				 cp5.remove("questionOne");
-				 cp5.remove("questionTwo");
-				 cp5.remove("questionThree");
-				 cp5.remove("questionFour");
-				 cp5.remove("questionFive");
-				 cp5.remove("questionSix");    
-				 image(images.get("questionInput.png"), 0, 0, 1000, 540);
-				 //At the same time pop up another window.
-			}*/
 			
 			if(this.startmenu == 1)
 			{
@@ -870,15 +883,6 @@ public class MainApplet extends PApplet
 					putItemBack();
 					mouseState=0;
 				}
-			}else if(mouseY>330 && mouseY<390){
-				if(itemtable.pusheenmouse()==1){
-					putItemBack();
-					mouseState = 12;
-					itemtable.pusheenmouse_vanish();
-				}else if(mouseState!=0){
-					putItemBack();
-					mouseState = 0;
-				}
 			}
 		}
 		
@@ -912,7 +916,7 @@ public class MainApplet extends PApplet
 			else if(middleRoom.securityState==0 && mouseState==11  && mouseX >= 485 && mouseX <= 520 && mouseY >= 180 && mouseY <= 230){
 				middleRoom.lightright_appear();
 			}
-			else if(middleRoom.knif()==1 && mouseX>= middleRoom.getComX("knif")-20 && mouseY>=middleRoom.getComY("knif")-20 && mouseX< middleRoom.getComX("knif")+70 && mouseY<middleRoom.getComY("knif")+60){
+			else if(middleRoom.knif()==1 && mouseX>= middleRoom.getComX("knif") && mouseY>=middleRoom.getComY("knif")+20 && mouseX< middleRoom.getComX("knif")+70 && mouseY<middleRoom.getComY("knif")+40){
 				middleRoom.knif_vanish();
 				itemtable.knif_appear();
 			}
@@ -942,7 +946,7 @@ public class MainApplet extends PApplet
 			}else if(rightroomState == 4 && mouseState == 0 && mouseX >425 && mouseX <505 && mouseY>200 && mouseY <300){ //Break the window
 				if(this.question_five_done == 0){
 					Fill fill = new Fill(this, "5");
-				}					
+				}
 			}else if(mouseState==9 && mouseX >650 && mouseX <750 && mouseY>430 && mouseY <470){
 				mouseState=0;
 				rightRoom.animate = 1;
@@ -990,7 +994,6 @@ public class MainApplet extends PApplet
 				leftRoom.hammer_vanish();
 				leftRoom.pusheenWithoutHammer_vanish();
 				itemtable.hammer_appear();
-				itemtable.pusheenmouse_appear();
 				leftRoom.isanimate = 0;
 			}
 			if(leftRoom.isanimate==0 && mouseState==3 && mouseX >730 && mouseX <780 && mouseY>310 && mouseY <360){
@@ -1062,7 +1065,6 @@ public class MainApplet extends PApplet
 		else if(mouseState==8) itemtable.normalBottleFull_appear();
 		else if(mouseState==9) itemtable.normalBottleFullWithHose_appear();
 		else if(mouseState==10) itemtable.pusheenBottleFull_appear();
-		else if(mouseState == 12) itemtable.pusheenmouse_appear();
 	}
 	
 	public void callGame(int n)
