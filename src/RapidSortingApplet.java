@@ -72,7 +72,7 @@ public class RapidSortingApplet extends PApplet{
 	
 	public void draw()
 	{
-		if(this.now.getTime() - this.startTime.getTime() >= 30000)
+		if(this.now.getTime() - this.startTime.getTime() >= 20000)
 		{
 			this.shapeState = 3;
 			this.gameStart = 2;
@@ -234,7 +234,7 @@ public class RapidSortingApplet extends PApplet{
 	
 	public int getPass()
 	{
-		if(this.score >= 15)
+		if(this.score >= 10)
 			return 1;
 		else
 			return 0;
