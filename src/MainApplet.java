@@ -912,7 +912,7 @@ public class MainApplet extends PApplet
 			else if(middleRoom.securityState==0 && mouseState==11  && mouseX >= 485 && mouseX <= 520 && mouseY >= 180 && mouseY <= 230){
 				middleRoom.lightright_appear();
 			}
-			else if(middleRoom.knif()==1 && mouseX>= middleRoom.getComX("knif") && mouseY>=middleRoom.getComY("knif")+20 && mouseX< middleRoom.getComX("knif")+70 && mouseY<middleRoom.getComY("knif")+40){
+			else if(middleRoom.knif()==1 && mouseX>= middleRoom.getComX("knif")-20 && mouseY>=middleRoom.getComY("knif")-20 && mouseX< middleRoom.getComX("knif")+70 && mouseY<middleRoom.getComY("knif")+60){
 				middleRoom.knif_vanish();
 				itemtable.knif_appear();
 			}
