@@ -40,7 +40,7 @@ public class MainApplet extends PApplet
 	private int mouseState;
 	private int rightroomState;
 	public String fileName;
-	private int questionOneSet = 0, questionTwoSet = 0, questionThreeSet = 0, questionFourSet = 0, questionFiveSet = 0;
+	public int questionOneSet = 0, questionTwoSet = 0, questionThreeSet = 0, questionFourSet = 0, questionFiveSet = 0;
 	public int question_one_done = 0, question_two_done = 0, question_three_done = 0, question_four_done = 0, question_five_done = 0;
 	private int securityboxnum,securityboxnumamount;
 	
@@ -670,7 +670,6 @@ public class MainApplet extends PApplet
 		if(questionOneSet != 1){
 			JxlWriteExcel createExcel = new JxlWriteExcel(this);
 			inputQuestion = 1;
-			questionOneSet = 1;
 			createExcel.setOrder(1);
 		}
 	 }
@@ -678,33 +677,29 @@ public class MainApplet extends PApplet
 		 if(questionTwoSet != 1){
 				JxlWriteExcel createExcel = new JxlWriteExcel(this);
 				inputQuestion = 1;
-				questionTwoSet = 1;
 				createExcel.setOrder(2);
-			}
+		 }
 	 }
 	 public void questionThree(){
 		 if(questionThreeSet != 1){
 				JxlWriteExcel createExcel = new JxlWriteExcel(this);
 				inputQuestion = 1;
-				questionThreeSet = 1;
 				createExcel.setOrder(3);
-			}
+		 }
 	 }
 	 public void questionFour(){
 		 if(questionFourSet != 1){
 				JxlWriteExcel createExcel = new JxlWriteExcel(this);
 				inputQuestion = 1;
-				questionFourSet = 1;
 				createExcel.setOrder(4);
-			}
+		 }
 	 }
 	 public void questionFive(){
 		 if(questionFiveSet != 1){
 				JxlWriteExcel createExcel = new JxlWriteExcel(this);
 				inputQuestion = 1;
-				questionFiveSet = 1;
 				createExcel.setOrder(5);
-			}
+		 }
 	 }
 	 public void Read() throws IOException{
 		 JxlReadExcel readExcel = new JxlReadExcel();

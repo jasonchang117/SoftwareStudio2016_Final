@@ -17,7 +17,7 @@ public class JxlWriteExcelApplet extends PApplet implements ActionListener{
 	private final static int width = 1000, height = 540;
 	private Font f = new Font("Consolas", 0,30);
 	JxlWriteExcel jxl;	
-	TextField textfield_ques = new TextField();
+	//TextField textfield_ques = new TextField();
 	TextField textfield_comm = new TextField();
 	private PImage bkg = loadImage("background/questionInput.png");
 	String encoding = "UTF8";
@@ -61,7 +61,6 @@ public class JxlWriteExcelApplet extends PApplet implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent arg0) 
 	{
-		input_ques = textfield_ques.getText();
 		input_comm = textfield_comm.getText();
 
 		createOrder();
@@ -69,9 +68,8 @@ public class JxlWriteExcelApplet extends PApplet implements ActionListener{
 		system(input_name ,input_ques ,input_comm);
 		create(fileName ,input_ques);
 		
-		textfield_ques.setText("");   //Clear after Enter.
-		textfield_comm.setText("");
-		
+		textfield_comm.setText("");   //Clear after Enter.
+		jxl.setQuestionSeted();
 	}
 	public void setOrder(int o){
 		this.order = o;
