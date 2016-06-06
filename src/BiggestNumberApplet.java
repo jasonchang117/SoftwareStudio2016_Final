@@ -39,6 +39,7 @@ public class BiggestNumberApplet extends PApplet{
 		"component/two_2.png",
 		"component/zero_1.png",
 		"component/zero_2.png",
+		"component/infinite.png",
 	};
 	
 	public BiggestNumberApplet(BiggestNumber b)
@@ -89,9 +90,13 @@ public class BiggestNumberApplet extends PApplet{
 		image(images.get("one.png"), oneX, oneY, 60, 60);
 		image(images.get("two_1.png"), two_oneX, two_oneY, 60, 60);
 		image(images.get("two_2.png"), two_twoX, two_twoY, 60, 60);
-		image(images.get("zero_1.png"), zero_oneX, zero_oneY, 60, 60);
-		image(images.get("zero_2.png"), zero_twoX, zero_twoY, 60, 60);
-		
+		if(this.curNumber2 == false)
+		{
+			image(images.get("zero_1.png"), zero_oneX, zero_oneY, 60, 60);
+			image(images.get("zero_2.png"), zero_twoX, zero_twoY, 60, 60);
+		}
+		else
+			image(images.get("infinite.png"), 8, 430, 110, 80);
 		
 		
 		if(wrong)

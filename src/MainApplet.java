@@ -306,7 +306,6 @@ public class MainApplet extends PApplet
 		}
 		else if(this.curRoom == -1) //left room
 		{
-			
 			if(leftRoom.paperbackground==1)image(images.get("carpet paper.png"), 0, 0, 840, 540);
 			else image(images.get("left.png"),0,0,840,540);
 			if(leftRoom.pusheenFront()==1)
@@ -504,8 +503,6 @@ public class MainApplet extends PApplet
 			this.backbutton = 0;
 		}
 		
-		//for object drag but it can only drag lighter now	
-		//System.out.println(this.curRoom);
 		q.display();
 	}
 	
@@ -628,7 +625,7 @@ public class MainApplet extends PApplet
 	
 	public void buttonBack()
 	{
-		System.out.println(this.curRoom);
+		//System.out.println(this.curRoom);
 		if(this.curRoom == 3 && this.inputQuestion == 1)
 		{
 			this.curRoom = 3;
@@ -646,9 +643,8 @@ public class MainApplet extends PApplet
 			securityboxnumamount = 0;
 			leftRoom.securityState = 0;
 		}
-		else if(this.curRoom > 3)
+		else if(this.curRoom > 3)				// for clues return to previous room
 		{
-			System.out.println(this.prevRoom);
 			this.curRoom = this.prevRoom;
 		}
 		else
@@ -882,7 +878,7 @@ public class MainApplet extends PApplet
 			}
 			else if(middleRoom.securityboxopen()==0 && middleRoom.securityState == 0 &&  mouseX >= 328 && mouseX <= 462 && mouseY >= 147 && mouseY <= 269 && middleRoom.lightleft() == 1 && middleRoom.lightright() == 1)
 			{
-				//clue = pusheen.getPass();
+				
 				middleRoom.securityState = 1;
 				securityboxnum = 0;
 				securityboxnumamount = 0;
@@ -930,7 +926,6 @@ public class MainApplet extends PApplet
 				itemtable.hammer_vanish();
 				mouseState = 0;
 			}else if(rightroomState == 4 && mouseState == 0 && mouseX >425 && mouseX <505 && mouseY>200 && mouseY <300){ //Break the window
-				callGame(5);   //Biggest Number
 				if(this.question_five_done == 0)
 				{
 					Fill fill = new Fill(this, "5");
@@ -1043,7 +1038,6 @@ public class MainApplet extends PApplet
 				if(leftRoom.hoseBeTaken==0){
 					leftRoom.hose_appear();
 				}
-				
 			}
 		}
 		securityboxnum = 0;
