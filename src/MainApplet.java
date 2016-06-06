@@ -642,6 +642,11 @@ public class MainApplet extends PApplet
 			securityboxnumamount = 0;
 			leftRoom.securityState = 0;
 		}
+		else if(this.curRoom == -1 && leftRoom.securityboxopen()==1){
+			leftRoom.securitybox_vanish();
+			leftRoom.securityboxopen_vanish();
+			leftRoom.hose_vanish();
+		}
 		else if(this.curRoom > 3)				// for clues return to previous room
 		{
 			this.curRoom = this.prevRoom;
