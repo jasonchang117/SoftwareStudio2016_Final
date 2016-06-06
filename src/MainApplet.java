@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.lang.annotation.AnnotationTypeMismatchException;
 import java.util.ArrayList;
 import java.util.HashMap;
-
 import javax.swing.JFrame;
 import javax.swing.JTextField;
 import controlP5.ControlP5;
@@ -42,7 +41,7 @@ public class MainApplet extends PApplet
 	private int rightroomState;
 	public String fileName;
 	private int questionOneSet = 0, questionTwoSet = 0, questionThreeSet = 0, questionFourSet = 0, questionFiveSet = 0;
-	private int question_one_done = 0, question_two_done = 0, question_three_done = 0, question_four_done = 0, question_five_done = 0;
+	public int question_one_done = 0, question_two_done = 0, question_three_done = 0, question_four_done = 0, question_five_done = 0;
 	private int securityboxnum,securityboxnumamount;
 	
 	private String[] file = {
@@ -878,21 +877,18 @@ public class MainApplet extends PApplet
 			}
 			else if(middleRoom.securityboxopen()==0 && middleRoom.securityState == 0 &&  mouseX >= 328 && mouseX <= 462 && mouseY >= 147 && mouseY <= 269 && middleRoom.lightleft() == 1 && middleRoom.lightright() == 1)
 			{
-				
 				middleRoom.securityState = 1;
 				securityboxnum = 0;
 				securityboxnumamount = 0;
 			}
 			else if(middleRoom.securityState==0 && mouseX >= 585 && mouseX <= 650 && mouseY >= 215 && mouseY <= 250 && mouseState == 11){
-				if(this.question_four_done == 0)
-				{
+				if(this.question_four_done == 0){
 					Fill fill = new Fill(this, "4");
-					this.question_four_done = 1;
 				}
 				else
 					callGame(4);
 			}
-			else if(middleRoom.securityState==0 && mouseState==11  && mouseX >= 255 && mouseX <= 280 && mouseY >= 180 && mouseY <= 230){
+			else if(middleRoom.securityState==0 && mouseState==11  && mouseX >= 265 && mouseX <= 395 && mouseY >= 175 && mouseY <= 235){
 				middleRoom.lightleft_appear();
 			}
 			else if(middleRoom.securityState==0 && mouseState==11  && mouseX >= 485 && mouseX <= 520 && mouseY >= 180 && mouseY <= 230){
@@ -926,10 +922,8 @@ public class MainApplet extends PApplet
 				itemtable.hammer_vanish();
 				mouseState = 0;
 			}else if(rightroomState == 4 && mouseState == 0 && mouseX >425 && mouseX <505 && mouseY>200 && mouseY <300){ //Break the window
-				if(this.question_five_done == 0)
-				{
+				if(this.question_five_done == 0){
 					Fill fill = new Fill(this, "5");
-					this.question_five_done = 1;
 				}					
 			}else if(mouseState==9 && mouseX >650 && mouseX <750 && mouseY>430 && mouseY <470){
 				mouseState=0;
@@ -939,10 +933,8 @@ public class MainApplet extends PApplet
 				this.curRoom = 7;
 				this.clue4 = 2;
 			}else if(mouseX > 366 && mouseX < 496 && mouseY > 18 && mouseY < 77){
-				if(this.question_one_done == 0)
-				{
+				if(this.question_one_done == 0){
 					Fill fill = new Fill(this, "1");
-					this.question_one_done = 1;
 				}
 				else
 					callGame(1);			
@@ -993,10 +985,8 @@ public class MainApplet extends PApplet
 				
 			}
 			if(mouseX >= 225 && mouseX <= 370 && mouseY >= 310 && mouseY <= 370 && mouseState == 0){
-				if(this.question_three_done == 0)
-				{
+				if(this.question_three_done == 0){
 					Fill fill = new Fill(this, "3");
-					this.question_three_done = 1;
 				}
 				else
 					callGame(3);
@@ -1005,10 +995,8 @@ public class MainApplet extends PApplet
 			{
 				if( ( ((mouseX-681.f)*(mouseX-681.f))/10000.f+((mouseY-485.f)*(mouseY-485.f))/900.f) <= 1.f)
 				{
-					if(this.question_two_done == 0)
-					{
+					if(this.question_two_done == 0){
 						Fill fill = new Fill(this, "2");
-						this.question_two_done = 1;
 					}
 					else
 						callGame(2);

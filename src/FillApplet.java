@@ -75,16 +75,19 @@ public class FillApplet extends PApplet implements ActionListener{
 	public void always(){
 		option = 1;
 		getOption();
+		fill.isReply();
 		fill.callGame();
 	}
 	public void sometime(){
 		option = 2;
 		getOption();
+		fill.isReply();
 		fill.callGame();
 	}
 	public void never(){
 		option = 3;
 		getOption();
+		fill.isReply();
 		fill.callGame();
 	}
 	public void getOption(){

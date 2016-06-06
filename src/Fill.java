@@ -29,5 +29,21 @@ public class Fill extends JFrame {
 		main.callGame(k);
 	}
 	
+	public void isReply()
+	{
+		int k = Integer.parseInt(num);
+		
+		if(k == 1)
+			main.question_one_done = 1;
+		else if(k == 2)
+			main.question_two_done = 1;
+		else if(k == 3)
+			main.question_three_done = 1;
+		else if(k == 4)
+			main.question_four_done = 1;
+		else if(k == 5)
+			main.question_five_done = 1;
+	}
+	
 }
 
