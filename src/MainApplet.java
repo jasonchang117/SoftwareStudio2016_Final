@@ -43,6 +43,8 @@ public class MainApplet extends PApplet
 	public int questionOneSet = 0, questionTwoSet = 0, questionThreeSet = 0, questionFourSet = 0, questionFiveSet = 0;
 	public int question_one_done = 0, question_two_done = 0, question_three_done = 0, question_four_done = 0, question_five_done = 0;
 	private int securityboxnum,securityboxnumamount;
+	private AudioPlayer song;
+	private Minim  minim;
 	
 	private String[] file = {
 		"background/middle.png",
@@ -131,7 +133,7 @@ public class MainApplet extends PApplet
 		rightroomState = 1;
 		String []temp = new String[10];
 		String input = new String("12345678");   //for WriteExcel
-		
+		minim = new Minim(this);
 		for(int i=0;i<file.length;i++)
 		{
 			PImage image = loadImage(this.file[i]);
@@ -306,7 +308,7 @@ public class MainApplet extends PApplet
 			}
 			if(success ==1 ){
 				
-				image(images.get("finish_temp.png"), 0, 0, width, height);
+				//image(images.get("finish_temp.png"), 0, 0, width, height);
 
 				success_count++;
 				if(success_count<=20){
@@ -939,6 +941,8 @@ public class MainApplet extends PApplet
 				rightroomState = 3;
 				itemtable.tape_vanish();
 				mouseState = 0;
+				song = minim.loadFile("sound/BrokenGlass.mp3");
+				song.play();
 			}else if(rightroomState == 3 && mouseState == 4 && mouseX >425 && mouseX <505 && mouseY>200 && mouseY <300){
 				rightroomState = 4;
 				itemtable.hammer_vanish();
@@ -950,6 +954,8 @@ public class MainApplet extends PApplet
 			}else if(mouseState==9 && mouseX >650 && mouseX <750 && mouseY>430 && mouseY <470){
 				mouseState=0;
 				rightRoom.animate = 1;
+				song = minim.loadFile("sound/pouring_liquid_1.wav");
+				song.play();
 			}else if(mouseState==0 && filled == 1 && mouseX >650 && mouseX <750 && mouseY>430 && mouseY <470){
 				this.prevRoom = this.curRoom;
 				this.curRoom = 7;
