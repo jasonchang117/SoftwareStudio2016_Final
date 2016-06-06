@@ -20,6 +20,7 @@ public class GamePusheenPair extends PApplet{
 	private int initial = 1, howPlay = 0, game = 0, winGame = 0, loseGame = 0;
 	private int [] positionX = new int [12];
 	private int [] positionY = new int [12];
+	private int cardX = 0, cardY = 0, cardX_1 = 0, cardY_1 = 0;
 	private int [] cardOpen  = new int [12]; 
 	private int openCard = 0, cardOpened = -1, cardOpened1 = -1, cardOpenedPosition = -1, cardOpened1Position = -1;
 	private int [] cardAlwaysOpen = new int[12] ;
@@ -183,15 +184,23 @@ public class GamePusheenPair extends PApplet{
 			if(openCard == 1){
 				cardOpened1 = cardOpened;
 				cardOpened1Position = cardOpenedPosition;
+				cardX_1 = cardX;
+				cardY_1 = cardY;
 			}
 			if(openCard == 2){
 				IFOPEN = true;
 				
-				if(cardOpened == cardOpened1){
-					cardAlwaysOpen[cardOpenedPosition] = 1;
-					cardAlwaysOpen[cardOpened1Position] = 1;
-					openCard = 0;
-					IFOPEN =false;
+				if(cardOpened == cardOpened1 ){
+					if(cardX_1 == cardX && cardY_1 == cardY){
+						IFOPEN = false;
+						openCard = 1;
+					}
+					else{
+						cardAlwaysOpen[cardOpenedPosition] = 1;
+						cardAlwaysOpen[cardOpened1Position] = 1;
+						openCard = 0;
+						IFOPEN = false;
+					}
 				}
 				else{
 					openTime += 1;
@@ -315,13 +324,12 @@ public class GamePusheenPair extends PApplet{
 			song.play();
 			for(int i = 0; i < 12; i ++){
 				if(IFOPEN==false && mouseX >= positionX[i] && mouseX <= positionX[i] + cardSize && mouseY >= positionY[i] && mouseY <= positionY[i] + cardSize && cardAlwaysOpen[i] != 1){
-					
-					
 					cardOpen[i] = 1;
 					openCard += 1;
 					cardOpened = cardPosition[i];
 					cardOpenedPosition = i;
-					
+					cardX = mouseX;
+					cardY = mouseY;
 				}
 			}
 		}
