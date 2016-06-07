@@ -307,47 +307,32 @@ public class MainApplet extends PApplet
 			if(rightRoom.tape() == 1){
 				image(images.get("tape.png"), rightRoom.getComX("tape"), rightRoom.getComY("tape"), 30, 20);
 			}
-			if(success ==1 ){				
+			if(success ==1 ){
+				
+				//image(images.get("finish_temp.png"), 0, 0, width, height);
+
 				success_count++;
 				if(success_count<=20){
-					if( success_count == 16){
-						song = minim.loadFile("sound/footstep.mp3");
-						song.play();
-					}
 					image(images.get("ending1.jpg"), 0, 0, width, height);
 				}else if(success_count<=20*2){
 					image(images.get("ending2.jpg"), 0, 0, width, height);
 				}else if(success_count<=20*3){
-					if( success_count == 50){
-						song = minim.loadFile("sound/footstep.mp3");
-						song.play();
-					}
 					image(images.get("ending3.jpg"), 0, 0, width, height);
 				}else if(success_count<=20*4){
 					image(images.get("ending4.jpg"), 0, 0, width, height);
 				}else if(success_count<=20*5){
-					if( success_count == 90){
-						song = minim.loadFile("sound/footstep.mp3");
-						song.play();
-					}
 					image(images.get("ending5.jpg"), 0, 0, width, height);
 				}else if(success_count<=20*6){
 					image(images.get("ending6.jpg"), 0, 0, width, height);
 				}else if(success_count<=20*7+10){
 					image(images.get("ending7.jpg"), 0, 0, width, height);   //Blank
 				}else if(success_count<=150+5){
-					if( success_count == 151){
-						song = minim.loadFile("sound/correct.mp3");
-						song.play();
-					}
 					image(images.get("ending8.jpg"), 0, 0, width, height);  
 				}else{
 					image(images.get("ending8.jpg"), 0, 0, width, height);   
 					success_count = 30*8+11;
 					//success = 0;
 				}	
-				
-					
 			}
 			
 		}
@@ -965,6 +950,7 @@ public class MainApplet extends PApplet
 				rightroomState = 3;
 				itemtable.tape_vanish();
 				mouseState = 0;
+				
 			}else if(rightroomState == 3 && mouseState == 4 && mouseX >425 && mouseX <505 && mouseY>200 && mouseY <300){
 				rightroomState = 4;
 				itemtable.hammer_vanish();
