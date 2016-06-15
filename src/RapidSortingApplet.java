@@ -132,7 +132,7 @@ public class RapidSortingApplet extends PApplet{
 			textSize(20);
 			fill(0);
 			text("Your Score: " + this.score, 10, 40);
-			text("Time Left : " + (30-((this.now.getTime()-this.startTime.getTime())/1000)), 230, 40);
+			text("Time Left : " + (20-((this.now.getTime()-this.startTime.getTime())/1000)), 230, 40);
 		}
 		else if(this.gameStart == 2)
 		{
