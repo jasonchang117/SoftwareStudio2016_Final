@@ -29,8 +29,7 @@ public class MainApplet extends PApplet
 	private int beknifnum = 0, becutnum = 0;
 	public  int clue1 = 0, clue2 = 0, clue3 = 0, clue4 = 0, clue_password2 = 0;
 	public  int success = 0, success_count = 0;		// complete the game
-	private int filled = 0;			// for clue4
-	private AudioClip cat;
+	private int filled = 0;	
 	private LeftRoom leftRoom = new LeftRoom();
 	private RightRoom rightRoom = new RightRoom();
 	private MiddleRoom middleRoom = new MiddleRoom();
@@ -43,7 +42,7 @@ public class MainApplet extends PApplet
 	public int questionOneSet = 0, questionTwoSet = 0, questionThreeSet = 0, questionFourSet = 0, questionFiveSet = 0;
 	public int question_one_done = 0, question_two_done = 0, question_three_done = 0, question_four_done = 0, question_five_done = 0;
 	private int securityboxnum,securityboxnumamount;
-	private AudioPlayer song;
+	private AudioPlayer song, cat;
 	private Minim  minim;
 	
 	private String[] file = {
@@ -128,13 +127,12 @@ public class MainApplet extends PApplet
 	public void setup()				// override the processing that initial the applet
 	{	
 		Ani.init(this);
-		this.setLayout(null);
+		//this.setLayout(null);
 		size(width, height);
 		smooth();
 		mouseState = 0;
 		rightroomState = 1;
 		String []temp = new String[10];
-		String input = new String("12345678");   //for WriteExcel
 		minim = new Minim(this);
 		for(int i=0;i<file.length;i++)
 		{
@@ -143,7 +141,8 @@ public class MainApplet extends PApplet
 			images.put(temp[1], image);
 		}
 		success_count = 0;
-		cat = getAudioClip(getCodeBase(), "sound/cat.mp3");
+		cat = minim.loadFile("sound/cat.mp3");
+		cat.play();
 		curRoom = 2;
 		cp5 = new ControlP5(this);
 		PFont p = createFont("Consolas", 20);

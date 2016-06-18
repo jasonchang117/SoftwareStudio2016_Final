@@ -15,7 +15,7 @@ import jxl.write.WriteException;*/
 @SuppressWarnings("serial")
 public class Main extends JFrame {
 	
-	private final static int windowWidth = 960, windowHeight = 540;
+	private final static int windowWidth = 1015, windowHeight = 585;
 	
 	
 	public static void main(String [] args)
